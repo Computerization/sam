@@ -46,10 +46,12 @@
             }
 
             .title {
-                font-size: 84px;
+                font-size: 64px;
+                letter-spacing: .5rem;
+                text-transform: uppercase;
             }
 
-            .links > a {
+            #author, .links > a {
                 color: #636b6f;
                 padding: 0 25px;
                 font-size: 12px;
@@ -70,6 +72,7 @@
                 <div class="top-right links">
                     @if (Auth::check())
                         <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/vote') }}">Vote</a>
                     @else
                         <a href="{{ url('/login') }}">Login</a>
                         <a href="{{ url('/register') }}">Register</a>
@@ -79,15 +82,11 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    LiveVote
                 </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                <div id="author">
+                    Online Vote Application by David ZYC
                 </div>
             </div>
         </div>

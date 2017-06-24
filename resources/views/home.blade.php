@@ -9,6 +9,7 @@
 
                 <div class="panel-body">
                     You are logged in!
+                    <h4><a href="{{ url('/vote') }}">Click Here to Proceed to Vote Page.</a></h4>
                 </div>
             </div>
         </div>

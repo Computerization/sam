@@ -97,12 +97,15 @@ class VoteController extends Controller
 
     public function submit(Request $request, $id)
     {
+      $this->validate($request, [
+          'answer.*.answer_content' => 'required|max:255',
+      ]);
       $data = $request->answer;
       foreach ($request->answer as $key => $value) {
         $data[$key]['user_id'] = Auth::id();
       }
       Answer::insert($data);
-      return redirect('home');
+      return redirect('vote')->with('status', 'Response Submitted Successfully.');
     }
 
     /**
