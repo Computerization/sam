@@ -25,7 +25,6 @@
                   <div class="form-group">
                     <label for="q{{ $question->id }}"></label>
                     <input type="text" class="form-control" id="q{{ $question->id }}" name="answer[{{ $question->id }}][answer_content]">
-                    <input type="hidden" name="answer[{{ $question->id }}][question_id]" value="{{ $question->id }}">
                   </div>
                 </div>
               </div>

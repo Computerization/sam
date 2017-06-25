@@ -19,16 +19,22 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+Route::middleware(['auth','auth.admin'])->group(function () {
+
+  Route::get('vote/{id}/stat', 'VoteController@stat');
+
+  Route::get('vote/create', 'VoteController@create');
+  Route::post('vote/create', 'VoteController@store');
+  Route::get('vote/{id}/edit', 'VoteController@edit');
+  Route::post('vote/{id}/edit', 'VoteController@update');
+
+});
+
 Route::middleware('auth')->group(function () {
 
   Route::get('vote/{id}', 'VoteController@show');
   Route::post('vote/{id}/submit', 'VoteController@submit');
   Route::get('vote/', 'VoteController@index');
 
-});
-
-Route::middleware('auth.admin')->group(function () {
-
-  Route::get('vote/{id}/stat', 'VoteController@stat');
-  
 });

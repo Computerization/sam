@@ -10,4 +10,7 @@ class Question extends Model
     public function answers(){
       return $this->hasMany('App\Answer');
     }
+
+    protected $fillable = ['question_content', 'vote_id'];
+
 }

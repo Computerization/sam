@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Vote;
+use App\Question;
 use App\Answer;
 
 class VoteController extends Controller
@@ -30,6 +31,8 @@ class VoteController extends Controller
     public function create()
     {
         //
+        // return "create";
+        return view('votes.create');
     }
 
     /**
@@ -41,6 +44,22 @@ class VoteController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request, [
+            'vote_name' => 'required|max:255',
+            'question.*.question_content' => 'required|max:255',
+        ]);
+
+        $vote_data['vote_name'] = $request->vote_name;
+        $vote_data['user_id'] = Auth::id();
+        $vote = Vote::create($vote_data);
+
+        $question_data = $request->question;
+        foreach ($request->question as $key => $value) {
+          $question_data[$key]['vote_id'] = $vote->id;
+        }
+        $quesiton = $vote->questions()->createMany($question_data);
+
+        return redirect('vote')->with('status', 'Vote Created Successfully.');
     }
 
     /**
@@ -101,10 +120,13 @@ class VoteController extends Controller
           'answer.*.answer_content' => 'required|max:255',
       ]);
       $data = $request->answer;
+      // dd($id);
       foreach ($request->answer as $key => $value) {
         $data[$key]['user_id'] = Auth::id();
+        $data[$key]['question_id'] = $id;
       }
-      Answer::insert($data);
+      // dd($data);
+      $answer = Question::find($id)->answers()->createMany($data);
       return redirect('vote')->with('status', 'Response Submitted Successfully.');
     }
 

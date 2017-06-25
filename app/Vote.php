@@ -16,4 +16,6 @@ class Vote extends Model
       return $this->belongsTo('App\User');
     }
 
+    protected $fillable = ['vote_name', 'user_id'];
+
 }
