@@ -42,7 +42,7 @@ class VoteController extends Controller
         }
         $quesiton = $vote->questions()->createMany($question_data);
 
-        return redirect('vote')->with('status', 'Vote Created Successfully.');
+        return redirect()->action('VoteController@stat',['id'=>$vote->id])->with('status', 'Vote Created Successfully.');
     }
 
     public function show($id)
@@ -70,27 +70,32 @@ class VoteController extends Controller
         //
         $this->validate($request, [
             'vote_name' => 'required|max:255',
-            'question.*.question_content' => 'required|max:255',
-            'question.*.id' => 'required|max:255',
+            'question.*.question_content' => 'max:255',
         ]);
 
         $vote = Vote::find($id);
         if ($vote->user_id != Auth::id()) {
           return redirect('vote')->with('status', 'Permission Denied');
         }
+
         $vote->vote_name = $request->vote_name;
         $vote->save();
-
-        $question_data = $request->question;
-        foreach ($request->question as $key => $question) {
-          $q = Question::find($question_data[$key]['id']);
-          if ($id == $q->vote_id) {
-            $q->question_content = $question_data[$key]['question_content'];
-          }
-          $q->save();
+        if(!isset($request->question)){
+          return redirect()->action('VoteController@edit',['id'=>$vote->id])->with('status', 'Question Cannot be null.');
         }
 
-        return redirect('vote')->with('status', 'Vote Modified Successfully.');
+        foreach ($request->question as $question) {
+          if (isset($question['id'])) {
+            $q = Question::find($question['id']);
+            $q->question_content = $question['question_content'];
+            $q->save();
+          }elseif (isset($question['question_content'])){
+            $q = new Question(['question_content' => $question['question_content']]);
+            $v = Vote::find($id);
+            $v->questions()->save($q);
+          }
+        }
+        return redirect()->action('VoteController@stat',['id'=>$vote->id])->with('status', 'Vote Modified Successfully.');
     }
 
 
@@ -109,14 +114,67 @@ class VoteController extends Controller
 
     public function clearResponse($id)
     {
-        //
-        return "Clear Response";
+
+            $vote = Vote::find($id);
+            if ($vote->user_id != Auth::id()) {
+              return redirect('vote')->with('status', 'Permission Denied');
+            }
+
+            $questions = Vote::find($id)->questions()->get();
+            $q_id = array();
+            $ans_id = array();
+
+            // dd($questions);
+
+            if(isset($questions)){
+              foreach ($questions as $question) {
+                array_push($q_id, $question->id);
+                $answers = Question::find($question->id)->answers()->get();
+                if (isset($answers)) {
+                  foreach ($answers as $answer) {
+                    array_push($ans_id, $answer->id);
+                  }
+                }
+
+              }
+            }
+
+            Answer::destroy($ans_id);
+
+            return redirect('/vote')->with('status', 'Responses Cleared Successfully.');
     }
 
     public function destroy($id)
     {
-        //
-        return "Delete";
+
+      $vote = Vote::find($id);
+      if ($vote->user_id != Auth::id()) {
+        return redirect('vote')->with('status', 'Permission Denied');
+      }
+
+      $questions = Vote::find($id)->questions()->get();
+      $q_id = array();
+      $ans_id = array();
+
+      // dd($questions);
+
+      if(isset($questions)){
+        foreach ($questions as $question) {
+          array_push($q_id, $question->id);
+          $answers = Question::find($question->id)->answers()->get();
+          if (isset($answers)) {
+            foreach ($answers as $answer) {
+              array_push($ans_id, $answer->id);
+            }
+          }
+
+        }
+      }
+
+      Answer::destroy($ans_id);
+      Question::destroy($q_id);
+      Vote::destroy($id);
+      return redirect('/vote')->with('status', 'Vote Deleted Successfully.');
     }
 
 }

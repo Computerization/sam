@@ -26,12 +26,14 @@ Route::middleware(['auth','auth.admin'])->group(function () {
 
   Route::get('vote/create', 'VoteController@create');
   Route::post('vote/create', 'VoteController@store');
-  
+
   Route::get('vote/{id}/edit', 'VoteController@edit');
   Route::post('vote/{id}/edit', 'VoteController@update');
 
-  Route::post('vote/{id}/delete', 'VoteController@destroy');
-  Route::post('vote/{id}/clear', 'VoteController@clearResponse');
+  Route::delete('vote/{id}/delete', 'VoteController@destroy');
+  Route::delete('vote/{id}/clear', 'VoteController@clearResponse');
+
+  Route::delete('question/{id}', 'QuestionController@destroy');
 
 });
 

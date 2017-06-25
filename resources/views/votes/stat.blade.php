@@ -9,24 +9,12 @@
             <a href="{{ URL::action('VoteController@edit',$vote->id) }}" class="btn btn-primary">Edit</a>
             <a href="#" class="btn btn-success">Download CSV</a>
 
+            @if(!empty(session('status')))
             <hr>
-            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-              <div class="panel panel-danger">
-                <div class="panel-heading" role="tab" id="headingOne">
-                  <h4 class="panel-title">
-                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                      Danger Zone
-                    </a>
-                  </h4>
-                </div>
-                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                  <div class="panel-body">
-                    <a href="#" class="btn btn-danger">Clear Response</a>
-                    <a href="#" class="btn btn-danger">Delete Vote</a>
-                  </div>
-                </div>
-              </div>
+            <div class="alert alert-success" role="alert">
+                {{ session('status') }}
             </div>
+            @endif
 
             <hr>
             @foreach($questions as $question)
@@ -56,6 +44,36 @@
               </div>
             </div>
             @endforeach
+
+
+            <hr>
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+              <div class="panel panel-danger">
+                <div class="panel-heading" role="tab" id="headingOne">
+                  <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      Danger Zone
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                  <div class="panel-body">
+                    <form action="{{ URL::action('VoteController@clearResponse',$vote->id) }}" method="post">
+                      {{ csrf_field() }}
+                      {{ method_field('DELETE') }}
+                      <button class="btn btn-danger" type="submit">Clear Response</button>
+                    </form>
+                    <hr>
+                    <form action="{{ URL::action('VoteController@destroy',$vote->id) }}" method="post">
+                      {{ csrf_field() }}
+                      {{ method_field('DELETE') }}
+                      <button class="btn btn-danger" type="submit">Delete Entire Vote</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
         </div>
     </div>
 </div>
