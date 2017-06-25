@@ -9,6 +9,7 @@
              <a class="btn btn-success" href="{{ url('/vote/create') }}">New Vote...</a>
           @endif
           @if (session('status'))
+          <hr>
               <div class="alert alert-success">
                   {{ session('status') }}
               </div>
@@ -20,7 +21,7 @@
                 <h4><a href="{{ url('vote',$vote->id) }}">{{ $vote->vote_name }} </a></h4>
                 <div>{{ $vote->user->name }} @ {{ $vote->created_at }}
                 @if(Auth::user()->group > 0)
-                   - <a class="" href="{{ URL::action('VoteController@stat',$vote->id) }}">View Stat</a>
+                   - <a class="" href="{{ URL::action('VoteController@stat',$vote->id) }}">Stat and Control</a>
                 @endif
                 </div>
               </div>
