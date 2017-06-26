@@ -16,6 +16,10 @@ class Vote extends Model
       return $this->belongsTo('App\User');
     }
 
+    public function vote_groups(){
+      return $this->belongsToMany('App\VoteGroup');
+    }
+
     protected $fillable = ['vote_name', 'user_id'];
 
 }

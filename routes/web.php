@@ -22,6 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware(['auth','auth.admin'])->group(function () {
 
+  //vote
   Route::get('vote/{id}/stat', 'VoteController@stat');
 
   Route::get('vote/create', 'VoteController@create');
@@ -35,12 +36,27 @@ Route::middleware(['auth','auth.admin'])->group(function () {
 
   Route::delete('question/{id}', 'QuestionController@destroy');
 
+  //vote group
+  Route::get('group/create', 'VoteGroupController@create');
+  Route::post('group', 'VoteGroupController@store');
+  Route::put('group/{id}', 'VoteGroupController@update');
+  Route::delete('group/{id}', 'VoteGroupController@destroy');
+
+  Route::get('group/{id}/addvote', 'VoteGroupController@selectvote');
+  Route::post('group/{id}/addvote', 'VoteGroupController@addvote');
+  Route::post('group/{id}/rmvote', 'VoteGroupController@rmvote');
+
 });
 
 Route::middleware('auth')->group(function () {
 
+  //vote
   Route::get('vote/{id}', 'VoteController@show');
   Route::post('vote/{id}/submit', 'VoteController@submit');
   Route::get('vote/', 'VoteController@index');
+
+  //vote group
+  Route::get('group/{id}', 'VoteGroupController@show');
+  Route::get('group/', 'VoteGroupController@index');
 
 });
