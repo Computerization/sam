@@ -47,7 +47,7 @@
 
             .title {
                 font-size: 64px;
-                letter-spacing: .5rem;
+                /*letter-spacing: .5rem;*/
                 text-transform: uppercase;
             }
 
@@ -59,6 +59,7 @@
                 letter-spacing: .1rem;
                 text-decoration: none;
                 text-transform: uppercase;
+                line-height: 3em;
             }
 
             .m-b-md {
@@ -82,11 +83,12 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    LiveVote
+                    SAM CLOUD
                 </div>
 
                 <div id="author">
-                    Online Vote Application by David ZYC
+                    a Computerization Platform
+                    <br>(C) David ZYC
                 </div>
             </div>
         </div>
