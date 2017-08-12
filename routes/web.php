@@ -59,4 +59,8 @@ Route::middleware('auth')->group(function () {
   Route::get('group/{id}', 'VoteGroupController@show');
   Route::get('group/', 'VoteGroupController@index');
 
+  //order room
+  Route::get('order/room/', 'RoomOrderController@index');
+  Route::get('order/room/{time}/{room}', 'RoomOrderController@process');
+
 });

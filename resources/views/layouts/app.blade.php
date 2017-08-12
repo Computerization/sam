@@ -39,8 +39,11 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
+                      @if (!Auth::guest())
                         <li><a href="{{ url('group') }}">Group</a></li>
                         <li><a href="{{ url('vote') }}">Vote</a></li>
+                        <li><a href="{{ url('order/room') }}">Reservation</a></li>
+                      @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
