@@ -15,7 +15,8 @@
 
         <p>&nbsp;</p>
 
-        <div class="panel" @if(config('samcloud.room_order_available')) style="display:none;" @endif>
+        @if(!config('samcloud.room_order_available'))
+        <div class="panel">
           <div class="panel-heading">
               <h4>Sorry, Reservation is temporarily not available.</h4>
           </div>
@@ -50,8 +51,10 @@
             其他2
             其他3</div>
         </div>
+        @endif
 
-        <div class="panel" @if(!config('samcloud.room_order_available')) style="display:none;" @endif>
+         @if(config('samcloud.room_order_available'))
+        <div class="panel">
           <div class="panel-heading"><h2>At Noon (12 A.M.)</h2></div>
           <div class="panel-body">
             <table class="table">
@@ -905,8 +908,7 @@
           </div>
         </div>
 
-
-                <div class="panel" @if(!config('samcloud.room_order_available')) style="display:none;" @endif>
+                <div class="panel">
                   <div class="panel-heading"><h2>After School (5 P.M.)</h2></div>
                   <div class="panel-body">
                     <table class="table">
@@ -2153,7 +2155,7 @@
                     </table>
                   </div>
                 </div>
-
+                 @endif
 
 
       </div>
