@@ -17,11 +17,15 @@
 
         <div class="panel" @if(config('samcloud.room_order_available')) style="display:none;" @endif>
           <div class="panel-heading">
-              Sorry, Reservation is temporarily not available.
+              <h4>Sorry, Reservation is temporarily not available.</h4>
           </div>
           <div class="panel-body">
              Please read the operation instruction above. And here are all room choice.<br>
-            C101 C102 C103 C201 C202
+            C101
+            C102
+            C103
+            C201
+            C202
             C203
             C204
             C205

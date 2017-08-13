@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'room_order_available' => true,
+    'room_order_available' => false,
 ];
