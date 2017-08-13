@@ -12,7 +12,40 @@
           Click on boxs with <a><b>Available</b></a> to reserve that room in certain time.<br>
           To cancel reservation, click on the box you have reserved before. (You can only cancel your own reservations.)
         </p>
-        <div class="panel">
+
+        <div class="panel" @if(config('samcloud.room_order_available')) style="display:none;" @endif>
+          <div class="panel-heading">
+              Sorry, Reservation is temporarily not available.
+          </div>
+          <div class="panel-body">
+             Please read the operation instruction above. And here are all room choice.<br>
+            C101 C102 C103 C201 C202
+            C203
+            C204
+            C205
+            C206
+            C207
+            C208
+            操场（篮球场）
+            操场（雨棚）
+            美术室
+            音乐室
+            形体房
+            化学实验室
+            生物实验室
+            物理实验室
+            录音室
+            A110
+            A206
+            外校1
+            外校2
+            外校3
+            其他1
+            其他2
+            其他3</div>
+        </div>
+
+        <div class="panel" @if(!config('samcloud.room_order_available')) style="display:none;" @endif>
           <div class="panel-body">
             <table class="table">
               <thead>
