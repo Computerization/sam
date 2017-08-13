@@ -48,7 +48,7 @@
         </div>
 
         <div class="panel" @if(!config('samcloud.room_order_available')) style="display:none;" @endif>
-          <div class="panel-heading">At Noon</div>
+          <div class="panel-heading"><h2>At Noon (12 A.M.)</h2></div>
           <div class="panel-body">
             <table class="table">
               <thead>
@@ -1442,7 +1442,7 @@
 
 
                 <div class="panel" @if(!config('samcloud.room_order_available')) style="display:none;" @endif>
-                  <div class="panel-heading">5 PM</div>
+                  <div class="panel-heading"><h2>After School (5 P.M.)</h2></div>
                   <div class="panel-body">
                     <table class="table">
                       <thead>
