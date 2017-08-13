@@ -4,14 +4,16 @@
 <div class="container">
     <div class="row">
       <div class="col-md-12 col-xs-12 col-sm-12">
-        <h4>Select Your Classroom</h4>
+        <h2>Select Your Classroom</h2>
         <p>
-          Instructions:<br>
+          <h4>Instructions</h4><br>
           All classrooms and Times are shown in table.<br>
           A box with group name indicates that the specific room and time have been ocupied.<br>
           Click on boxs with <a><b>Available</b></a> to reserve that room in certain time.<br>
           To cancel reservation, click on the box you have reserved before. (You can only cancel your own reservations.)
         </p>
+
+        <p>&nbsp;</p>
 
         <div class="panel" @if(config('samcloud.room_order_available')) style="display:none;" @endif>
           <div class="panel-heading">

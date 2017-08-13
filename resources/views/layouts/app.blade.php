@@ -79,6 +79,23 @@
         </nav>
 
         @yield('content')
+        <!-- <p>&nbsp;</p> -->
+        <div class="container">
+          <div class="col-md-4">
+            <p>Computerization Proudly Present.</p>
+            <p>(C) Computerization 2017</p>
+          </div>
+          <div class="col-md-4">
+
+          </div>
+          <div class="col-md-4">
+            <p>Made With &lt;/&gt; and heart by David ZYC</p>
+            <p>App Version 1.1</p>
+          </div>
+        </div>
+        <!-- <p>&nbsp;</p> -->
+        <p>&nbsp;</p>
+
     </div>
 
     <!-- Scripts -->
