@@ -22,6 +22,7 @@
           </div>
           <div class="panel-body">
              Please read the operation instruction above. And here are all room choice.<br>
+             <h4>Reservation available from Aug. 14, 2017 20:00 UTC +8 to Aug. 16, 2017 20:00 UTC +8.</h4>
             C101
             C102
             C103
