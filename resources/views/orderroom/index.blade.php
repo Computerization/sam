@@ -167,104 +167,7 @@
                     </a>
                   </td>
                 </tr>
-                <!-- C103 -->
-                <tr>
-                  <th scope="row">C楼大教室（C207/C208）3</th>
-                  <td>
-                    <a href="{{ URL::action('RoomOrderController@process',['mon', 'rm103']) }}">
-                    @if(isset($order['mon']['rm103']['uid']))
-                      {{ $order['mon']['rm103']['content'] }}
-                    @else
-                      <b>Available</b>
-                    @endif
-                    </a>
-                  </td>
-                  <td>
-                    <a href="{{ URL::action('RoomOrderController@process',['tue', 'rm103']) }}">
-                    @if(isset($order['tue']['rm103']['uid']))
-                      {{ $order['tue']['rm103']['content'] }}
-                    @else
-                      <b>Available</b>
-                    @endif
-                    </a>
-                  </td>
-                  <td>
-                    <a href="{{ URL::action('RoomOrderController@process',['wed', 'rm103']) }}">
-                    @if(isset($order['wed']['rm103']['uid']))
-                      {{ $order['wed']['rm103']['content'] }}
-                    @else
-                      <b>Available</b>
-                    @endif
-                    </a>
-                  </td>
-                  <td>
-                    <a href="{{ URL::action('RoomOrderController@process',['thur', 'rm103']) }}">
-                    @if(isset($order['thur']['rm103']['uid']))
-                      {{ $order['thur']['rm103']['content'] }}
-                    @else
-                      <b>Available</b>
-                    @endif
-                    </a>
-                  </td>
-                  <td>
-                    <a href="{{ URL::action('RoomOrderController@process',['fri', 'rm103']) }}">
-                    @if(isset($order['fri']['rm103']['uid']))
-                      {{ $order['fri']['rm103']['content'] }}
-                    @else
-                      <b>Available</b>
-                    @endif
-                    </a>
-                  </td>
-                </tr>
-                <!-- C208 -->
-                <tr>
-                  <th scope="row">C楼大教室（C207/C208）4</th>
-                  <td>
-                    <a href="{{ URL::action('RoomOrderController@process',['mon', 'rm208']) }}">
-                    @if(isset($order['mon']['rm208']['uid']))
-                      {{ $order['mon']['rm208']['content'] }}
-                    @else
-                      <b>Available</b>
-                    @endif
-                    </a>
-                  </td>
-                  <td>
-                    <a href="{{ URL::action('RoomOrderController@process',['tue', 'rm208']) }}">
-                    @if(isset($order['tue']['rm208']['uid']))
-                      {{ $order['tue']['rm208']['content'] }}
-                    @else
-                      <b>Available</b>
-                    @endif
-                    </a>
-                  </td>
-                  <td>
-                    <a href="{{ URL::action('RoomOrderController@process',['wed', 'rm208']) }}">
-                    @if(isset($order['wed']['rm208']['uid']))
-                      {{ $order['wed']['rm208']['content'] }}
-                    @else
-                      <b>Available</b>
-                    @endif
-                    </a>
-                  </td>
-                  <td>
-                    <a href="{{ URL::action('RoomOrderController@process',['thur', 'rm208']) }}">
-                    @if(isset($order['thur']['rm208']['uid']))
-                      {{ $order['thur']['rm208']['content'] }}
-                    @else
-                      <b>Available</b>
-                    @endif
-                    </a>
-                  </td>
-                  <td>
-                    <a href="{{ URL::action('RoomOrderController@process',['fri', 'rm208']) }}">
-                    @if(isset($order['fri']['rm208']['uid']))
-                      {{ $order['fri']['rm208']['content'] }}
-                    @else
-                      <b>Available</b>
-                    @endif
-                    </a>
-                  </td>
-                </tr>
+
                 <!-- C201 -->
                 <tr>
                   <th scope="row">C楼小教室1</th>
@@ -1268,55 +1171,6 @@
                             </a>
                           </td>
                         </tr>
-                        <!-- C206 -->
-                        <tr>
-                          <th scope="row">C楼大教室（C207/C208）1</th>
-                          <td>
-                            <a href="{{ URL::action('RoomOrderController@process',['mon_5pm', 'rm206']) }}">
-                            @if(isset($order['mon_5pm']['rm206']['uid']))
-                              {{ $order['mon_5pm']['rm206']['content'] }}
-                            @else
-                              <b>Available</b>
-                            @endif
-                            </a>
-                          </td>
-                          <td>
-                            <a href="{{ URL::action('RoomOrderController@process',['tue_5pm', 'rm206']) }}">
-                            @if(isset($order['tue_5pm']['rm206']['uid']))
-                              {{ $order['tue_5pm']['rm206']['content'] }}
-                            @else
-                              <b>Available</b>
-                            @endif
-                            </a>
-                          </td>
-                          <td>
-                            <a href="{{ URL::action('RoomOrderController@process',['wed_5pm', 'rm206']) }}">
-                            @if(isset($order['wed_5pm']['rm206']['uid']))
-                              {{ $order['wed_5pm']['rm206']['content'] }}
-                            @else
-                              <b>Available</b>
-                            @endif
-                            </a>
-                          </td>
-                          <td>
-                            <a href="{{ URL::action('RoomOrderController@process',['thur_5pm', 'rm206']) }}">
-                            @if(isset($order['thur_5pm']['rm206']['uid']))
-                              {{ $order['thur_5pm']['rm206']['content'] }}
-                            @else
-                              <b>Available</b>
-                            @endif
-                            </a>
-                          </td>
-                          <td>
-                            <a href="{{ URL::action('RoomOrderController@process',['fri_5pm', 'rm206']) }}">
-                            @if(isset($order['fri_5pm']['rm206']['uid']))
-                              {{ $order['fri_5pm']['rm206']['content'] }}
-                            @else
-                              <b>Available</b>
-                            @endif
-                            </a>
-                          </td>
-                        </tr>
                         <!-- C207 -->
                         <tr>
                           <th scope="row">C楼大教室（C207/C208）1</th>
@@ -1368,7 +1222,7 @@
                         </tr>
                         <!-- C208 -->
                         <tr>
-                          <th scope="row">C楼大教室（C207/C208）1</th>
+                          <th scope="row">C楼大教室（C207/C208）2</th>
                           <td>
                             <a href="{{ URL::action('RoomOrderController@process',['mon_5pm', 'rm208']) }}">
                             @if(isset($order['mon_5pm']['rm208']['uid']))
