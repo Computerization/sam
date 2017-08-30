@@ -40,9 +40,9 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                       @if (!Auth::guest())
-                        <li><a href="{{ url('group') }}">Group</a></li>
-                        <li><a href="{{ url('vote') }}">Vote</a></li>
-                        <li><a href="{{ url('order/room') }}">Reservation</a></li>
+                        <li><a href="{{ url('group') }}">{{ trans('nav.group') }}</a></li>
+                        <li><a href="{{ url('vote') }}">{{ trans('nav.vote') }}</a></li>
+                        <li><a href="{{ url('order/room') }}">{{ trans('nav.reservation') }}</a></li>
                       @endif
                     </ul>
 
@@ -50,8 +50,8 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
+                            <li><a href="{{ route('login') }}">{{ trans('login.login') }}</a></li>
+                            <li><a href="{{ route('register') }}">{{ trans('login.register') }}</a></li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
