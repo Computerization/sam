@@ -19,6 +19,14 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/org', 'OrganizationController@index');
+Route::get('/org/{id}', 'OrganizationController@show');
+Route::get('/org/{id}/join', 'OrganizationController@join');
+
+
+Route::get('/resume', 'ResumeController@index');
+Route::get('/resume/{id}', 'ResumeController@show');
+Route::post('/resume', 'ResumeController@save');
 
 Route::middleware(['auth','auth.admin'])->group(function () {
 
@@ -62,5 +70,11 @@ Route::middleware('auth')->group(function () {
   //order room
   Route::get('order/room/', 'RoomOrderController@index');
   Route::get('order/room/{time}/{room}', 'RoomOrderController@process');
+
+  //orgs
+  Route::get('/org/{id}/resumes', 'OrganizationController@show_resumes');
+
+  //resumes
+  Route::get('/resumes/{id}', 'ResumeController@show');
 
 });

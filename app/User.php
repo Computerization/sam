@@ -35,4 +35,8 @@ class User extends Authenticatable
       return $this->hasMany('App\VoteGroup');
     }
 
+    public function organizations(){
+      return $this->hasMany('App\Organization');
+    }
+
 }

@@ -44,6 +44,7 @@
                         <li><a href="{{ url('vote') }}">{{ trans('nav.vote') }}</a></li>
                         <li><a href="{{ url('order/room') }}">{{ trans('nav.reservation') }}</a></li>
                       @endif
+                      <li><a href="{{ url('org') }}">{{ trans('org.org') }}</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
