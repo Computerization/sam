@@ -23,7 +23,8 @@ class LinkResumeToUser
         if (!$resume){
           $resume = Resume::where('email', Auth::user()->email)->first();
           if ($resume) {
-            $resume->user()->associate(User::find(Auth::id()));
+            $resume->user_id = Auth::id();
+            $resume->save();
           }
         }
       }

@@ -15,5 +15,5 @@ class Resume extends Model
       return $this->belongsTo('App\User');
     }
 
-    protected $fillable = ['email', 'name', 'student_number', 'contact', 'additional_info'];
+    protected $fillable = ['email', 'name', 'student_number', 'contact', 'additional_info', 'user_id'];
 }
