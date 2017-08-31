@@ -18,7 +18,7 @@ class CreateOrganizationsTable extends Migration
             $table->integer('user_id');
             $table->string('organization_name');
             $table->string('organization_contact');
-            $table->string('organization_description');
+            $table->text('organization_description');
             $table->timestamps();
         });
     }
