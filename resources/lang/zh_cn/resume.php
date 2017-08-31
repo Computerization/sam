@@ -12,4 +12,6 @@ return [
     'recorded' => '您的简历保存成功。',
     'manage_resume' => '管理简介',
     'edit_resume' => '编辑简介',
+    'manage_resume_sent_out' => '已报名的社团',
+    'detach' => '取消报名',
 ];

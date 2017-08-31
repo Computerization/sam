@@ -24,7 +24,7 @@
                   <h4>{{ $org->organization_name }}</h4>
                 </div>
                 <div class="panel-body">
-                  <p>{!! $org->organization_description !!}</p>
+                  <p>{!! Purifier::clean($org->organization_description) !!}</p>
                   <div class="col-md-6"><i class="fa fa-user-o" aria-hidden="true"></i> {{ $org->user->name }}</div>
                   <div class="col-md-6"><i class="fa fa-envelope-o" aria-hidden="true"></i> {{ $org->organization_contact }}</div>
                 </div>

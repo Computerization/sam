@@ -16,7 +16,7 @@
           @endif
           <div class="jumbotron" style="background-color:white;">
             <h1>{{ $org->organization_name }}</h1>
-            <p>{!! $org->organization_description !!}</p>
+            <p>{!! Purifier::clean($org->organization_description) !!}</p>
             <p><a class="btn btn-primary btn-lg" href="{{ URL::action('OrganizationController@join',$org->id) }}" role="button">{{ trans('org.join') }}</a></p>
           </div>
 
