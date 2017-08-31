@@ -43,4 +43,53 @@ class OrganizationController extends Controller
       return view('org.show_resume', ['resumes' => $resumes]);
     }
 
+
+    public function create() {
+      return view('org.create', ['type' => 0]);
+    }
+
+    public function edit($id) {
+      $org = Organization::findOrFail($id);
+      return view('org.create', ['type' => 1, 'org' => $org]);
+    }
+
+    public function save(Request $request) {
+      $this->validate($request, [
+          'organization_name' => 'required|max:255',
+          'organization_contact' => 'required|max:255',
+          'organization_description' => 'required|max:10000',
+      ]);
+      // dd($request->all());
+      $org = new Organization;
+      $org->user_id = Auth::id();
+      $org->organization_name = $request->organization_name;
+      $org->organization_contact = $request->organization_contact;
+      $org->organization_description = $request->organization_description;
+      $org->save();
+      return redirect()->action('OrganizationController@manage')->with(['success' => 1]);
+    }
+
+    public function store(Request $request) {
+      $this->validate($request, [
+          'organization_name' => 'required|max:255',
+          'organization_contact' => 'required|max:255',
+          'organization_description' => 'required|max:10000',
+      ]);
+      // dd($request->all());
+      $org = Organization::findOrFail($request->id);
+      if($org->user_id != Auth::id()){
+        abort(403);
+      }
+      $org->organization_name = $request->organization_name;
+      $org->organization_contact = $request->organization_contact;
+      $org->organization_description = $request->organization_description;
+      $org->save();
+      return redirect()->action('OrganizationController@manage')->with(['success' => 1]);
+    }
+
+    public function manage(){
+      $organizations = Organization::where('user_id', Auth::id())->get();
+      return view('org.control_index', ['orgs' => $organizations]);
+    }
+
 }

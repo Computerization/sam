@@ -11,22 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', function() {
+  return redirect()->action('OrganizationController@index');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/org', 'OrganizationController@index');
-Route::get('/org/{id}', 'OrganizationController@show');
-
-Route::middleware(['link_resume_to_user'])->group(function () {
-  Route::get('/org/{id}/join', 'OrganizationController@join');
-  Route::get('/resume', 'ResumeController@index');
-  Route::post('/resume', 'ResumeController@save');
-});
 
 Route::middleware(['auth','auth.admin'])->group(function () {
 
@@ -72,9 +64,25 @@ Route::middleware('auth')->group(function () {
   Route::get('order/room/{time}/{room}', 'RoomOrderController@process');
 
   //orgs
+  Route::get('/org/manage', 'OrganizationController@manage');
   Route::get('/org/{id}/resumes', 'OrganizationController@show_resumes');
+  Route::get('/org/create', 'OrganizationController@create');
+  Route::get('/org/{id}/edit', 'OrganizationController@edit');
+  Route::post('/org/{id}', 'OrganizationController@store');
+  Route::post('/org', 'OrganizationController@save');
 
   //resumes
-  Route::get('/resumes/{id}', 'ResumeController@show');
+  Route::get('/resume/control', 'ResumeController@control');
+  Route::delete('/resume/delete/{id}', 'ResumeController@detach');
 
 });
+
+Route::middleware(['link_resume_to_user'])->group(function () {
+  Route::get('/org/{id}/join', 'OrganizationController@join');
+  Route::get('/resume', 'ResumeController@index');
+  Route::post('/resume', 'ResumeController@save');
+});
+
+Route::get('/org', 'OrganizationController@index');
+
+Route::get('/org/{id}', 'OrganizationController@show');

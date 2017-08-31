@@ -103,5 +103,16 @@ class ResumeController extends Controller
       }
     }
 
+    public function control() {
+      $orgs = Resume::where('email', Auth::user()->email)->first()->orgs()->get();
+      // dd($orgs);
+      return view('resume.control', ['orgs'=>$orgs]);
+    }
+
+    public function detach($id) {
+      $status = Auth::user()->resume()->first()->orgs()->detach();
+      return redirect()->action('ResumeController@control')->with(['success'=> 1]);
+    }
+
 
 }

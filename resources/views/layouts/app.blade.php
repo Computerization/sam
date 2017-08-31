@@ -12,9 +12,17 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('simditor/styles/simditor.css') }}" type="text/css" rel="stylesheet">
 
     <!--  jQuery Import  -->
-    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js"></script>
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <style>
+      body {
+        background-color: rgb(253, 253, 253);
+      }
+    </style>
+
 </head>
 <body>
     <div id="app">
@@ -61,17 +69,14 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                   <li>
-                                    <a href="{{ URL::action('HomeController@index') }}">{{ trans('nav.home') }}</a>
+                                    <a href="{{ URL::action('HomeController@index') }}">{{ trans('nav.dashboard') }}</a>
                                   </li>
-                                    <li>
-                                      <a href="{{ URL::action('ResumeController@index') }}">{{ trans('resume.manage_resume') }}</a>
-                                    </li>
                                     <li role="separator" class="divider"></li>
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
+                                            {{ trans('nav.logout') }}
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -90,15 +95,13 @@
         <!-- <p>&nbsp;</p> -->
         <div class="container">
           <div class="col-md-4">
-            <p>Computerization Proudly Present.</p>
-            <p>(C) Computerization 2017</p>
+            <p>Computerization Proudly Present. - <a href="http://4.wflmssam.sinaapp.com" target="_blank">About Us</a></p>
           </div>
           <div class="col-md-4">
 
           </div>
           <div class="col-md-4">
-            <p>Made With &lt;/&gt; and heart by David ZYC</p>
-            <p>App Version 1.1</p>
+            <p>App Version 20170831 Release Candidate</p>
           </div>
         </div>
         <!-- <p>&nbsp;</p> -->
@@ -107,7 +110,12 @@
     </div>
 
     <!-- Scripts -->
-
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="{{ asset('Simditor/scripts/module.min.js') }}"></script>
+    <script src="{{ asset('Simditor/scripts/hotkeys.min.js') }}"></script>
+    <script src="{{ asset('Simditor/scripts/uploader.min.js') }}"></script>
+    <script src="{{ asset('Simditor/scripts/simditor.min.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
+    @yield('scripts')
 </body>
 </html>

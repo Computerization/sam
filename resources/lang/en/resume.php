@@ -11,4 +11,5 @@ return [
     'submit' => 'Submit',
     'recorded' => 'Your Resume Has been Recorded.',
     'manage_resume' => 'Manage Resume',
+    'edit_resume' => 'Edit Resume',
 ];

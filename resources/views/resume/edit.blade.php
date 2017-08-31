@@ -1,12 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.control_center')
 
-@section('content')
-<div class="container">
-  <div class="row">
-    <div class="col-md-8 col-md-offset-2 col-xs-12">
-      <div class="panel">
+@section('control_content')
+
+      <div class="panel panel-default">
         <div class="panel-heading">
-          <h4>{{ trans('resume.create_resume') }}</h4>
+          <h4>{{ trans('resume.edit_resume') }}</h4>
         </div>
         <div class="panel-body">
           @if ($errors->any())
@@ -58,7 +56,5 @@
 
         </div>
       </div>
-    </div>
-  </div>
-</div>
+
 @endsection

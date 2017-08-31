@@ -4,7 +4,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8 col-md-offset-2 col-xs-12">
-      <div class="panel">
+      <div class="panel panel-default">
         <div class="panel-heading">
           <h4>{{ trans('resume.create_resume') }}</h4>
         </div>
@@ -19,6 +19,7 @@
               </div>
           @endif
 
+          @if(session('resume_to_org'))
           <div class="panel panel-primary">
             <div class="panel-heading">
               使用提示
@@ -29,7 +30,7 @@
               <br>强烈建议您使用相同邮箱注册SAM账号，管理您的简历并查看社团招新进展。
             </div>
           </div>
-
+          @endif
               <form method="post" action="{{ URL::action('ResumeController@save') }}">
                 {{ csrf_field() }}
                 <div class="form-group">
