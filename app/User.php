@@ -39,4 +39,8 @@ class User extends Authenticatable
       return $this->hasMany('App\Organization');
     }
 
+    public function resume(){
+      return $this->hasOne('App\Resume');
+    }
+
 }

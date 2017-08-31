@@ -11,5 +11,9 @@ class Resume extends Model
       return $this->belongsToMany('App\Organization');
     }
 
+    public function user(){
+      return $this->belongsTo('App\User');
+    }
+
     protected $fillable = ['email', 'name', 'student_number', 'contact', 'additional_info'];
 }

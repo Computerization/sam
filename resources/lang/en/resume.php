@@ -9,5 +9,6 @@ return [
     'student_number' => 'Student Number',
     'additional_info' => 'Additional Info',
     'submit' => 'Submit',
-    'recorded' => 'Your Resume Has been Recorded.'
+    'recorded' => 'Your Resume Has been Recorded.',
+    'manage_resume' => 'Manage Resume',
 ];

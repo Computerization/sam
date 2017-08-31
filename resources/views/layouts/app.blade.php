@@ -60,6 +60,13 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
+                                  <li>
+                                    <a href="{{ URL::action('HomeController@index') }}">{{ trans('nav.home') }}</a>
+                                  </li>
+                                    <li>
+                                      <a href="{{ URL::action('ResumeController@index') }}">{{ trans('resume.manage_resume') }}</a>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();

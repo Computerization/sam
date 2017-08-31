@@ -21,12 +21,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/org', 'OrganizationController@index');
 Route::get('/org/{id}', 'OrganizationController@show');
-Route::get('/org/{id}/join', 'OrganizationController@join');
 
-
-Route::get('/resume', 'ResumeController@index');
-Route::get('/resume/{id}', 'ResumeController@show');
-Route::post('/resume', 'ResumeController@save');
+Route::middleware(['link_resume_to_user'])->group(function () {
+  Route::get('/org/{id}/join', 'OrganizationController@join');
+  Route::get('/resume', 'ResumeController@index');
+  Route::post('/resume', 'ResumeController@save');
+});
 
 Route::middleware(['auth','auth.admin'])->group(function () {
 
