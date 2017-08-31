@@ -111,10 +111,10 @@
 
     <!-- Scripts -->
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <script src="{{ asset('Simditor/scripts/module.min.js') }}"></script>
-    <script src="{{ asset('Simditor/scripts/hotkeys.min.js') }}"></script>
-    <script src="{{ asset('Simditor/scripts/uploader.min.js') }}"></script>
-    <script src="{{ asset('Simditor/scripts/simditor.min.js') }}"></script>
+    <script src="{{ asset('simditor/scripts/module.min.js') }}"></script>
+    <script src="{{ asset('simditor/scripts/hotkeys.min.js') }}"></script>
+    <script src="{{ asset('simditor/scripts/uploader.min.js') }}"></script>
+    <script src="{{ asset('simditor/scripts/simditor.min.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     @yield('scripts')
 </body>
