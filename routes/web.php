@@ -79,6 +79,13 @@ Route::middleware('auth')->group(function () {
   Route::get('/account/profile', 'AccountController@profile_edit_show');
   Route::post('/account/profile', 'AccountController@profile_edit_store');
 
+  //image processing
+  Route::post('/avatar', 'FileController@post_avatar');
+  Route::post('/image', 'FileController@post_image');
+  Route::post('/file', 'FileController@post_file');
+  Route::get('/image/{id}', 'FileController@get_image');
+  Route::get('/file/{id}', 'FileController@get_file');
+
 });
 
 Route::middleware(['link_resume_to_user'])->group(function () {

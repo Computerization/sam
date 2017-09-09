@@ -43,4 +43,8 @@ class User extends Authenticatable
       return $this->hasOne('App\Resume');
     }
 
+    public function files(){
+      return $this->hasMany('App\File');
+    }
+
 }

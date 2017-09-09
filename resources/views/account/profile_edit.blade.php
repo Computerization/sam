@@ -26,6 +26,34 @@
                   </div>
                   @endif
 
+                  @if (session('fail'))
+                  <div class="panel panel-primary">
+                    <div class="panel-heading">
+                      上传失败
+                    </div>
+                    <div class="panel-body">
+                      {{ session('error') }}
+                    </div>
+                  </div>
+                  @endif
+
+                  <form method="post" action="{{ URL::action('FileController@post_avatar') }}" enctype="multipart/form-data">
+                    {{ csrf_field() }}
+                    @if($user->files->where('type',1)->count()>0)
+                      <div href="col-md-4 col-xs-6" class="thumbnail">
+                        <img style='max-width: 30em;max-height:30em;' src="{{ URL::action('FileController@get_image',['id'=>$user->files->where('type',1)->first()->id]) }}">
+                      </div>
+                    @endif
+                    <div class="form-group">
+                      <label for="file">{{ trans('resume.file') }}</label>
+                      <input type="file" class="form-control" id="file" name="file">
+                    </div>
+                    <input type="hidden" name="type" value="1" id="type">
+                    <button type="submit" class="btn btn-primary btn-lg">{{ trans('resume.submit') }}</button>
+                  </form>
+
+                  <hr>
+
                       <form method="post" action="{{ URL::action('AccountController@profile_edit_store') }}">
                         {{ csrf_field() }}
                         <div class="form-group">

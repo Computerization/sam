@@ -54,6 +54,13 @@
 $(document).ready(function () {
   var editor = new Simditor({
   textarea: $('#description'),
+  upload: {
+    url: '/image',
+    params: { _token: '{{ csrf_token() }}', type: 2 },
+    fileKey: 'file',
+    connectionCount: 1,
+    leaveConfirm: 'Uploading is in progress, are you sure to leave this page?',
+  },
   });
 });
 

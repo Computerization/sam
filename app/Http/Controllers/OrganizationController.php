@@ -70,12 +70,12 @@ class OrganizationController extends Controller
     }
 
     public function store(Request $request) {
+      // dd($request->all());
       $this->validate($request, [
           'organization_name' => 'required|max:255',
           'organization_contact' => 'required|max:255',
           'organization_description' => 'required|max:10000',
       ]);
-      // dd($request->all());
       $org = Organization::findOrFail($request->id);
       if($org->user_id != Auth::id()){
         abort(403);
