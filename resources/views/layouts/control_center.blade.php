@@ -20,7 +20,7 @@
       </div>
       <h4>{{ trans('nav.account') }}</h4>
       <div class="list-group">
-        <a href="#" class="list-group-item">{{ trans('nav.manage_account') }}</a>
+        <a href="{{ URL::action('AccountController@profile_edit_show') }}" class="list-group-item">{{ trans('nav.manage_account') }}</a>
         <a href="#" class="list-group-item">{{ trans('nav.modify_password') }}</a>
       </div>
     </div>

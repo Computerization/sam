@@ -8,6 +8,7 @@ return [
     'detail' => '详情',
     'create_org' => '新建社团',
     'manage_orgs' => '管理社团',
+    'edit_org' => '编辑社团信息',
     'name' => '社团名称',
     'contact' => '联系方式',
     'description' => '社团介绍',

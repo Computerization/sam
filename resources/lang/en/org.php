@@ -8,6 +8,7 @@ return [
     'detail' => 'Detail',
     'create_org' => 'Create Organization',
     'manage_orgs' => 'Manage Organization',
+    'edit_org' => 'Edit Organization Info',
     'name' => 'Name',
     'contact' => 'Contact',
     'description' => 'Description',

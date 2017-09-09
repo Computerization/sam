@@ -75,6 +75,10 @@ Route::middleware('auth')->group(function () {
   Route::get('/resume/control', 'ResumeController@control');
   Route::delete('/resume/delete/{id}', 'ResumeController@detach');
 
+  //account profile
+  Route::get('/account/profile', 'AccountController@profile_edit_show');
+  Route::post('/account/profile', 'AccountController@profile_edit_store');
+
 });
 
 Route::middleware(['link_resume_to_user'])->group(function () {
