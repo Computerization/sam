@@ -63,7 +63,7 @@ class FileController extends Controller
 
       return response()->json([
           'success' => true,
-          'file_path' => 'image/'.$id,
+          'file_path' => '/image/'.$id,
       ], 200);
 
     }
