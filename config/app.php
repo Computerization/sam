@@ -178,8 +178,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        Weboap\Visitor\VisitorServiceProvider::class,
-
     ],
 
     /*
@@ -229,7 +227,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Purifier' => Mews\Purifier\Facades\Purifier::class,
-        'Visitor' => Weboap\Visitor\Facades\VisitorFacades::class,
+
     ],
 
 ];
