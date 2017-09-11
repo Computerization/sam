@@ -18,6 +18,13 @@
     <!--  jQuery Import  -->
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
+    <style>
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    </style>
+
 </head>
 <body>
     <div id="app">
