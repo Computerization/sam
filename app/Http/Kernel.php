@@ -18,7 +18,6 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
-        \PragmaRX\Tracker\Vendor\Laravel\Middlewares\Tracker::class,
     ];
 
     /**
@@ -59,5 +58,6 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'link_resume_to_user' => \App\Http\Middleware\LinkResumeToUser::class,
+        'tracker' => \PragmaRX\Tracker\Vendor\Laravel\Middlewares\Tracker::class,
     ];
 }

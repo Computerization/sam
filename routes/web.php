@@ -11,29 +11,16 @@
 |
 */
 
-Route::get('/', function() {
-  return redirect()->action('OrganizationController@index');
-});
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-
-Route::middleware(['auth','auth.admin'])->group(function () {
+Route::middleware(['auth','auth.admin', 'tracker'])->group(function () {
 
   //vote
   Route::get('vote/{id}/stat', 'VoteController@stat');
-
   Route::get('vote/create', 'VoteController@create');
   Route::post('vote/create', 'VoteController@store');
-
   Route::get('vote/{id}/edit', 'VoteController@edit');
   Route::post('vote/{id}/edit', 'VoteController@update');
-
   Route::delete('vote/{id}/delete', 'VoteController@destroy');
   Route::delete('vote/{id}/clear', 'VoteController@clearResponse');
-
   Route::delete('question/{id}', 'QuestionController@destroy');
 
   //vote group
@@ -41,14 +28,15 @@ Route::middleware(['auth','auth.admin'])->group(function () {
   Route::post('group', 'VoteGroupController@store');
   Route::put('group/{id}', 'VoteGroupController@update');
   Route::delete('group/{id}', 'VoteGroupController@destroy');
-
   Route::get('group/{id}/addvote', 'VoteGroupController@selectvote');
   Route::post('group/{id}/addvote', 'VoteGroupController@addvote');
   Route::post('group/{id}/rmvote', 'VoteGroupController@rmvote');
 
 });
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'tracker'])->group(function () {
+
+  Route::get('/home', 'HomeController@index')->name('home');
 
   //vote
   Route::get('vote/{id}', 'VoteController@show');
@@ -84,19 +72,23 @@ Route::middleware('auth')->group(function () {
   Route::post('/org/{id}/avatar', 'FileController@post_org_avatar');
   Route::post('/image', 'FileController@post_image');
   Route::post('/file', 'FileController@post_file');
-
   Route::get('/file/{id}', 'FileController@get_file');
 
 });
 
-Route::middleware(['link_resume_to_user'])->group(function () {
+Route::middleware(['link_resume_to_user', 'tracker'])->group(function () {
   Route::get('/org/{id}/join', 'OrganizationController@join');
   Route::get('/resume', 'ResumeController@index');
   Route::post('/resume', 'ResumeController@save');
 });
 
+Route::middleware(['tracker'])->group(function () {
+  Route::get('/', function() {
+    return redirect()->action('OrganizationController@index');
+  });
+  Auth::routes();
+  Route::get('/org', 'OrganizationController@index');
+  Route::get('/org/{id}', 'OrganizationController@show');
+});
+
 Route::get('/image/{id}', 'FileController@get_image');
-
-Route::get('/org', 'OrganizationController@index');
-
-Route::get('/org/{id}', 'OrganizationController@show');
