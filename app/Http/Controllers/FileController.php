@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Validator;
+use Image;
 use Illuminate\Http\Response;
 use App\File;
 use App\User;
@@ -31,7 +32,7 @@ class FileController extends Controller
         $avatar -> type = 2;
         $avatar -> save();
       }
-      $id = $this->process_file($request);
+      $id = $this->process_image($request);
       return back()->with(['status' => 1]);
       // return response()->json([
       //     'success' => true,
@@ -48,7 +49,7 @@ class FileController extends Controller
       if($org -> user -> id != Auth::id()){
         return back()->with(['fail' => 1,'error'=>'Access Denied.']);
       }
-      $id = $this->process_file($request);
+      $id = $this->process_image($request);
       $org -> file_id =  $id;
       $org -> save();
       return back()->with(['status' => 1]);
@@ -62,7 +63,7 @@ class FileController extends Controller
             'msg' => $validator->messages()->first(),
         ], 200);
       }
-      $id = $this->process_file($request);
+      $id = $this->process_image($request);
       return response()->json([
           'success' => true,
           'file_path' => '/image/'.$id,
@@ -71,22 +72,30 @@ class FileController extends Controller
 
     public function get_image($id){
       $file = File::findOrFail($id);
+      return response()->file(base_path('storage/app/images_small/').$file->filename.'.jpg');
+    }
+
+    public function get_original_image($id){
+      $file = File::findOrFail($id);
       return response()->file(base_path('storage/app/images/').$file->filename);
     }
 
-
-    public function process_file(Request $request){
+    public function process_image(Request $request){
       $file = $request->file;
-      $filename = Carbon::now()->timestamp.'_'.mt_rand(100, 999).'_'.Auth::id().'.'.$file->getClientOriginalExtension();
+      $filename_raw = Carbon::now()->timestamp.'_'.mt_rand(100, 999).'_'.Auth::id();
+      $filename = $filename_raw.'.'.$file->getClientOriginalExtension();
+      // original image
       $path = $request->file->storeAs('images', $filename);
-
+      // compressed image
+      $image = Image::make($request->file)->resize(1080, null, function ($constraint) {
+        $constraint->aspectRatio();
+      })->save('../storage/app/images_small/'.$filename.'.jpg', 90);
       $fileinfo = new File;
       $fileinfo -> original_name = $file->getClientOriginalName();
       $fileinfo -> filename = $filename;
       $fileinfo -> type = $request->type;
       $fileinfo -> user_id = Auth::id();
       $fileinfo -> save();
-
       return $fileinfo->id;
     }
 }

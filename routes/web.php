@@ -92,3 +92,4 @@ Route::middleware(['tracker'])->group(function () {
 });
 
 Route::get('/image/{id}', 'FileController@get_image');
+Route::get('/image/{id}/original', 'FileController@get_original_image');

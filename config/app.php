@@ -179,6 +179,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         PragmaRX\Tracker\Vendor\Laravel\ServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
     ],
 
@@ -230,6 +231,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Purifier' => Mews\Purifier\Facades\Purifier::class,
         'Tracker' => PragmaRX\Tracker\Vendor\Laravel\Facade::class,
+        'Image' => Intervention\Image\Facades\Image::class,
 
     ],
 
