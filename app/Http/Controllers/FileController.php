@@ -6,6 +6,7 @@ use Validator;
 use Illuminate\Http\Response;
 use App\File;
 use App\User;
+use App\Organization;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -17,9 +18,7 @@ class FileController extends Controller
       // avators -> 1
       // images -> 2
       // files -> 3
-
       $validator = Validator::make($request->all(), File::$image_rules, File::$messages);
-
       if($validator->fails()){
         return back()->with(['fail' => 1,'error'=>$validator->messages()->first()]);
         // return response()->json([
@@ -27,45 +26,47 @@ class FileController extends Controller
         //     'msg' => $validator->messages()->first(),
         // ], 200);
       }
-
       $avatar = User::findOrFail(Auth::id())->files->where('type',1)->first();
       if($avatar){
         $avatar -> type = 2;
         $avatar -> save();
       }
-
       $id = $this->process_file($request);
-
       return back()->with(['status' => 1]);
-
       // return response()->json([
       //     'success' => true,
       //     'file_path' => $id,
       // ], 200);
+    }
 
+    public function post_org_avatar(Request $request){
+      $validator = Validator::make($request->all(), File::$image_rules, File::$messages);
+      if($validator->fails()){
+        return back()->with(['fail' => 1,'error'=>$validator->messages()->first()]);
+      }
+      $org = Organization::findOrFail($request->id);
+      if($org -> user -> id != Auth::id()){
+        return back()->with(['fail' => 1,'error'=>'Access Denied.']);
+      }
+      $id = $this->process_file($request);
+      $org -> file_id =  $id;
+      $org -> save();
+      return back()->with(['status' => 1]);
     }
 
     public function post_image(Request $request){
-      // avators -> 1
-      // images -> 2
-      // files -> 3
-
       $validator = Validator::make($request->all(), File::$image_rules, File::$messages);
-
       if($validator->fails()){
         return response()->json([
             'success' => false,
             'msg' => $validator->messages()->first(),
         ], 200);
       }
-
       $id = $this->process_file($request);
-
       return response()->json([
           'success' => true,
           'file_path' => '/image/'.$id,
       ], 200);
-
     }
 
     public function get_image($id){
@@ -75,10 +76,8 @@ class FileController extends Controller
 
 
     public function process_file(Request $request){
-      // dd($data);
       $file = $request->file;
       $filename = Carbon::now()->timestamp.'_'.mt_rand(100, 999).'_'.Auth::id().'.'.$file->getClientOriginalExtension();
-
       $path = $request->file->storeAs('images', $filename);
 
       $fileinfo = new File;

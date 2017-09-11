@@ -12,6 +12,7 @@ class OrganizationController extends Controller
     //
     public function index() {
       $organizations = Organization::all();
+      // dd(Organization::find(1)->file()->first()->id);
       return view('org.index', ['orgs' => $organizations]);
     }
 
@@ -57,6 +58,7 @@ class OrganizationController extends Controller
       $this->validate($request, [
           'organization_name' => 'required|max:255',
           'organization_contact' => 'required|max:255',
+          'organization_intro' => 'required|max:255',
           'organization_description' => 'required|max:10000',
       ]);
       // dd($request->all());
@@ -64,6 +66,7 @@ class OrganizationController extends Controller
       $org->user_id = Auth::id();
       $org->organization_name = $request->organization_name;
       $org->organization_contact = $request->organization_contact;
+      $org->organization_intro = $request->organization_intro;
       $org->organization_description = $request->organization_description;
       $org->save();
       return redirect()->action('OrganizationController@manage')->with(['success' => 1]);
@@ -74,6 +77,7 @@ class OrganizationController extends Controller
       $this->validate($request, [
           'organization_name' => 'required|max:255',
           'organization_contact' => 'required|max:255',
+          'organization_intro' => 'required|max:255',
           'organization_description' => 'required|max:10000',
       ]);
       $org = Organization::findOrFail($request->id);
@@ -82,6 +86,7 @@ class OrganizationController extends Controller
       }
       $org->organization_name = $request->organization_name;
       $org->organization_contact = $request->organization_contact;
+      $org->organization_intro = $request->organization_intro;
       $org->organization_description = $request->organization_description;
       $org->save();
       return redirect()->action('OrganizationController@manage')->with(['success' => 1]);

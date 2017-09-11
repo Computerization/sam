@@ -11,17 +11,12 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ asset('simditor/styles/simditor.css') }}" type="text/css" rel="stylesheet">
 
     <!--  jQuery Import  -->
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
-    <style>
-      body {
-        background-color: rgb(253, 253, 253);
-      }
-    </style>
 
 </head>
 <body>
@@ -115,7 +110,8 @@
     <script src="{{ asset('simditor/scripts/hotkeys.min.js') }}"></script>
     <script src="{{ asset('simditor/scripts/uploader.min.js') }}"></script>
     <script src="{{ asset('simditor/scripts/simditor.min.js') }}"></script>
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- <script src="{{ asset('js/app.js') }}"></script> -->
     @yield('scripts')
 </body>
 </html>

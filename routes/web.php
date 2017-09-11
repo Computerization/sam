@@ -81,6 +81,7 @@ Route::middleware('auth')->group(function () {
 
   //image processing
   Route::post('/avatar', 'FileController@post_avatar');
+  Route::post('/org/{id}/avatar', 'FileController@post_org_avatar');
   Route::post('/image', 'FileController@post_image');
   Route::post('/file', 'FileController@post_file');
 
