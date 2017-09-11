@@ -13,11 +13,12 @@
             <div class="btn-group" role="group">
               <a href="{{ url('org', $org->id) }}" class="btn btn-default">{{ trans('org.detail') }}</a>
             </div>
+            @if(Auth::check())
+            @if(Auth::id() != $org->user_id)
             <div class="btn-group" role="group">
               <a class="btn btn-default" href="{{ URL::action('OrganizationController@join',$org->id) }}">{{ trans('org.join') }}</a>
             </div>
-            @if(Auth::check())
-            @if(Auth::id() == $org->user_id)
+            @else
             <div class="btn-group" role="group">
               <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {{ trans('org.manage') }} <span class="caret"></span>

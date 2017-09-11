@@ -17,5 +17,7 @@ return [
     'success' => '信息保存成功。',
     'create_success' => '新建社团成功。',
     'error' => '出错了。',
+    'cover' => '社团封面',
+    'manage' => '社团管理',
 
 ];

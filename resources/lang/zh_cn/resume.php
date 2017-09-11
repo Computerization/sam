@@ -14,4 +14,5 @@ return [
     'edit_resume' => '编辑简介',
     'manage_resume_sent_out' => '已报名的社团',
     'detach' => '取消报名',
+    'file' => '上传文件',
 ];

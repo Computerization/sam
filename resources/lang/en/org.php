@@ -17,5 +17,7 @@ return [
     'success' => 'Success',
     'create_success' => 'Created Successfully.',
     'error' => 'Error',
+    'cover' => 'Organization Cover',
+    'manage' => 'Manage',
 
 ];
