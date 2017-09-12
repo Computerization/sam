@@ -5,7 +5,6 @@
       @endif
       <div class="caption">
         <h3><a href="{{ url('org', $org->id) }}">{{ $org->organization_name }}</a></h3>
-        <p>{{ $org->organization_intro }}</p>
         <p><i class="fa fa-user-o" aria-hidden="true"></i> {{ $org->user->name }}</p>
         <p><i class="fa fa-envelope-o" aria-hidden="true"></i> {{ $org->organization_contact }}</p>
         @if(Auth::check())
