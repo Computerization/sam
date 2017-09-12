@@ -87,9 +87,9 @@ class FileController extends Controller
       // original image
       $path = $request->file->storeAs('images', $filename);
       // compressed image
-      $image = Image::make($request->file)->resize(1080, null, function ($constraint) {
+      $image = Image::make($request->file)->resize(640, null, function ($constraint) {
         $constraint->aspectRatio();
-      })->save('../storage/app/images_small/'.$filename.'.jpg', 90);
+      })->save('../storage/app/images_small/'.$filename.'.jpg', 80);
       $fileinfo = new File;
       $fileinfo -> original_name = $file->getClientOriginalName();
       $fileinfo -> filename = $filename;
