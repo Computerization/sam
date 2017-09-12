@@ -6,10 +6,12 @@
       <div class="caption">
         <h3><a href="{{ url('org', $org->id) }}">{{ $org->organization_name }}</a></h3>
         <p>{{ $org->organization_intro }}</p>
+        <p><i class="fa fa-user-o" aria-hidden="true"></i> {{ $org->user->name }}</p>
+        <p><i class="fa fa-envelope-o" aria-hidden="true"></i> {{ $org->organization_contact }}</p>
+        @if(Auth::check())
+        @if(Auth::id() == $org->user_id)
         <p>
           <div class="btn-group" role="group">
-            @if(Auth::check())
-            @if(Auth::id() == $org->user_id)
             <br>
             <span class="button-dropdown" data-buttons="dropdown">
               <button class="button button-rounded">
@@ -20,11 +22,10 @@
                 <li><a href="{{ URL::action('OrganizationController@show_resumes', ['id' => $org->id]) }}">{{ trans('org.view_resumes') }}</a></li>
               </ul>
             </span>
-
-            @endif
-            @endif
           </div>
         </p>
+        @endif
+        @endif
       </div>
   </div>
 </div>
