@@ -29,7 +29,6 @@
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
-
                     <!-- Collapsed Hamburger -->
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
                         <span class="sr-only">Toggle Navigation</span>
@@ -39,8 +38,9 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                    <a class="navbar-brand" href="{{ url('/') }}" style="display: inline;">
+                      <img alt="SAM" style="position:relative;top:-10px;display: inline;" src="/images/logo.svg" width="40">
+                      <span style="position:relative;left:10px;bottom:9px;display: inline;">{{ config('app.name', 'Laravel') }}</span>
                     </a>
                 </div>
 
