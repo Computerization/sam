@@ -14,15 +14,20 @@
     <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ asset('simditor/styles/simditor.css') }}" type="text/css" rel="stylesheet">
-
-    <!--  jQuery Import  -->
+    <link href="https://cdn.bootcss.com/Buttons/2.0.0/css/buttons.min.css" rel="stylesheet">
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
     <style>
-      img {
-        max-width: 100%;
-        height: auto;
+      a:hover {
+        text-decoration: none;
       }
+
+      img {
+        max-width: 80%;
+        height: auto;
+        align-self: center;
+      }
+
     </style>
 
 </head>
@@ -118,6 +123,7 @@
     <script src="{{ asset('simditor/scripts/uploader.min.js') }}"></script>
     <script src="{{ asset('simditor/scripts/simditor.min.js') }}"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/Buttons/2.0.0/js/buttons.min.js"></script>
     <!-- <script src="{{ asset('js/app.js') }}"></script> -->
     @yield('scripts')
 </body>
