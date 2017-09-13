@@ -4,7 +4,7 @@
     <div class="panel-body">
       <div class="media">
         <div class="media-left">
-          if($org->file_id)
+          @if($org->file_id)
           <img src="/image/{{ $org->file_id }}" width="96" alt="...">
           @endif
         </div>
