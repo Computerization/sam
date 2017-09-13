@@ -4,8 +4,8 @@
     <div class="panel-body">
       <div class="media">
         <div class="media-left">
-          @if($org->file_id)
-          <img src="http://188.166.151.67:82/image/114" width="96" alt="...">
+          if($org->file_id)
+          <img src="/image/{{ $org->file_id }}" width="96" alt="...">
           @endif
         </div>
         <div class="media-body">
