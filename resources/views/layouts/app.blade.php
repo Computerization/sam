@@ -21,10 +21,12 @@
       a:hover {
         text-decoration: none;
       }
-      img {
-        max-width: 100%;
-        height: auto;
-        align-self: center;
+
+      .hideoverflow {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        overflow: hidden;
       }
     </style>
 
