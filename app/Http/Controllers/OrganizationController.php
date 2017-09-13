@@ -13,7 +13,15 @@ class OrganizationController extends Controller
     public function index() {
       $organizations = Organization::all();
       // dd(Organization::find(1)->file()->first()->id);
-      return view('org.index', ['orgs' => $organizations]);
+      return view('org.index', ['orgs' => $organizations, 'keyword' => null]);
+    }
+
+    public function search(Request $request) {
+      $organizations = Organization::where('organization_name', 'like', '%'.$request->keyword.'%')
+      ->orWhere('organization_intro', 'like', '%'.$request->keyword.'%')
+      ->orWhere('organization_description', 'like', '%'.$request->keyword.'%')
+      ->get();
+      return view('org.index', ['orgs' => $organizations, 'keyword' => $request->keyword]);
     }
 
     public function show($id) {

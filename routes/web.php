@@ -88,6 +88,7 @@ Route::middleware(['tracker'])->group(function () {
   });
   Auth::routes();
   Route::get('/org', 'OrganizationController@index');
+  Route::get('/org/search', 'OrganizationController@search');
   Route::get('/org/{id}', 'OrganizationController@show');
 });
 
