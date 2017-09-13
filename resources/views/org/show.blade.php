@@ -46,11 +46,18 @@
             <div class="panel-heading">
               <h4 class="text-center">社团简介</h4>
             </div>
-            <div class="panel-body" style="img {max-width:100%;height:auto;}">
+            <div class="panel-body image-fix">
               {!! Purifier::clean($org->organization_description) !!}
             </div>
           </div>
         </div>
     </div>
 </div>
+
+<style>
+  img {
+    max-width:100%;
+    height:auto;
+  }
+</style>
 @endsection
