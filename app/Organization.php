@@ -21,5 +21,9 @@ class Organization extends Model
       return $this->belongsTo('App\File');
     }
 
+    public function tags(){
+      return  $this->belongsToMany('App\Tag');
+    }
+
     protected $fillable = ['organization_name','organization_description'];
 }

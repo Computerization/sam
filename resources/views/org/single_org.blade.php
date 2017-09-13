@@ -11,7 +11,9 @@
         <div class="media-body">
           <h4 class="media-heading">
             <a href="{{ url('org', $org->id) }}">{{ $org->organization_name }}</a>
-            <!-- <small><span class="label label-default">Primary</span></small> -->
+            @foreach($org->tags->all() as $tag)
+            <small><span class="label label-default">{{ $tag->tag_content }}</span></small>
+            @endforeach
           </h4>
 
           <p class="hideoverflow"><small>{{ $org->organization_intro }}</small></p>
