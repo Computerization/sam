@@ -74,6 +74,8 @@ Route::middleware(['auth', 'tracker'])->group(function () {
   Route::post('/file', 'FileController@post_file');
   Route::get('/file/{id}', 'FileController@get_file');
 
+  Route::resource('/resource', 'ResourceController');
+
 });
 
 Route::middleware(['link_resume_to_user', 'tracker'])->group(function () {

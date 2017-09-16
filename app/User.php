@@ -47,4 +47,12 @@ class User extends Authenticatable
       return $this->hasMany('App\File');
     }
 
+    public function resources(){
+      return $this->hasMany('App\Resource');
+    }
+
+    public function reservations(){
+      return $this->hasMany('App\Reservation');
+    }
+
 }
