@@ -32,6 +32,13 @@ Route::middleware(['auth','auth.admin', 'tracker'])->group(function () {
   Route::post('group/{id}/addvote', 'VoteGroupController@addvote');
   Route::post('group/{id}/rmvote', 'VoteGroupController@rmvote');
 
+  // resource
+  Route::get('/resource/create', 'ResourceController@create');
+  Route::post('/resource', 'ResourceController@store');
+  Route::get('/resource/{resource}/edit', 'ResourceController@edit');
+  Route::put('/resource/{resource}', 'ResourceController@update');
+  Route::delete('/resource/{resource}', 'ResourceController@destroy');
+
 });
 
 Route::middleware(['auth', 'tracker'])->group(function () {
@@ -74,7 +81,10 @@ Route::middleware(['auth', 'tracker'])->group(function () {
   Route::post('/file', 'FileController@post_file');
   Route::get('/file/{id}', 'FileController@get_file');
 
-  Route::resource('/resource', 'ResourceController');
+  // resource
+  Route::get('/resource', 'ResourceController@index');
+  Route::get('/resource/{resource}', 'ResourceController@show');
+
 
 });
 
