@@ -58,6 +58,5 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'link_resume_to_user' => \App\Http\Middleware\LinkResumeToUser::class,
-        'tracker' => \PragmaRX\Tracker\Vendor\Laravel\Middlewares\Tracker::class,
     ];
 }

@@ -11,7 +11,7 @@
 |
 */
 
-Route::middleware(['auth','auth.admin', 'tracker'])->group(function () {
+Route::middleware(['auth','auth.admin'])->group(function () {
 
   //vote
   Route::get('vote/{id}/stat', 'VoteController@stat');
@@ -41,7 +41,7 @@ Route::middleware(['auth','auth.admin', 'tracker'])->group(function () {
 
 });
 
-Route::middleware(['auth', 'tracker'])->group(function () {
+Route::middleware(['auth'])->group(function () {
 
   Route::get('/home', 'HomeController@index')->name('home');
 
@@ -88,13 +88,12 @@ Route::middleware(['auth', 'tracker'])->group(function () {
 
 });
 
-Route::middleware(['link_resume_to_user', 'tracker'])->group(function () {
+Route::middleware(['link_resume_to_user'])->group(function () {
   Route::get('/org/{id}/join', 'OrganizationController@join');
   Route::get('/resume', 'ResumeController@index');
   Route::post('/resume', 'ResumeController@save');
 });
 
-Route::middleware(['tracker'])->group(function () {
   Route::get('/', function() {
     return redirect()->action('OrganizationController@index');
   });
@@ -102,7 +101,6 @@ Route::middleware(['tracker'])->group(function () {
   Route::get('/org', 'OrganizationController@index');
   Route::get('/org/search', 'OrganizationController@search');
   Route::get('/org/{id}', 'OrganizationController@show');
-});
 
 Route::get('/image/{id}', 'FileController@get_image');
 Route::get('/image/{id}/original', 'FileController@get_original_image');
