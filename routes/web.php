@@ -11,10 +11,6 @@
 |
 */
 
-if(!App::environment('local')){
-  URL::forceSchema('https');
-}
-
 Route::middleware(['auth','auth.admin'])->group(function () {
 
   //vote
