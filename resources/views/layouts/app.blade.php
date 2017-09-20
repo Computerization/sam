@@ -124,6 +124,7 @@
     <script src="{{ asset('simditor/scripts/simditor.min.js') }}"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdn.bootcss.com/Buttons/2.0.0/js/buttons.min.js"></script>
+    <script src="{{ asset('js/bootstrap-waterfall.js') }}"></script>
     <!-- <script src="{{ asset('js/app.js') }}"></script> -->
     @yield('scripts')
 </body>
