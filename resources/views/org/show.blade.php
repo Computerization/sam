@@ -33,7 +33,7 @@
                     <h4 class="col-md-6 col-xs-12"><i class="fa fa-envelope-o" aria-hidden="true"></i> {{ $org->organization_contact }}</h4>
                   </div>
                   <br>
-                  <!-- <p><a class="button button-3d button-primary button-rounded" href="{{ URL::action('OrganizationController@join',$org->id) }}" role="button">{{ trans('org.join') }}</a></p> -->
+                  <p><a class="button button-3d button-primary button-rounded" href="{{ URL::action('OrganizationController@join',$org->id) }}" role="button">{{ trans('org.join') }}</a></p>
 
                 </div>
               </div>
