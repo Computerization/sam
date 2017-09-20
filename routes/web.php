@@ -12,7 +12,7 @@
 */
 
 if(!App::environment('local')){
-  URL::forceScheme('https');
+  URL::forceSchema('https');
 }
 
 Route::middleware(['auth','auth.admin'])->group(function () {
