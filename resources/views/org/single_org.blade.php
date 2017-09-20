@@ -1,4 +1,4 @@
-<div class="@if($wide) col-md-6 @else col-md-4 @endif col-sm-6 col-xs-12 pin">
+<div class="@if($wide) col-md-6 @else col-md-4 @endif col-sm-6 col-xs-12">
 
   <div class="panel">
     <div class="panel-body">

@@ -24,7 +24,7 @@
           </div>
 
           <hr>
-          <div class="row" id="waterfall-container">
+          <div class="row">
             @foreach($orgs as $org)
               @include('org.single_org', ['org' => $org, 'wide' => false])
             @endforeach
@@ -32,12 +32,4 @@
         </div>
     </div>
 </div>
-@endsection
-
-@section('scripts')
-<script>
-$(document).ready(function () {
-      $('#waterfall-container').waterfall();
-    });
-</script>
 @endsection
