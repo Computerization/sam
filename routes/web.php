@@ -85,7 +85,7 @@ Route::middleware(['auth'])->group(function () {
   // resource
   Route::get('/resource', 'ResourceController@index');
   Route::get('/resource/{resource}', 'ResourceController@show');
-
+  Route::post('/resource/{resource}/reserve', 'ReservationController@store');
 
 });
 

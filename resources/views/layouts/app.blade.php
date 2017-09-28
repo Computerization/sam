@@ -16,7 +16,7 @@
     <link href="{{ asset('simditor/styles/simditor.css') }}" type="text/css" rel="stylesheet">
     <link href="https://cdn.bootcss.com/Buttons/2.0.0/css/buttons.min.css" rel="stylesheet">
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
+    <link href="https://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/daterangepicker.min.css" rel="stylesheet">
     <style>
       a:hover {
         text-decoration: none;
@@ -57,7 +57,7 @@
                       @if (!Auth::guest())
                         <li><a href="{{ url('group') }}">{{ trans('nav.group') }}</a></li>
                         <li><a href="{{ url('vote') }}">{{ trans('nav.vote') }}</a></li>
-                        <li><a href="{{ url('order/room') }}">{{ trans('nav.reservation') }}</a></li>
+                        <li><a href="{{ url('resource') }}">{{ trans('nav.reservation') }}</a></li>
                       @endif
                       <li><a href="{{ url('org') }}">{{ trans('org.org') }}</a></li>
                     </ul>
@@ -124,6 +124,8 @@
     <script src="{{ asset('simditor/scripts/simditor.min.js') }}"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdn.bootcss.com/Buttons/2.0.0/js/buttons.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap-daterangepicker/2.1.24/moment.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/daterangepicker.min.js"></script>
     <!-- <script src="{{ asset('js/app.js') }}"></script> -->
     @yield('scripts')
 </body>
