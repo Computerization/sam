@@ -47,13 +47,12 @@ Route::middleware(['auth'])->group(function () {
   Route::get('/home', 'HomeController@index')->name('home');
 
   //vote
+  Route::get('vote/group/{id}', 'VoteGroupController@show');
+  Route::get('vote/all', 'VoteController@index');
   Route::get('vote/{id}', 'VoteController@show');
   Route::post('vote/{id}/submit', 'VoteController@submit');
-  Route::get('vote/', 'VoteController@index');
+  Route::get('vote/', 'VoteGroupController@index');
 
-  //vote group
-  Route::get('group/{id}', 'VoteGroupController@show');
-  Route::get('group/', 'VoteGroupController@index');
 
   //order room
   Route::get('order/room/', 'RoomOrderController@index');

@@ -20,7 +20,12 @@
             @foreach($questions as $question)
             <div class="panel panel-default">
               <div class="panel-body">
-                <h4>{{ $question->question_content }}</h4>
+                @if($question->type == 1)
+                  @include('votes.question.text')
+                @endif
+                @if($question->type == 2)
+                  @include('votes.question.radio')
+                @endif
 
                 <table class="table">
                   <thead>

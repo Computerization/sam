@@ -13,7 +13,8 @@ class VoteGroupController extends Controller
     {
         //
         $vote_groups = VoteGroup::all();
-        return view('votegroups.index',['vote_groups' => $vote_groups]);
+        $votes = Vote::all();
+        return view('votegroups.index',['vote_groups' => $vote_groups, 'votes' => $votes]);
     }
 
     public function create()
@@ -39,8 +40,9 @@ class VoteGroupController extends Controller
     public function show($id)
     {
         //
-        $vote_group = VoteGroup::find($id);
-        return view('votegroups.show',['vote_group'=>$vote_group]);
+        $votes = VoteGroup::find($id)->votes;
+        $vote_groups = VoteGroup::all();
+        return view('votegroups.index',['vote_groups'=>$vote_groups, 'votes' => $votes]);
     }
 
     public function update(Request $request, $id)

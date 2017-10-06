@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-4">
           <h1>Vote Groups</h1>
           @if(Auth::user()->group > 0)
           <hr>
@@ -16,14 +16,26 @@
               </div>
           @endif
           <hr>
+            <div class="list-group">
             @foreach($vote_groups as $vote_group)
+              <a href="{{ URL::action('VoteGroupController@show',['id'=>$vote_group->id]) }}" class="list-group-item">
+                <h4 class="list-group-item-heading">{{ $vote_group->group_name }}</h4>
+                <p class="list-group-item-text">{{ $vote_group->user->name }} - {{ $vote_group->created_at }}</p>
+              </a>
+            @endforeach
+            </div>
+        </div>
+        <div class="col-md-8">
+          @foreach($votes as $vote)
+          <div class="col-md-6">
             <div class="panel panel-default">
               <div class="panel-body">
-                <h4><a href="{{ URL::action('VoteGroupController@show',['id'=>$vote_group->id]) }}">{{ $vote_group->group_name }} </a></h4>
-                <div>{{ $vote_group->user->name }} @ {{ $vote_group->created_at }}</div>
+                <h4><a href="{{ url('vote',$vote->id) }}">{{ $vote->vote_name }} </a></h4>
+                <p>{{ $vote->user->name }} - {{ $vote->created_at }}</p>
               </div>
             </div>
-            @endforeach
+          </div>
+          @endforeach
         </div>
     </div>
 </div>

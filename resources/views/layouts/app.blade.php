@@ -55,7 +55,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                       @if (!Auth::guest())
-                        <li><a href="{{ url('group') }}">{{ trans('nav.group') }}</a></li>
+                        <!-- <li><a href="{{ url('vote/group') }}">{{ trans('nav.group') }}</a></li> -->
                         <li><a href="{{ url('vote') }}">{{ trans('nav.vote') }}</a></li>
                         <li><a href="{{ url('resource') }}">{{ trans('nav.reservation') }}</a></li>
                       @endif

@@ -47,10 +47,11 @@
                   @if($type > 0)
                     @foreach ($vote->questions as $question)
                     <div class="form-group">
-                      <input type="text" class="form-control" name="question[{{ $question->id }}][question_content]" form="form" value="{{ $question->question_content }}">
+                      <textarea class="form-control" rows="3" name="question[{{ $question->id }}][question_content]" form="form">{{ $question->question_content }}</textarea>
                       <form action="{{ URL::action('QuestionController@destroy',$question->id) }}" method="post" id="form{{ $question->id }}">
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }}
+                        <br>
                         <button class="btn btn-danger" type="submit" form="form{{ $question->id }}">Delete</button>
                       </form>
                       <input type="hidden" name="question[{{ $question->id }}][id]" form="form" value="{{ $question->id }}">
