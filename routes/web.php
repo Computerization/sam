@@ -86,6 +86,9 @@ Route::middleware(['auth'])->group(function () {
   Route::get('/resource/{resource}', 'ResourceController@show');
   Route::post('/resource/{resource}/reserve', 'ReservationController@store');
 
+  //auction
+  Route::post('/auction/bid', 'AuctionRequestController@store');
+
 });
 
 Route::middleware(['link_resume_to_user'])->group(function () {
@@ -104,3 +107,6 @@ Route::middleware(['link_resume_to_user'])->group(function () {
 
 Route::get('/image/{id}', 'FileController@get_image');
 Route::get('/image/{id}/original', 'FileController@get_original_image');
+
+Route::get('/auction', 'Auctioncontroller@index');
+Route::get('/auction/{auction}', 'Auctioncontroller@show');
