@@ -59,7 +59,7 @@
                     <div class="card-body">
                         <h4 class="card-title">History Pricing</h4>
                     </div>
-                    <ul class="list-group list-group-flush">
+                    <ul class="list-group list-group-flush" id="history-pricing">
                     @foreach($auction->auction_requests as $request)
                         <li class="list-group-item">
                             <h4>${{ $request->bid }}</h4> by {{ $request->user->name }} at {{ $request->created_at }}
@@ -92,19 +92,22 @@
                     cur_bid = parseInt($("#bid-price").val());
                     $.post( "{{ url('auction/bid') }}", {auction_id : aid, bid : cur_bid}, function( data ) {
                     alert("出价成功");
+                    bid = cur_bid;
+                    $("#history-pricing").append('<li class="list-group-item"> <h4>$'+ cur_bid +' </h4> by username at now  </li>');
                 });
                 }
             });
         });
-        var socket = io('http://sam.swfla.org:83/');
-        socket.on('connection', function (data) {
-            console.log(data);
+        $(function() {
+            var socket = io("http://127.0.0.1:3000/");
+            socket.on('auction', function(msg) {
+                $('#cur-bid').html(msg.bid);
+                $("#history-pricing").append('<li class="list-group-item"> <h4>$'+ msg.bid +' </h4> by '+ msg.uname +' at now  </li>');
+            });
         });
-        socket.on('auction-id'+aid, function(message){
-            console.log(message);
-        });
-        console.log(socket);
     </script>
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+
 </body>
 
 </html>

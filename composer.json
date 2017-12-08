@@ -12,7 +12,8 @@
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
         "mews/purifier": "^2.0",
-        "pragmarx/tracker": "^3.2"
+        "pragmarx/tracker": "^3.2",
+        "predis/predis": "^1.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Auction;
+use App\Events\PushAuction;
 use Illuminate\Http\Request;
 
 class Auctioncontroller extends Controller

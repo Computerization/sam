@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\AuctionRequest;
+use App\Events\PushAuction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redis;
 
 class AuctionRequestController extends Controller
 {
@@ -40,6 +43,8 @@ class AuctionRequestController extends Controller
         $arequest = $request->only('bid', 'auction_id');
         $arequest['user_id'] = Auth::id();
         AuctionRequest::create($arequest);
+        Redis::publish('auction', json_encode($arequest));
+        // broadcast(new PushAuction($arequest['auction_id'], $arequest['bid'], Auth::id(), Carbon::now()));
         return response()->json([
             'success' => '1',
         ]);
