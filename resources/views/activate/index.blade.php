@@ -12,8 +12,8 @@
 <div class="card">
   <div class="card-body">
     <h4 class="card-title">请激活账号</h4>
-    <h6 class="card-subtitle mb-2">您的账号尚未激活。为了获得完整的功能，您需要输入激活码。</h6>
-
+    <h6 class="card-subtitle mb-2">欢迎使用SAM。为了获得完整的功能，您需要输入激活码。</h6>
+    <h6 class="card-subtitle mb-2">您当前正在激活的账号为<span class="lead">{{ session("user_name") }}</span></h6>
     <form method="post" action="{{ URL::action('ActivateAccountController@verify') }}">
     {{ csrf_field() }}
     <div class="form-group">

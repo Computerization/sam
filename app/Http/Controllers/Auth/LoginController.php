@@ -40,9 +40,10 @@ class LoginController extends Controller
 
     public function authenticated(){
         if(Auth::user()->group < 0){
-            session(["user_id" => Auth::id()]);
+            session(["user_id" => Auth::id(), "user_name" => Auth::user()->name]);
             Auth::logout();
             return redirect()->action('ActivateAccountController@index');
         }
     }
+
 }
