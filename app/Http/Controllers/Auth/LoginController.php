@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -35,5 +36,13 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function authenticated(){
+        if(Auth::user()->group < 0){
+            session(["user_id" => Auth::id()]);
+            Auth::logout();
+            return redirect()->action('ActivateAccountController@index');
+        }
     }
 }

@@ -110,3 +110,6 @@ Route::get('/image/{id}/original', 'FileController@get_original_image');
 
 Route::get('/auction', 'Auctioncontroller@index');
 Route::get('/auction/{auction}', 'Auctioncontroller@show');
+
+Route::get('/activate', 'ActivateAccountController@index');
+Route::post('/activate', 'ActivateAccountController@verify');

@@ -139,7 +139,7 @@
             });
         });
         $(function() {
-            var socket = io("http://127.0.0.1:3000/");
+            var socket = io("http://103.253.147.75:3000/");
             socket.on('auction-'+aid.toString(), function(msg) {
                 alert_bs("info", "价格已更新。");
                 $('#cur-bid').html(msg.bid);
