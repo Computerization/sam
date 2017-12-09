@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Auction extends Model
 {
     //
+
+    public function files(){
+      return $this->belongsToMany('App\File');
+    }
+
     public function auction_requests(){
         return $this->hasMany('App\AuctionRequest');
       }

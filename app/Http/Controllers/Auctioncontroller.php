@@ -50,6 +50,7 @@ class Auctioncontroller extends Controller
     public function show(Auction $auction)
     {
         //
+        // dd($auction->auction_requests()->orderBy("created_at", "desc")->get());
         return view('auction.auction', ['auction' => $auction]);
     }
 
@@ -86,4 +87,5 @@ class Auctioncontroller extends Controller
     {
         //
     }
+
 }

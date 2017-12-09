@@ -26,9 +26,22 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="card">
-                    <img class="card-img-top" src="">
+                @if($auction->files->count() > 0)
+                    <img class="card-img-top" src="/image/{{ $auction->files->first()->id }}">
+                    @endif
                     <div class="card-body">
-                        <h4 class="card-title">{{ $auction->name }}</h4>
+                        <h4 class="d-flex justify-content-around">{{ $auction->name }}</h4>
+                        <p class="d-flex justify-content-around"><span>{{ $auction->user->name }}</span></p>
+                        <hr>
+                        <div class="d-flex justify-content-around">
+                        <h4>Start</h4>
+                        <h4>Due</h4>
+                        </div>
+                        <div class="d-flex justify-content-around">
+                        <span>{{ $auction->start }}</span>
+                        <span>{{ $auction->due }}</span>
+                        </div>
+                        <hr>
                         <p class="card-text">{{ $auction->description }}</p>
                     </div>
                 </div>
@@ -38,7 +51,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Highest Price</h4>
                         <h1 class="">$<span id="cur-bid"></span></h1>
-                        <p>{{ $auction->auction_requests()->latest()->first()->user->name }} at {{ $auction->auction_requests()->latest()->first()->created_at }}</p>
+                        <p><span id="cur-bid-uname"></span> at <span id="cur-bid-time"></span></p>
                     </div>
                     <hr>
                     <div class="card-body">
@@ -60,11 +73,13 @@
                         <h4 class="card-title">History Pricing</h4>
                     </div>
                     <ul class="list-group list-group-flush" id="history-pricing">
-                    @foreach($auction->auction_requests as $request)
+                    @if($auction->auction_requests->count() > 0)
+                    @foreach($auction->auction_requests()->orderBy("created_at", "desc")->get() as $request)
                         <li class="list-group-item">
-                            <h4>${{ $request->bid }}</h4> by {{ $request->user->name }} at {{ $request->created_at }}
+                            <span class="lead">${{ $request->bid }}</span> by {{ $request->user->name }} at {{ $request->created_at }}
                         </li>
                        @endforeach
+                       @endif
                     </ul>
 
                 </div>
@@ -77,11 +92,26 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
     <script>
         var aid = {{ $auction->id }};
-        var cur_bid = {{ $auction->auction_requests()->latest()->first()->bid }};
+        var initial_price = {{ $auction->min_price }};
+        var cur_bid;
+        var cur_bid_uname;
+        var cur_bid_time;
+        var bid_count = {{ $auction->auction_requests->count() }};
+        @if ($auction->auction_requests->count() > 0)
+        cur_bid = {{ $auction->auction_requests()->latest()->first()->bid }};
+        cur_bid_uname = "{{ $auction->auction_requests()->latest()->first()->user->name }}";
+        cur_bid_time = "{{ $auction->auction_requests()->latest()->first()->created_at->toDateTimeString() }}";
+        @endif
         var add_max = 100;
         var bid;
         $(document).ready(function(){
-            $("#cur-bid").html(cur_bid);
+            if(bid_count == 0){
+                $("#cur-bid").html(initial_price);
+            }else{
+                $("#cur-bid").html(cur_bid);
+                $("#cur-bid-uname").html(cur_bid_uname);
+                $("#cur-bid-time").html(cur_bid_time);
+            }
             $("#submit-bid").click(function(){
                 bid = parseInt($("#bid-price").val());
                 if(bid <= cur_bid){
@@ -89,20 +119,31 @@
                 }else if(bid > cur_bid + add_max){
                     alert("出价大于单次加价限制。");
                 }else{
-                    cur_bid = parseInt($("#bid-price").val());
-                    $.post( "{{ url('auction/bid') }}", {auction_id : aid, bid : cur_bid}, function( data ) {
-                    alert("出价成功");
-                    bid = cur_bid;
-                    $("#history-pricing").append('<li class="list-group-item"> <h4>$'+ cur_bid +' </h4> by username at now  </li>');
+                    $.post( "{{ url('auction/bid') }}", {auction_id : aid, bid : bid}, function( data ) {
+                        if(data.success == 1){
+                           alert("出价成功");
+                           cur_bid = bid;
+                        }else{
+                            if(data.err_code == 1){
+                                alert("出价错误");
+                            }else if(data.err_code == 2){
+                                alert("出价尚未开始。");
+                            }else if(data.err_code == 3){
+                                alert("出价已结束。");
+                            }
+                        }
+                    
                 });
                 }
             });
         });
         $(function() {
             var socket = io("http://127.0.0.1:3000/");
-            socket.on('auction', function(msg) {
+            socket.on('auction-'+aid.toString(), function(msg) {
                 $('#cur-bid').html(msg.bid);
-                $("#history-pricing").append('<li class="list-group-item"> <h4>$'+ msg.bid +' </h4> by '+ msg.uname +' at now  </li>');
+                $("#cur-bid-uname").html(msg.uname);
+                $("#cur-bid-time").html(msg.time);
+                $("#history-pricing").prepend('<li class="list-group-item"> <span class="lead">$'+ msg.bid +' </span> by '+ msg.uname +' at '+ msg.time +'  </li>');
             });
         });
     </script>

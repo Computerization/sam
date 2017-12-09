@@ -34,7 +34,9 @@
             @foreach($auctions as $auction)
                 <a href="{{ URL::action('Auctioncontroller@show',$auction->id) }}" class="text-dark">
                 <div class="card">
-                    <img class="card-img-top" src="http://sam.swfla.org/image/124" alt="Card image cap">
+                 @if($auction->files->count() > 0)
+                    <img class="card-img-top" src="/image/{{ $auction->files->first()->id }}">
+                    @endif
                     <div class="card-body">
                         <h4 class="card-title">{{ $auction->name }}</h4>
                         <p class="card-text">{{ $auction->description }}</p>

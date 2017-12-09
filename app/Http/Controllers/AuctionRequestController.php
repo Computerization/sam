@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\AuctionRequest;
+use App\Auction;
 use App\Events\PushAuction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Redis;
 
 class AuctionRequestController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -40,9 +42,35 @@ class AuctionRequestController extends Controller
     public function store(Request $request)
     {
         //
+        $MAX_ADD = 100;
+
         $arequest = $request->only('bid', 'auction_id');
         $arequest['user_id'] = Auth::id();
-        AuctionRequest::create($arequest);
+        $auction = Auction::findOrFail($request->auction_id);
+        $cur_price = $auction->cur_price;
+        if($cur_price >= $arequest['bid'] || $cur_price + $MAX_ADD < $arequest['bid']){
+            return response()->json([
+                'success' => '0',
+                'err_code' => '1',
+            ]);
+        }
+        if(Carbon::now() < $auction->start){
+            return response()->json([
+                'success' => '0',
+                'err_code' => '2',
+            ]);
+        }
+        if(Carbon::now() > $auction->due){
+            return response()->json([
+                'success' => '0',
+                'err_code' => '3',
+            ]);
+        }
+        $query = AuctionRequest::create($arequest);
+        $auction->cur_price = $arequest['bid'];
+        $auction->save();
+        $arequest['uname'] = Auth::user()->name;
+        $arequest['time'] = $query->created_at->toDateTimeString();
         Redis::publish('auction', json_encode($arequest));
         // broadcast(new PushAuction($arequest['auction_id'], $arequest['bid'], Auth::id(), Carbon::now()));
         return response()->json([
