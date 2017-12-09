@@ -3,9 +3,9 @@
 
     <div class="container">
         <div class="row">
-            <div class="jumbotron">
-                <h1 class="display-3">2017 Why Charity Auction</h1>
-                <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+            <div class="jumbotron w-100">
+                <h1 class="display-4 d-flex justify-content-around">2017 Why Charity 慈善晚会 作品拍卖</h1>
+                <p class="lead d-flex justify-content-around"></p>
             </div>
         </div>
         <div class="row">
