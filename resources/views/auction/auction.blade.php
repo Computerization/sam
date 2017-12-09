@@ -138,7 +138,7 @@
             });
         });
         $(function() {
-            var socket = io("http://127.0.0.1:3000/");
+            var socket = io("http://103.253.147.75:3000/");
             socket.on('auction-'+aid.toString(), function(msg) {
                 $('#cur-bid').html(msg.bid);
                 $("#cur-bid-uname").html(msg.uname);
