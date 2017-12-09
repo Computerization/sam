@@ -1,28 +1,13 @@
-<!doctype html>
-<html lang="en">
+@extends('layouts.app_bs4')
 
-<head>
-    <title>Hello, world!</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-</head>
-
-<body>
-
-    <!-- Image and text -->
-    <nav class="navbar navbar-light bg-light mb-4">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="http://sam.swfla.org/images/logo.svg" width="30" height="30" class="d-inline-block align-top" alt=""> SAM
-            </a>
-        </div>
-    </nav>
+@section('content')
 
     <div class="container">
+    <div class="row">
+        <div class="col-md-12" id="alert-box">
+            
+        </div>  
+    </div>
         <div class="row">
             <div class="col-md-6">
                 <div class="card">
@@ -86,11 +71,21 @@
             </div>
         </div>
     </div>
-    
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-    <script>
+   
+@endsection
+
+@section('script')
+
+   <script>
+
+        function alert_bs(type, msg){
+            $("#alert-box").html('<div class="alert alert-'+ type +' alert-dismissible fade show" role="alert"> '+ msg +' <button type="button" class="close" data-dismiss="alert" aria-label="Close">        <span aria-hidden="true">&times;</span>  </button>  </div>');
+        }
+        @if(Auth::check())
+        var login = 1;
+        @else
+        var login = 0;
+        @endif
         var aid = {{ $auction->id }};
         var initial_price = {{ $auction->min_price }};
         var cur_bid;
@@ -105,6 +100,9 @@
         var add_max = 100;
         var bid;
         $(document).ready(function(){
+            if(!login){
+                alert_bs("warning", '您尚未登录，建议您立即登录。<a href="{{ url("/login") }}">点我去登录</a>');
+            }
             if(bid_count == 0){
                 $("#cur-bid").html(initial_price);
             }else{
@@ -113,23 +111,26 @@
                 $("#cur-bid-time").html(cur_bid_time);
             }
             $("#submit-bid").click(function(){
+                if(!login){
+                    alert_bs("warning", '您尚未登录，登录后才能出价。<a href="{{ url("/login") }}">点我去登录</a>');
+                }
                 bid = parseInt($("#bid-price").val());
                 if(bid <= cur_bid){
-                    alert("出价低于当前价格");
+                    alert_bs("danger", "出价低于当前价格");
                 }else if(bid > cur_bid + add_max){
-                    alert("出价大于单次加价限制。");
+                    alert_bs("danger", "出价大于单次加价限制。");
                 }else{
                     $.post( "{{ url('auction/bid') }}", {auction_id : aid, bid : bid}, function( data ) {
                         if(data.success == 1){
-                           alert("出价成功");
+                           alert_bs("success", "出价成功");
                            cur_bid = bid;
                         }else{
                             if(data.err_code == 1){
-                                alert("出价错误");
+                                alert_bs("danger", "出价错误");
                             }else if(data.err_code == 2){
-                                alert("出价尚未开始。");
+                                alert_bs("danger", "出价尚未开始。");
                             }else if(data.err_code == 3){
-                                alert("出价已结束。");
+                                alert_bs("danger", "出价已结束。");
                             }
                         }
                     
@@ -138,8 +139,9 @@
             });
         });
         $(function() {
-            var socket = io("http://103.253.147.75:3000/");
+            var socket = io("http://127.0.0.1:3000/");
             socket.on('auction-'+aid.toString(), function(msg) {
+                alert_bs("info", "价格已更新。");
                 $('#cur-bid').html(msg.bid);
                 $("#cur-bid-uname").html(msg.uname);
                 $("#cur-bid-time").html(msg.time);
@@ -148,7 +150,4 @@
         });
     </script>
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
-
-</body>
-
-</html>
+@endsection
