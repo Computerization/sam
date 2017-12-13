@@ -26,7 +26,7 @@ class ActivateAccountController extends Controller
             $user = User::findOrFail(session("user_id"));
             $user->group = 0;
             $user->save();
-            
+            $code->user_id = session("user_id");
             $code_one->is_used = 1;
             $code_one->save();
             session(["user_id" => null]);
