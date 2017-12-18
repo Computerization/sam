@@ -54,6 +54,13 @@ class Auctioncontroller extends Controller
         return view('auction.auction', ['auction' => $auction]);
     }
 
+    public function show_screen(Auction $auction)
+    {
+        //
+        // dd($auction->auction_requests()->orderBy("created_at", "desc")->get());
+        return view('auction.auction_show', ['auction' => $auction]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
