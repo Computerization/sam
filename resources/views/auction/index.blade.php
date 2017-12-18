@@ -1,6 +1,12 @@
 @extends('layouts.app_bs4')
 @section('content')
 
+<style>
+.shadow{
+    text-shadow: 0 0 3px #000000;
+}
+</style>
+
     <div class="container">
         <div class="row">
             <div class="jumbotron w-100">
@@ -11,17 +17,17 @@
         <div class="row">
             <div class="card-columns">
             @foreach($auctions as $auction)
-                <a href="{{ URL::action('Auctioncontroller@show',$auction->id) }}" class="text-dark">
-                <div class="card">
-                 @if($auction->files->count() > 0)
-                    <img class="card-img-top" src="/image/{{ $auction->files->first()->id }}">
+                <div class="card bg-dark text-white">
+                    @if($auction->files->count() > 0)
+                    <img class="card-img" src="/image/{{ $auction->files->first()->id }}">
                     @endif
-                    <div class="card-body">
+                    <div class="card-img-overlay d-flex align-items-start flex-column shadow">
                         <h4 class="card-title">{{ $auction->name }}</h4>
                         <p class="card-text">{{ $auction->description }}</p>
-                    </div>
+                        <a href="{{ URL::action('Auctioncontroller@show',$auction->id) }}" class="btn btn-secondary">查看详情</a>
+                        <h1 class="card-title mt-auto">￥{{ $auction->cur_price }}</h1>
                 </div>
-                </a>
+            </div>
             @endforeach
             </div>
         </div>
