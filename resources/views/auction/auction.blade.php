@@ -53,6 +53,8 @@
                         </form>
 
                     </div>
+                    
+                    @if(Auth::user()->group == 1)
                     <hr>
                     <div class="card-body">
                         <h4 class="card-title">历史出价</h4>
@@ -66,7 +68,7 @@
                        @endforeach
                        @endif
                     </ul>
-
+                    @endif
                 </div>
             </div>
         </div>
@@ -145,7 +147,9 @@
                 $('#cur-bid').html(msg.bid);
                 $("#cur-bid-uname").html(msg.uname);
                 $("#cur-bid-time").html(msg.time);
+                @if(Auth::user()->group == 1)
                 $("#history-pricing").prepend('<li class="list-group-item"> <span class="lead">$'+ msg.bid +' </span>  '+ msg.uname +' 于 '+ msg.time +'  </li>');
+                @endif
             });
         });
     </script>
