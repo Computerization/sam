@@ -19,7 +19,7 @@
             @foreach($auctions as $auction)
                 <div class="card bg-dark text-white">
                     @if($auction->files->count() > 0)
-                    <img class="card-img" src="/image/{{ $auction->files->first()->id }}">
+                    <img class="card-img" style="opacity: 0.5;" src="/image/{{ $auction->files->first()->id }}">
                     @endif
                     <div class="card-img-overlay d-flex align-items-start flex-column shadow">
                         <h4 class="card-title">{{ $auction->name }}</h4>
