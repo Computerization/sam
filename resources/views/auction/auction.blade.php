@@ -19,8 +19,8 @@
                         <p class="d-flex justify-content-around"><span>{{ $auction->user->name }}</span></p>
                         <hr>
                         <div class="d-flex justify-content-around">
-                        <h4>Start</h4>
-                        <h4>Due</h4>
+                        <h4>开始</h4>
+                        <h4>结束</h4>
                         </div>
                         <div class="d-flex justify-content-around">
                         <span>{{ $auction->start }}</span>
@@ -34,13 +34,13 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Highest Price</h4>
+                        <h4 class="card-title">最高价格</h4>
                         <h1 class="">$<span id="cur-bid"></span></h1>
-                        <p><span id="cur-bid-uname"></span> at <span id="cur-bid-time"></span></p>
+                        <p><span id="cur-bid-uname"></span> 于 <span id="cur-bid-time"></span></p>
                     </div>
                     <hr>
                     <div class="card-body">
-                        <h4 class="card-title">Place Bid</h4>
+                        <h4 class="card-title">出价</h4>
 
                         <form>
                             <div class="input-group  input-group-lg">
@@ -55,13 +55,13 @@
                     </div>
                     <hr>
                     <div class="card-body">
-                        <h4 class="card-title">History Pricing</h4>
+                        <h4 class="card-title">历史出价</h4>
                     </div>
                     <ul class="list-group list-group-flush" id="history-pricing">
                     @if($auction->auction_requests->count() > 0)
                     @foreach($auction->auction_requests()->orderBy("created_at", "desc")->get() as $request)
                         <li class="list-group-item">
-                            <span class="lead">${{ $request->bid }}</span> by {{ $request->user->name }} at {{ $request->created_at }}
+                            <span class="lead">${{ $request->bid }}</span>  {{ $request->user->name }} 于 {{ $request->created_at }}
                         </li>
                        @endforeach
                        @endif
@@ -145,7 +145,7 @@
                 $('#cur-bid').html(msg.bid);
                 $("#cur-bid-uname").html(msg.uname);
                 $("#cur-bid-time").html(msg.time);
-                $("#history-pricing").prepend('<li class="list-group-item"> <span class="lead">$'+ msg.bid +' </span> by '+ msg.uname +' at '+ msg.time +'  </li>');
+                $("#history-pricing").prepend('<li class="list-group-item"> <span class="lead">$'+ msg.bid +' </span>  '+ msg.uname +' 于 '+ msg.time +'  </li>');
             });
         });
     </script>
