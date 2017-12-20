@@ -1,5 +1,9 @@
 @extends('layouts.app_bs4')
 
+@section('title')
+{{ $auction->name }}
+@endsection
+
 @section('content')
 
     <div class="container">

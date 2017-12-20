@@ -1,5 +1,9 @@
 @extends('layouts.app_bs4')
 
+@section('title')
+2017 Why Charity Auction
+@endsection
+
 @section('content')
 
     <div class="container">
