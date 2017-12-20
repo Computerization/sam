@@ -147,6 +147,7 @@
                             }else if(data.err_code == 4){
                                 alert_bs("danger", "请勿连续出价。");
                             }
+                            bid = cur_bid;
                         }
                     
                 });
