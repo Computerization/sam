@@ -36,7 +36,7 @@
                     <div class="card-body">
                         <h4 class="card-title">最高价格</h4>
                         <h1 class="">$<span id="cur-bid"></span></h1>
-                        <p><span id="cur-bid-uname"></span> 于 <span id="cur-bid-time"></span></p>
+                        {{--  <p><span id="cur-bid-uname"></span> 于 <span id="cur-bid-time"></span></p>  --}}
                     </div>
                     <hr>
                     <div class="card-body">
@@ -112,17 +112,18 @@
                 $("#cur-bid").html(initial_price);
             }else{
                 $("#cur-bid").html(cur_bid);
-                $("#cur-bid-uname").html(cur_bid_uname);
-                $("#cur-bid-time").html(cur_bid_time);
+               // $("#cur-bid-uname").html(cur_bid_uname);
+                //$("#cur-bid-time").html(cur_bid_time);
             }
             $("#submit-bid").click();
         });
 
         function post_bid(bid){
-                if(!confirm("您确认要出价吗？")){
+                bid = bid + cur_bid;
+                if(!confirm("您的出价是"+bid+"，确认继续？")){
                     return;
                 }
-                bid = bid + cur_bid;
+                
                 if(!login){
                     alert_bs("warning", '您尚未登录，登录后才能出价。<a href="{{ url("/login") }}">点我去登录</a>');
                 }
