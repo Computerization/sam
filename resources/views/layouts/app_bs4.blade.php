@@ -27,6 +27,31 @@
     </nav>
 
  @yield('content')
+    <footer class="text-muted mt-4">
+      <div class="container d-flex justify-content-between">
+        
+        <div>
+            <span>关注我们</span>
+            <br>
+            <small>
+            <span>微信公众号：Computerization</span>
+            </small>
+        </div>
+        <div class="invisible">
+            <span>开放源代码</span><br>
+            <small>
+            <span><a href="https://github.com/computerization/sam">Github: Computerization/SAM</a></span>
+            </small>
+        </div>
+        <p>
+          <small>
+          SAM 3.0 beta<br>
+          (C)Computerization 2014-2017
+          </small>
+        </p>
+      </div>
+      
+    </footer>
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
