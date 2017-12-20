@@ -35,8 +35,9 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">最高价格</h4>
-                        <h1 class="">$<span id="cur-bid"></span></h1>
+                        <h1 class="display-4">￥<span id="cur-bid"></span></h1>
                         {{--  <p><span id="cur-bid-uname"></span> 于 <span id="cur-bid-time"></span></p>  --}}
+                        <p><span id="cur-bid-time"></span></p>
                     </div>
                     <hr>
                     <div class="card-body">
@@ -113,7 +114,7 @@
             }else{
                 $("#cur-bid").html(cur_bid);
                // $("#cur-bid-uname").html(cur_bid_uname);
-                //$("#cur-bid-time").html(cur_bid_time);
+                $("#cur-bid-time").html(cur_bid_time);
             }
             $("#submit-bid").click();
         });
