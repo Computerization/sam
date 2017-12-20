@@ -98,12 +98,11 @@
         @endif
         var aid = {{ $auction->id }};
         var initial_price = {{ $auction->min_price }};
-        var cur_bid;
+        var cur_bid = {{ $auction->cur_price }};
         var cur_bid_uname;
         var cur_bid_time;
         var bid_count = {{ $auction->auction_requests->count() }};
         @if ($auction->auction_requests->count() > 0)
-        cur_bid = {{ $auction->auction_requests()->latest()->first()->bid }};
         cur_bid_uname = "{{ $auction->auction_requests()->latest()->first()->user->name }}";
         cur_bid_time = "{{ $auction->auction_requests()->latest()->first()->created_at->toDateTimeString() }}";
         @endif
