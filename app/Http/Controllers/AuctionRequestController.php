@@ -42,16 +42,30 @@ class AuctionRequestController extends Controller
     public function store(Request $request)
     {
         //
+        // $validator = Validator::make($request->all(), AuctionRequest::$rules, AuctionRequest::$msg);
+        // if(!$validator){
+        //     return response()->json([
+        //         'success' => '0',
+        //         'err_code' => '1',
+        //     ]);
+        // }
         $MAX_ADD = 100;
 
         $arequest = $request->only('bid', 'auction_id');
         $arequest['user_id'] = Auth::id();
         $auction = Auction::findOrFail($request->auction_id);
         $cur_price = $auction->cur_price;
+        $last_uid = $auction->last_bid_uid;
         if($cur_price >= $arequest['bid'] || $cur_price + $MAX_ADD < $arequest['bid']){
             return response()->json([
                 'success' => '0',
                 'err_code' => '1',
+            ]);
+        }
+        if($last_uid == Auth::id()){
+            return response()->json([
+                'success' => '0',
+                'err_code' => '4',
             ]);
         }
         if(Carbon::now() < $auction->start){
@@ -68,6 +82,7 @@ class AuctionRequestController extends Controller
         }
         $query = AuctionRequest::create($arequest);
         $auction->cur_price = $arequest['bid'];
+        $auction->last_bid_uid = Auth::id();
         $auction->save();
         $arequest['uname'] = Auth::user()->name;
         $arequest['time'] = $query->created_at->toDateTimeString();

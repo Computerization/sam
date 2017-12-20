@@ -41,8 +41,10 @@
                     <hr>
                     <div class="card-body">
                         <h4 class="card-title">出价</h4>
-
-                        <form>
+                        <a href="#" class="btn btn-primary" onclick="post_bid(10)">￥10</a>
+                        <a href="#" class="btn btn-primary" onclick="post_bid(50)">￥50</a>
+                        <a href="#" class="btn btn-primary" onclick="post_bid(100)">￥100</a>
+                        {{--  <form>
                             <div class="input-group  input-group-lg">
                                 <span class="input-group-addon">$</span>
                                 <input type="number" id="bid-price" class="form-control">
@@ -50,7 +52,7 @@
                                         <button class="btn btn-primary" id="submit-bid" type="button">Bid</button>
                                 </span>
                             </div>
-                        </form>
+                        </form>  --}}
 
                     </div>
                     @if(Auth::check())
@@ -113,11 +115,18 @@
                 $("#cur-bid-uname").html(cur_bid_uname);
                 $("#cur-bid-time").html(cur_bid_time);
             }
-            $("#submit-bid").click(function(){
+            $("#submit-bid").click();
+        });
+
+        function post_bid(bid){
+                if(!confirm("您确认要出价吗？")){
+                    return;
+                }
+                bid = bid + cur_bid;
                 if(!login){
                     alert_bs("warning", '您尚未登录，登录后才能出价。<a href="{{ url("/login") }}">点我去登录</a>');
                 }
-                bid = parseInt($("#bid-price").val());
+                // bid = parseInt($("#bid-price").val());
                 if(bid <= cur_bid){
                     alert_bs("danger", "出价低于当前价格");
                 }else if(bid > cur_bid + add_max){
@@ -134,13 +143,15 @@
                                 alert_bs("danger", "出价尚未开始。");
                             }else if(data.err_code == 3){
                                 alert_bs("danger", "出价已结束。");
+                            }else if(data.err_code == 4){
+                                alert_bs("danger", "请勿连续出价。");
                             }
                         }
                     
                 });
                 }
-            });
-        });
+            }
+
         $(function() {
             var socket = io("http://103.253.147.75:3000/");
             socket.on('auction-'+aid.toString(), function(msg) {
