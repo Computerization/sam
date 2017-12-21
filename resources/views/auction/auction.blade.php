@@ -48,7 +48,7 @@ body {
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">时间剩余</h4>
-                        <h1 class="count_down display-4 font-weight-bold"><span class="hour_num"></span> : <span class="min_num"></span> : <span class="sec_num"></span></h1>
+                        <h1 class="count_down display-1 font-weight-bold"><span class="min_num"></span>:<span class="sec_num"></span></h1>
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">最高价格</h4>
