@@ -18,7 +18,7 @@
 <body>
 
     <!-- Image and text -->
-    <nav class="navbar navbar-light bg-light mb-4">
+    <nav class="navbar navbar-dark bg-dark mb-4">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
                 <img src="https://sam.swfla.org/images/logo.svg" width="30" height="30" class="d-inline-block align-top" alt=""> SAM

@@ -6,6 +6,14 @@
 
 @section('content')
 
+<style>
+body {
+    background-color: #212529;
+    color: #fff;
+}
+
+</style>
+
     <div class="container">
     <div class="row">
         <div class="col-md-12" id="alert-box">
@@ -22,7 +30,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="card">
+                <div class="card bg-dark">
                     <div class="card-body">
                         <h4 class="d-flex justify-content-around">{{ $auction->name }}</h4>
                         <p class="d-flex justify-content-around"><span>{{ $auction->user->name }}</span></p>
