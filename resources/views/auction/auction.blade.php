@@ -18,6 +18,11 @@
                 @if($auction->files->count() > 0)
                     <img class="card-img-top" src="/image/{{ $auction->files->first()->id }}">
                     @endif
+                    
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
                     <div class="card-body">
                         <h4 class="d-flex justify-content-around">{{ $auction->name }}</h4>
                         <p class="d-flex justify-content-around"><span>{{ $auction->user->name }}</span></p>
@@ -33,10 +38,7 @@
                         <hr>
                         <p class="card-text">{{ $auction->description }}</p>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card">
+                    <hr>
                     <div class="card-body">
                         <h4 class="card-title">最高价格</h4>
                         <h1 class="display-1 font-weight-bold">￥<span id="cur-bid"></span></h1>
