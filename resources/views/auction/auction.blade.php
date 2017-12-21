@@ -84,7 +84,7 @@ body {
                     <ul class="list-group list-group-flush" id="history-pricing">
                     @if($auction->auction_requests->count() > 0)
                     @foreach($auction->auction_requests()->orderBy("created_at", "desc")->get() as $request)
-                        <li class="list-group-item">
+                        <li class="list-group-item bg-dark">
                             <span class="lead">${{ $request->bid }}</span>  {{ $request->user->name }} 于 {{ $request->created_at }}
                         </li>
                        @endforeach
