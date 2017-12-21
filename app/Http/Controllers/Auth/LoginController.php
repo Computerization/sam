@@ -39,10 +39,12 @@ class LoginController extends Controller
     }
 
     public function authenticated(){
-        if(Auth::user()->group < 0){
-            session(["user_id" => Auth::id(), "user_name" => Auth::user()->name]);
-            Auth::logout();
-            return redirect()->action('ActivateAccountController@index');
+        if(config('samcloud.require_activate_account')){
+            if(Auth::user()->group < 0){
+                session(["user_id" => Auth::id(), "user_name" => Auth::user()->name]);
+                Auth::logout();
+                return redirect()->action('ActivateAccountController@index');
+            }
         }
     }
 

@@ -71,8 +71,10 @@ class RegisterController extends Controller
     }
 
     public function registered(){
-        session(["user_id" => Auth::id(), "user_name" => Auth::user()->name]);
-        Auth::logout();
-        return redirect()->action('ActivateAccountController@index');
+        if(config('samcloud.require_activate_account')){
+            session(["user_id" => Auth::id(), "user_name" => Auth::user()->name]);
+            Auth::logout();
+            return redirect()->action('ActivateAccountController@index');
+        }
     }
 }
