@@ -34,7 +34,7 @@ body {
                     <div class="card-body">
                         <h4 class="d-flex justify-content-around">{{ $auction->name }}</h4>
                         <p class="d-flex justify-content-around"><span>{{ $auction->user->name }}</span></p>
-                        <hr>
+                        {{--  <hr>
                         <div class="d-flex justify-content-around">
                         <h4>开始</h4>
                         <h4>结束</h4>
@@ -43,17 +43,17 @@ body {
                         <span>{{ $auction->start }}</span>
                         <span>{{ $auction->due }}</span>
                         </div>
-                        <hr>
+                        <hr>  --}}
                         <p class="card-text">{{ $auction->description }}</p>
                     </div>
                     <hr>
                     <div class="card-body">
+                        <h4 class="card-title">时间剩余</h4>
+                        <h1 class="count_down display-4 font-weight-bold"><span class="hour_num"></span> : <span class="min_num"></span> : <span class="sec_num"></span></h1>
                         <h4 class="card-title">最高价格</h4>
                         <h1 class="display-1 font-weight-bold">￥<span id="cur-bid"></span></h1>
                         {{--  <p><span id="cur-bid-uname"></span> 于 <span id="cur-bid-time"></span></p>  --}}
                         <p>出价时间：<span id="cur-bid-time"></span></p>
-                        <h4 class="card-title">时间剩余</h4>
-                        <h1 class="count_down display-4 font-weight-bold"><span class="hour_num"></span> : <span class="min_num"></span> : <span class="sec_num"></span></h1>
                         <div id="socket-msg">
                             <p class='text-danger'>价格实时更新出错，<a href='http://sam.swfla.org/auction/{{ $auction->id }}'>点击使用兼容模式访问本网站</a></p>
                         </div>
