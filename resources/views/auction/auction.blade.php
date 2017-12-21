@@ -91,12 +91,8 @@
         function alert_bs(type, msg){
             $("#alert-box").html('<div class="alert alert-'+ type +' alert-dismissible fade show" role="alert"> '+ msg +' <button type="button" class="close" data-dismiss="alert" aria-label="Close">        <span aria-hidden="true">&times;</span>  </button>  </div>');
         }
-        var admin = 0;
         @if(Auth::check())
         var login = 1;
-        @if(Auth::user() -> group == 1)
-        admin = 1;
-        @endif
         @else
         var login = 0;
         @endif
@@ -162,7 +158,21 @@
                 }
             }
 
+        $(function() {
+            var socket = io("http://103.253.147.75:3000/");
+            socket.on('auction-'+aid.toString(), function(msg) {
+                alert_bs("info", "价格已更新。");
+                $('#cur-bid').html(msg.bid);
+                $("#cur-bid-uname").html(msg.uname);
+                $("#cur-bid-time").html(msg.time);
+                cur_bid = parseInt(msg.bid);
+                @if(Auth::check())
+                @if(Auth::user()->group == 1)
+                $("#history-pricing").prepend('<li class="list-group-item"> <span class="lead">$'+ msg.bid +' </span>  '+ msg.uname +' 于 '+ msg.time +'  </li>');
+                @endif
+                @endif
+            });
+        });
     </script>
-    <script src="http:/sam.swfla.org/js/auction.js"></script>
-    <script src="http://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
 @endsection
