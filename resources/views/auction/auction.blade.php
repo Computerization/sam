@@ -44,6 +44,8 @@
                         <h1 class="display-1 font-weight-bold">￥<span id="cur-bid"></span></h1>
                         {{--  <p><span id="cur-bid-uname"></span> 于 <span id="cur-bid-time"></span></p>  --}}
                         <p>出价时间：<span id="cur-bid-time"></span></p>
+                        <h4 class="card-title">时间剩余</h4>
+                        <h1 class="count_down display-4 font-weight-bold"><span class="hour_num"></span> : <span class="min_num"></span> : <span class="sec_num"></span></h1>
                         <div id="socket-msg">
                             <p class='text-danger'>价格实时更新出错，<a href='http://sam.swfla.org/auction/{{ $auction->id }}'>点击使用兼容模式访问本网站</a></p>
                         </div>
@@ -90,8 +92,8 @@
 @endsection
 
 @section('script')
-
-   <script>
+    <script src="{{ asset('js/countdown.js') }}"></script>
+    <script>
 
         function alert_bs(type, msg){
             $("#alert-box").html('<div class="alert alert-'+ type +' alert-dismissible fade show" role="alert"> '+ msg +' <button type="button" class="close" data-dismiss="alert" aria-label="Close">        <span aria-hidden="true">&times;</span>  </button>  </div>');
@@ -184,6 +186,21 @@
                 @endif
             });
         });
+
+        var start_time = '{{ $auction->start }}';
+        var due_time = '{{ $auction->due }}';
+
+        $(function(){
+            $(".count_down").countDown({
+            startTimeStr: start_time,//开始时间
+            endTimeStr: due_time,//结束时间
+            daySelector:".day_num",
+            hourSelector:".hour_num",
+            minSelector:".min_num",
+            secSelector:".sec_num"
+            });
+        });
+
     </script>
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
 @endsection
