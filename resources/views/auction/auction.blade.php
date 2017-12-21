@@ -32,8 +32,8 @@ body {
             <div class="col-md-6">
                 <div class="card bg-dark">
                     <div class="card-body">
-                        <h4 class="d-flex justify-content-around">{{ $auction->name }}</h4>
-                        <p class="d-flex justify-content-around"><span>{{ $auction->user->name }}</span></p>
+                        <h1 class="d-flex justify-content-around">{{ $auction->name }}</h1>
+                        {{--  <p class="d-flex justify-content-around"><span>{{ $auction->user->name }}</span></p>  --}}
                         {{--  <hr>
                         <div class="d-flex justify-content-around">
                         <h4>开始</h4>
@@ -44,12 +44,13 @@ body {
                         <span>{{ $auction->due }}</span>
                         </div>
                         <hr>  --}}
-                        <p class="card-text">{{ $auction->description }}</p>
+                        
                     </div>
-                    <hr>
                     <div class="card-body">
                         <h4 class="card-title">时间剩余</h4>
                         <h1 class="count_down display-4 font-weight-bold"><span class="hour_num"></span> : <span class="min_num"></span> : <span class="sec_num"></span></h1>
+                    </div>
+                    <div class="card-body">
                         <h4 class="card-title">最高价格</h4>
                         <h1 class="display-1 font-weight-bold">￥<span id="cur-bid"></span></h1>
                         {{--  <p><span id="cur-bid-uname"></span> 于 <span id="cur-bid-time"></span></p>  --}}
@@ -58,7 +59,6 @@ body {
                             <p class='text-danger'>价格实时更新出错，<a href='http://sam.swfla.org/auction/{{ $auction->id }}'>点击使用兼容模式访问本网站</a></p>
                         </div>
                     </div>
-                    <hr>
                     <div class="card-body">
                         <h4 class="card-title">出价</h4>
                         <a href="#" class="btn btn-primary" onclick="post_bid(10)">￥10</a>
@@ -73,11 +73,13 @@ body {
                                 </span>
                             </div>
                         </form>  --}}
-                        
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">详情</h4>
+                        <p class="card-text">{{ $auction->description }}</p>
                     </div>
                     @if(Auth::check())
                     @if(Auth::user()->group == 1)
-                    <hr>
                     <div class="card-body">
                         <h4 class="card-title">历史出价</h4>
                     </div>
@@ -189,7 +191,7 @@ body {
                 cur_bid = parseInt(msg.bid);
                 @if(Auth::check())
                 @if(Auth::user()->group == 1)
-                $("#history-pricing").prepend('<li class="list-group-item"> <span class="lead">$'+ msg.bid +' </span>  '+ msg.uname +' 于 '+ msg.time +'  </li>');
+                $("#history-pricing").prepend('<li class="list-group-item bg-dark"> <span class="lead">$'+ msg.bid +' </span>  '+ msg.uname +' 于 '+ msg.time +'  </li>');
                 @endif
                 @endif
             });
