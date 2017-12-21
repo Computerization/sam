@@ -42,6 +42,7 @@
                         <h1 class="display-1 font-weight-bold">￥<span id="cur-bid"></span></h1>
                         {{--  <p><span id="cur-bid-uname"></span> 于 <span id="cur-bid-time"></span></p>  --}}
                         <p>出价时间：<span id="cur-bid-time"></span></p>
+                        <p class="text-muted" id="socket-msg"></p>
                     </div>
                     <hr>
                     <div class="card-body">
@@ -58,7 +59,7 @@
                                 </span>
                             </div>
                         </form>  --}}
-
+                        
                     </div>
                     @if(Auth::check())
                     @if(Auth::user()->group == 1)
@@ -160,6 +161,12 @@
 
         $(function() {
             var socket = io("http://103.253.147.75:3000/");
+            socket.on('connect', () => {
+                $("#socket-msg").html("<p class='text-muted'>价格实时更新已开启</p>");
+            });
+            socket.on('error', (error) => {
+                $("#socket-msg").html("<p class='text-danger'>价格实时更新出错，<a href='http://sam.swfla.org/auction/{{ $auction->id }}'>点击使用兼容模式访问本网站</a></p>");
+            });
             socket.on('auction-'+aid.toString(), function(msg) {
                 alert_bs("info", "价格已更新。");
                 $('#cur-bid').html(msg.bid);
