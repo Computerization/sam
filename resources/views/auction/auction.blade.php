@@ -42,7 +42,7 @@
                         <h1 class="display-1 font-weight-bold">￥<span id="cur-bid"></span></h1>
                         {{--  <p><span id="cur-bid-uname"></span> 于 <span id="cur-bid-time"></span></p>  --}}
                         <p>出价时间：<span id="cur-bid-time"></span></p>
-                        <p class="text-muted" id="socket-msg"></p>
+                        <p class="text-muted" id="socket-msg"><p class='text-danger'>价格实时更新出错，<a href='http://sam.swfla.org/auction/{{ $auction->id }}'>点击使用兼容模式访问本网站</a></p></p>
                     </div>
                     <hr>
                     <div class="card-body">
