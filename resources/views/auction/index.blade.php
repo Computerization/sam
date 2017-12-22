@@ -31,6 +31,13 @@
                         <h4 class="card-title">{{ $auction->name }}</h4>
                         {{--  <p class="card-text">{{ $auction->description }}</p>  --}}
                         <a href="{{ URL::action('Auctioncontroller@show',$auction->id) }}" class="btn btn-secondary">查看详情</a>
+                        @if(Auth::check() && Auth::user()->group == 2)
+                        @if($auction->enabled == 1)
+                        <p>拍卖已启动</p>
+                        @else
+                        <a href="{{ URL::action('AuctionRequestController@start_auction',$auction->id) }}" class="btn btn-primary mt-2">启动拍卖</a>
+                        @endif
+                        @endif
                         <h1 class="card-title mt-auto">￥{{ $auction->cur_price }}</h1>
                 </div>
             </div>

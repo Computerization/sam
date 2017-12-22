@@ -62,12 +62,6 @@ class AuctionRequestController extends Controller
                 'err_code' => '1',
             ]);
         }
-        if($last_uid == Auth::id()){
-            return response()->json([
-                'success' => '0',
-                'err_code' => '4',
-            ]);
-        }
         if(Carbon::now() < $auction->start){
             return response()->json([
                 'success' => '0',
@@ -80,10 +74,17 @@ class AuctionRequestController extends Controller
                 'err_code' => '3',
             ]);
         }
+        if($last_uid == Auth::id()){
+            return response()->json([
+                'success' => '0',
+                'err_code' => '4',
+            ]);
+        }
         $query = AuctionRequest::create($arequest);
         $auction->cur_price = $arequest['bid'];
         $auction->last_bid_uid = Auth::id();
         $auction->save();
+        $arequest['type'] = 1;
         $arequest['uname'] = Auth::user()->name;
         $arequest['time'] = $query->created_at->toDateTimeString();
         Redis::publish('auction', json_encode($arequest));
@@ -91,6 +92,27 @@ class AuctionRequestController extends Controller
         return response()->json([
             'success' => '1',
         ]);
+    }
+
+    public function start_auction($id){
+        $auction = Auction::findOrFail($id);
+        if($auction->enabled == 0){
+            // dd($auction);
+            $duration = $auction->duration;
+            $time = Carbon::now()->addSeconds($duration);
+            $auction -> start = Carbon::now();
+            $auction -> due = $time;
+            $auction -> enabled = 1;
+            $auction -> save();
+            // dd($time);
+            $request['auction_id'] = $id;
+            $request['type'] = 0;
+            $request['start'] = $auction->start->toDateTimeString();
+            $request['due'] = $time->toDateTimeString();
+            // dd($request);
+            Redis::publish('auction', json_encode($request));
+        }
+        return redirect()->action('Auctioncontroller@index');
     }
 
     /**

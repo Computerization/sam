@@ -40,6 +40,9 @@ Route::middleware(['auth','auth.admin'])->group(function () {
   Route::put('/resource/{resource}', 'ResourceController@update');
   Route::delete('/resource/{resource}', 'ResourceController@destroy');
 
+  //auction
+  Route::get('/auction/{auction}/start', 'AuctionRequestController@start_auction');
+
 });
 
 Route::middleware(['auth'])->group(function () {

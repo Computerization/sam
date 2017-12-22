@@ -47,11 +47,11 @@
             },
             beforeAction: function(options) {
                 //父容器显示，特定文字
-                $(options.daySelector).parent().html("敬请期待");
+                $(options.minSelector).parent().html("敬请期待");
             },
             afterAction: function(options) {
                 //父容器显示，特定文字
-                $(options.daySelector).parent().html("活动结束");
+                $(options.minSelector).parent().html("活动结束");
             }
 
         });

@@ -48,7 +48,7 @@ body {
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">时间剩余</h4>
-                        <h1 class="count_down display-1 font-weight-bold"><span class="min_num"></span>:<span class="sec_num"></span></h1>
+                        <h1 class="count_down display-1 font-weight-bold"><span class="min_num">01</span>:<span class="sec_num">30</span></h1>
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">最高价格</h4>
@@ -177,6 +177,7 @@ body {
 
         $(function() {
             var socket = io("http://103.253.147.75:3000/");
+            // var socket = io("http://127.0.0.1:3000/");
             socket.on('connect', () => {
                 $("#socket-msg").html("<p class='text-muted'>价格实时更新已开启</p>");
             });
@@ -184,32 +185,50 @@ body {
                 $("#socket-msg").html("<p class='text-danger'>价格实时更新出错，<a href='http://sam.swfla.org/auction/{{ $auction->id }}'>点击使用兼容模式访问本网站</a></p>");
             });
             socket.on('auction-'+aid.toString(), function(msg) {
-                alert_bs("info", "价格已更新。");
-                $('#cur-bid').html(msg.bid);
-                $("#cur-bid-uname").html(msg.uname);
-                $("#cur-bid-time").html(msg.time);
-                cur_bid = parseInt(msg.bid);
-                @if(Auth::check())
-                @if(Auth::user()->group == 1)
-                $("#history-pricing").prepend('<li class="list-group-item bg-dark"> <span class="lead">$'+ msg.bid +' </span>  '+ msg.uname +' 于 '+ msg.time +'  </li>');
-                @endif
-                @endif
+                if(msg.type == 1){
+                    alert_bs("info", "价格已更新。");
+                    $('#cur-bid').html(msg.bid);
+                    $("#cur-bid-uname").html(msg.uname);
+                    $("#cur-bid-time").html(msg.time);
+                    cur_bid = parseInt(msg.bid);
+                    @if(Auth::check())
+                    @if(Auth::user()->group == 1)
+                    $("#history-pricing").prepend('<li class="list-group-item bg-dark"> <span class="lead">$'+ msg.bid +' </span>  '+ msg.uname +' 于 '+ msg.time +'  </li>');
+                    @endif
+                    @endif
+                }else if(msg.type == 0){
+                    var start_time = msg.start;
+                    var due_time = msg.due;
+                    alert_bs("secondary", "拍卖开始，结束时间为".due_time);
+                    $(function(){
+                        $(".count_down").countDown({
+                        startTimeStr: start_time,//开始时间
+                        endTimeStr: due_time,//结束时间
+                        daySelector:".day_num",
+                        hourSelector:".hour_num",
+                        minSelector:".min_num",
+                        secSelector:".sec_num"
+                        });
+                    });
+                }
             });
         });
 
-        var start_time = '{{ $auction->start }}';
-        var due_time = '{{ $auction->due }}';
-
-        $(function(){
-            $(".count_down").countDown({
-            startTimeStr: start_time,//开始时间
-            endTimeStr: due_time,//结束时间
-            daySelector:".day_num",
-            hourSelector:".hour_num",
-            minSelector:".min_num",
-            secSelector:".sec_num"
+        var enabled = {{ $auction->enabled }};
+        if(enabled == 1){
+            var start_time = '{{ $auction->start }}';
+            var due_time = '{{ $auction->due }}';
+            $(function(){
+                $(".count_down").countDown({
+                startTimeStr: start_time,//开始时间
+                endTimeStr: due_time,//结束时间
+                daySelector:".day_num",
+                hourSelector:".hour_num",
+                minSelector:".min_num",
+                secSelector:".sec_num"
+                });
             });
-        });
+        }
 
     </script>
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
