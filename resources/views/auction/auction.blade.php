@@ -199,7 +199,7 @@ body {
                 }else if(msg.type == 0){
                     var start_time = msg.start;
                     var due_time = msg.due;
-                    alert_bs("secondary", "拍卖开始，结束时间为".due_time);
+                    alert_bs("secondary", "拍卖开始，结束时间为"+due_time+"。");
                     $(function(){
                         $(".count_down").countDown({
                         startTimeStr: start_time,//开始时间
