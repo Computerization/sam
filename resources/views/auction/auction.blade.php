@@ -178,6 +178,7 @@ body {
         $(function() {
             var socket = io("http://103.253.147.75:3000/");
             // var socket = io("http://127.0.0.1:3000/");
+            // var socket = io("http://10.99.91.94:3000/");
             socket.on('connect', () => {
                 $("#socket-msg").html("<p class='text-muted'>价格实时更新已开启</p>");
             });

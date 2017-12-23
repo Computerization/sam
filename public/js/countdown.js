@@ -9,8 +9,8 @@
                 this.each(function() {
                     var $this = $(this);
                     var nowTime = new Date().getTime();
-                    var startTime = new Date(opts.startTimeStr).getTime(); //开始时间
-                    var endTime = new Date(opts.endTimeStr).getTime(); //结束时间
+                    var startTime = new Date(opts.startTimeStr.replace(/-/g, '/')).getTime(); //开始时间
+                    var endTime = new Date(opts.endTimeStr.replace(/-/g, '/')).getTime(); //结束时间
                     endTime = endTime > startTime ? endTime : startTime;
                     startTime = endTime > startTime ? startTime : endTime;
 
