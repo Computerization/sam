@@ -51,8 +51,8 @@ body {
                         <h1 class="count_down display-1 font-weight-bold"><span class="min_num">01</span>:<span class="sec_num">30</span></h1>
                     </div>
                     <div class="card-body">
-                        <h4 class="card-title">最高价格</h4>
-                        <h1 class="display-1 font-weight-bold">￥<span id="cur-bid"></span></h1>
+                        <h4 class="card-title">最高出价（￥）</h4>
+                        <h1 class="display-1 font-weight-bold"><span id="cur-bid"></span></h1>
                         {{--  <p><span id="cur-bid-uname"></span> 于 <span id="cur-bid-time"></span></p>  --}}
                         <p>出价时间：<span id="cur-bid-time"></span></p>
                         <div id="socket-msg">

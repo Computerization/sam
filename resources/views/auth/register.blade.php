@@ -11,12 +11,12 @@
                         {{ csrf_field() }}
                         <div class="panel panel-info">
                             <div class="panel-body">
-                            填写用户名时，请在昵称后括号（）备注您的真实姓名和手机号，以方便您得拍后工作人员联系您。
+                            填写用户名时，请输入您的真实姓名，以方便工作人员联系您。
                             </div>
                         </div>
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">{{ trans('login.name') }}</label>
+                            <label for="name" class="col-md-4 control-label">姓名</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
