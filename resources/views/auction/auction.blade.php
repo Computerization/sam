@@ -102,7 +102,7 @@ body {
 @endsection
 
 @section('script')
-    <script src="{{ asset('js/countdown.js') }}"></script>
+    <script src="{{ asset('js/cd.js') }}"></script>
     <script>
 
         function alert_bs(type, msg){
