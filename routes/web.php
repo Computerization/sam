@@ -100,9 +100,7 @@ Route::middleware(['link_resume_to_user'])->group(function () {
   Route::post('/resume', 'ResumeController@save');
 });
 
-  Route::get('/', function() {
-    return redirect()->action('OrganizationController@index');
-  });
+  Route::get('/', 'OrganizationController@index');
   Auth::routes();
   Route::get('/org', 'OrganizationController@index');
   Route::get('/org/search', 'OrganizationController@search');
