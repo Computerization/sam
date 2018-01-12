@@ -74,13 +74,18 @@
 </div>
 
 
-<script>
-$(document).ready(function (){
-  $("#add-question").click(function(){
-    $("#question-area").append("<div class=\"form-group\">    <input type=\"text\" class=\"form-control\" name=\"question[][question_content]\" form=\"form\">  </div><hr>");
-  });
-});
 
-</script>
+@endsection
+
+@section('scripts')
+
+<script>
+    $(document).ready(function (){
+      $("#add-question").click(function(){
+        $("#question-area").append("<div class='form-group'>    <input type='text' class='form-control' name='question[][question_content]' form='form'>  </div><hr>");
+      });
+    });
+    
+    </script>
 
 @endsection
