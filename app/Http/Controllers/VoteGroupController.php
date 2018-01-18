@@ -40,9 +40,9 @@ class VoteGroupController extends Controller
     public function show($id)
     {
         //
-        $votes = VoteGroup::find($id)->votes;
-        $vote_groups = VoteGroup::all();
-        return view('votegroups.index',['vote_groups'=>$vote_groups, 'votes' => $votes]);
+        // $votes = VoteGroup::find($id)->votes;
+        $vote_group = VoteGroup::find($id);
+        return view('votegroups.show',['vote_group'=>$vote_group]);
     }
 
     public function update(Request $request, $id)
