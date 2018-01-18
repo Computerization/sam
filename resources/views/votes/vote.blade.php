@@ -4,7 +4,9 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
+            @if(Auth::user()->group >= 0)
             <a class="btn btn-lg btn-default" href="{{ url('/vote') }}">Back</a>
+            @endif
             <h1>{{ $vote->vote_name }}</h1>
             @if ($errors->any())
                 <div class="alert alert-danger">

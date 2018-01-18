@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-          <h1>Vote Groups</h1>
+          <h1>{{ $vote_group -> group_name }}</h1>
           @if(Auth::user()->group > 0)
           <hr>
              <a class="btn btn-success" href="{{ url('/group/create') }}">New Vote Group...</a>
@@ -12,7 +12,7 @@
           @if (session('status'))
           <hr>
               <div class="alert alert-success">
-                  {{ session('status') }}
+                  {!! session('status') !!}
               </div>
           @endif
           <hr>
