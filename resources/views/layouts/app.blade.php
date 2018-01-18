@@ -28,6 +28,9 @@
         -webkit-line-clamp: 3;
         overflow: hidden;
       }
+      .footer {
+        margin-top: 1em;
+      }
     </style>
 
 </head>
@@ -100,7 +103,7 @@
 
         @yield('content')
         <!-- <p>&nbsp;</p> -->
-        <div class="container">
+        <div class="container footer">
           <div class="col-md-4">
             <p>Computerization Proudly Present. - <a href="http://4.wflmssam.sinaapp.com" target="_blank">About Us</a></p>
           </div>

@@ -109,7 +109,7 @@ class VoteController extends Controller
       foreach ($request->answer as $key => $value) {
         Answer::updateOrCreate(['user_id' => Auth::id(), 'question_id' => $data[$key]['question_id']], ['answer_content' => $data[$key]['answer_content']]);
       }
-      return redirect('vote')->with('status', 'Response Submitted Successfully.');
+      return back()->with('status', 'Response Submitted Successfully.');
     }
 
     public function clearResponse($id)

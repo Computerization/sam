@@ -15,6 +15,11 @@
                     </ul>
                 </div>
             @endif
+            @if (session('status'))
+                <div class="alert alert-success">
+                    {{ session('status') }}
+                </div>
+            @endif
             <hr>
             <form class="" action="{{ URL::action('VoteController@submit',$vote->id) }}" method="post">
               {{ csrf_field() }}
