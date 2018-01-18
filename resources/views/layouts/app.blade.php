@@ -57,12 +57,12 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                      @if (!Auth::guest())
+                      @if (!Auth::guest() && Auth::user()->group >= 0)
                         <!-- <li><a href="{{ url('vote/group') }}">{{ trans('nav.group') }}</a></li> -->
                         <li><a href="{{ url('vote') }}">{{ trans('nav.vote') }}</a></li>
                         <li><a href="{{ url('resource') }}">{{ trans('nav.reservation') }}</a></li>
+                        <li><a href="{{ url('org') }}">{{ trans('org.org') }}</a></li>
                       @endif
-                      <li><a href="{{ url('org') }}">{{ trans('org.org') }}</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -78,10 +78,12 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
+                                  @if (Auth::user()->group >= 0)
                                   <li>
                                     <a href="{{ URL::action('HomeController@index') }}">{{ trans('nav.dashboard') }}</a>
                                   </li>
                                     <li role="separator" class="divider"></li>
+                                    @endif
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
