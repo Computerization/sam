@@ -12,7 +12,7 @@
           @if (session('status'))
           <hr>
               <div class="alert alert-success">
-                  {!! session('status') !!}
+                  {{ session('status') }}
               </div>
           @endif
           <hr>
@@ -24,7 +24,7 @@
               <h4>Notice</h4>
             </div>
             <div class="panel-body">
-              {{ $vote_group -> description }}
+              {!! $vote_group -> description !!}
             </div>
           </div>
         </div>
