@@ -112,6 +112,42 @@ class VoteController extends Controller
       return back()->with('status', 'Response Submitted Successfully.');
     }
 
+    public function export(Vote $vote)
+    {
+      $questions = $vote->questions()->get();
+      $answers = $vote->questions()->first()->answers()->get();
+      $export_csv = "<table><tr><th>用户名</th>";
+      foreach($questions as $question){
+        $export_csv = $export_csv.'<th>';
+        if($question->type == 2){
+          $question_json = json_decode($question->question_content, true);
+          $export_csv = $export_csv.$question_json['title'];
+        }else{
+          $export_csv = $export_csv.$question->question_content;
+        }
+        $export_csv = $export_csv.'</th>';
+      }
+      $export_csv = $export_csv.'</tr>';
+      foreach($answers as $answer){
+        $export_csv = $export_csv."<tr><td>".$answer->user->name.'</td>';
+        foreach($questions as $question){
+          $export_csv = $export_csv.'<td>';
+          $export_csv = $export_csv.$question->answers->where('user_id',$answer->user_id)->first()->answer_content;
+          $export_csv = $export_csv.'</td>';
+        }
+        $export_csv = $export_csv.'</tr>';
+      }
+      $export_csv = $export_csv.'</table>';
+      // dd($users);
+      // $export_csv_gbk = mb_convert_encoding($export_csv, 'gbk', 'auto');
+      // dd(mb_detect_encoding($export_csv_gbk));
+      // return response($export_csv)
+      //       ->header('Content-Type', "text/comma-separated-values; charset=gbk")
+      //       ->header('Content-Disposition', 'attachment;filename = '.$vote->vote_name.'.csv')
+      //       ->header('Accept-ranges', 'bytes');
+      echo $export_csv;
+    }
+
     public function clearResponse($id)
     {
 

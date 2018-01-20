@@ -53,9 +53,9 @@ Route::middleware(['auth'])->group(function () {
   Route::get('vote/group/{id}', 'VoteGroupController@show');
   Route::get('vote/all', 'VoteController@index');
   Route::get('vote/{id}', 'VoteController@show');
+  Route::get('vote/{vote}/export', 'VoteController@export');
   Route::post('vote/{id}/submit', 'VoteController@submit');
   Route::get('vote/', 'VoteGroupController@index');
-
 
   //order room
   Route::get('order/room/', 'RoomOrderController@index');

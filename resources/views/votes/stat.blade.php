@@ -6,8 +6,8 @@
         <div class="col-md-8 col-md-offset-2">
             <a class="btn btn-lg btn-default" href="{{ url('/vote') }}">Back</a>
             <h1>{{ $vote->vote_name }}</h1>
-            <a href="{{ URL::action('VoteController@edit',$vote->id) }}" class="btn btn-primary">Edit</a>
-            <a href="#" class="btn btn-success">Download CSV</a>
+            <a href="{{ URL::action('VoteController@edit',$vote->id) }}" class="btn btn-default">Edit</a>
+            <a href="{{ URL::action('VoteController@export',$vote->id) }}" class="btn btn-default">Export</a>
 
             @if(!empty(session('status')))
             <hr>
