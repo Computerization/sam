@@ -5,17 +5,17 @@
     <div class="row">
         <div class="col-md-12 col-xs-12">
           @if(session('msg'))
-            <div class="panel panel-success">
-              <div class="panel-heading">
+            <div class="card text-white bg-success">
+              <div class="card-header">
                 <h4>{{ session('msg') }}</h4>
               </div>
-              <div class="panel-body">
+              <div class="card-body">
                 {{ trans('resume.recorded') }}
               </div>
             </div>
           @endif
-          <div class="panel">
-            <div class="panel-body">
+          <div class="card">
+            <div class="card-body">
               <div class="row">
                 <div class="col-md-3 col-xs-12">
                   @if($org->file_id)
@@ -39,14 +39,14 @@
               </div>
             </div>
           </div>
-
+          <br>
         </div>
         <div class="col-md-12 col-xs-12">
-          <div class="panel panel-default">
-            <div class="panel-heading">
+          <div class="card">
+            <div class="card-header">
               <h4 class="text-center">社团简介</h4>
             </div>
-            <div class="panel-body image-fix">
+            <div class="card-body image-fix">
               {!! Purifier::clean($org->organization_description) !!}
             </div>
           </div>

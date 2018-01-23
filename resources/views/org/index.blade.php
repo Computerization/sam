@@ -28,7 +28,7 @@
           </div>
 
           <hr>
-          <div class="row">
+          <div class="card-columns">
             @foreach($orgs as $org)
               @include('org.single_org', ['org' => $org, 'wide' => false])
             @endforeach
