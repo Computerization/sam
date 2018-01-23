@@ -1,10 +1,10 @@
 @extends('layouts.control_center')
 
 @section('control_content')
-            <div class="panel panel-default">
-                <div class="panel-heading"><h4>{{ trans('account.profile_edit') }}</h4></div>
+            <div class="card">
+                <div class="card-header"><h4>{{ trans('account.profile_edit') }}</h4></div>
 
-                <div class="panel-body">
+                <div class="card-body">
                   @if ($errors->any())
                       <div class="alert alert-warning">
                           <ul>
@@ -16,22 +16,22 @@
                   @endif
 
                   @if (session('status'))
-                  <div class="panel panel-primary">
-                    <div class="panel-heading">
+                  <div class="card text-white bg-primary">
+                    <div class="card-header">
                       编辑成功
                     </div>
-                    <div class="panel-body">
+                    <div class="card-body">
                       账户信息已更新
                     </div>
                   </div>
                   @endif
 
                   @if (session('fail'))
-                  <div class="panel panel-primary">
-                    <div class="panel-heading">
+                  <div class="card text-white bg-primary">
+                    <div class="card-header">
                       上传失败
                     </div>
-                    <div class="panel-body">
+                    <div class="card-body">
                       {{ session('error') }}
                     </div>
                   </div>

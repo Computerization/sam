@@ -1,6 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
+    <style media="screen">
+    @@media (min-width: 768px) {
+        .card-columns {
+            column-count: 3;
+        };
+    }
+    @@media (max-width: 768px) {
+        .card-columns {
+            column-count: 1;
+        };
+    }
+    </style>
 <div class="container">
     <div class="row">
         <div class="col-md-12 col-xs-12">

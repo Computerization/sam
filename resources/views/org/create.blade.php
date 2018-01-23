@@ -1,21 +1,21 @@
 @extends('layouts.control_center')
 
 @section('control_content')
-      <div class="panel panel-default">
-        <div class="panel-heading">
+      <div class="card">
+        <div class="card-header">
           @if($type)
             <h4>{{ trans('org.edit_org') }}</h4>
           @else
             <h4>{{ trans('org.create_org') }}</h4>
           @endif
         </div>
-        <div class="panel-body">
+        <div class="card-body">
           @if ($errors->any())
-          <div class="panel panel-warning">
-            <div class="panel-heading">
+          <div class="card text-white bg-warning">
+            <div class="card-header">
               {{ trans('org.error') }}
             </div>
-            <div class="panel-body">
+            <div class="card-body">
               @foreach ($errors->all() as $error)
                   <p>{{ $error }}</p>
               @endforeach
