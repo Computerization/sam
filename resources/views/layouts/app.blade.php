@@ -12,7 +12,7 @@
 
     <!-- Styles -->
     <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="{{ asset('simditor/styles/simditor.css') }}" type="text/css" rel="stylesheet">
     <link href="https://cdn.bootcss.com/Buttons/2.0.0/css/buttons.min.css" rel="stylesheet">
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -36,56 +36,46 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
+        <nav class="navbar navbar-light bg-light navbar-expand-lg">
             <div class="container">
-                <div class="navbar-header">
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}" style="display: inline;">
-                      <img alt="SAM" style="position:relative;top:-10px;display: inline;" src="/images/logo.svg" width="40">
-                      <span style="position:relative;left:10px;bottom:9px;display: inline;">{{ config('app.name', 'Laravel') }}</span>
+                      <img alt="SAM" style="position:relative;display: inline;" src="/images/logo.svg" width="40">
+                      <span class="navbar-text" style="position:relative;left:10px;">{{ config('app.name', 'Laravel') }}</span>
                     </a>
-                </div>
+                    <!-- Collapsed Hamburger -->
+                    <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
+                    <ul class="navbar-nav mr-auto">
                       @if (!Auth::guest() && Auth::user()->group >= 0)
                         <!-- <li><a href="{{ url('vote/group') }}">{{ trans('nav.group') }}</a></li> -->
-                        <li><a href="{{ url('vote') }}">{{ trans('nav.vote') }}</a></li>
-                        <li><a href="{{ url('resource') }}">{{ trans('nav.reservation') }}</a></li>
-                        <li><a href="{{ url('org') }}">{{ trans('org.org') }}</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('vote') }}">{{ trans('nav.vote') }}</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('resource') }}">{{ trans('nav.reservation') }}</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('org') }}">{{ trans('org.org') }}</a></li>
                       @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
+                    <ul class="navbar-nav">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li><a href="{{ route('login') }}">{{ trans('login.login') }}</a></li>
-                            <li><a href="{{ route('register') }}">{{ trans('login.register') }}</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">{{ trans('login.login') }}</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">{{ trans('login.register') }}</a></li>
                         @else
-                            <li class="dropdown">
+                            <li class="dropdown nav-item">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
-                                <ul class="dropdown-menu" role="menu">
+                                <ul class="dropdown-menu dropdown-menu-right" role="menu">
                                   @if (Auth::user()->group >= 0)
-                                  <li>
-                                    <a href="{{ URL::action('HomeController@index') }}">{{ trans('nav.dashboard') }}</a>
-                                  </li>
-                                    <li role="separator" class="divider"></li>
+                                    <a class="dropdown-item" href="{{ URL::action('HomeController@index') }}">{{ trans('nav.dashboard') }}</a>
                                     @endif
-                                    <li>
-                                        <a href="{{ route('logout') }}"
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                             {{ trans('nav.logout') }}
@@ -94,7 +84,6 @@
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
-                                    </li>
                                 </ul>
                             </li>
                         @endif
@@ -102,20 +91,23 @@
                 </div>
             </div>
         </nav>
-
+        <br>
         @yield('content')
-        <!-- <p>&nbsp;</p> -->
-        <div class="container footer">
-          <div class="col-md-4">
-            <p>Computerization Proudly Present. - <a href="http://4.wflmssam.sinaapp.com" target="_blank">About Us</a></p>
-          </div>
-          <div class="col-md-4">
 
-          </div>
+        <br>
+        <footer class="container">
+        <div class="row">
+            <div class="col-md-4">
+            <p>Computerization Proudly Present. - <a href="http://4.wflmssam.sinaapp.com" target="_blank">About Us</a></p>
+            </div>
+
+          <div class="col-md-4"></div>
+
           <div class="col-md-4">
             <p>App Version 20170831 Release Candidate</p>
           </div>
         </div>
+        </footer>
         <!-- <p>&nbsp;</p> -->
         <p>&nbsp;</p>
 
@@ -123,11 +115,13 @@
 
     <!-- Scripts -->
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> --}}
     <script src="{{ asset('simditor/scripts/module.min.js') }}"></script>
     <script src="{{ asset('simditor/scripts/hotkeys.min.js') }}"></script>
     <script src="{{ asset('simditor/scripts/uploader.min.js') }}"></script>
     <script src="{{ asset('simditor/scripts/simditor.min.js') }}"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://cdn.bootcss.com/Buttons/2.0.0/js/buttons.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap-daterangepicker/2.1.24/moment.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap-daterangepicker/2.1.25/daterangepicker.min.js"></script>
