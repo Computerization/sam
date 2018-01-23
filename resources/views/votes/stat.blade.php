@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-8 offset-md-2">
             <a class="btn btn-lg btn-default" href="{{ url('/vote') }}">Back</a>
             <h1>{{ $vote->vote_name }}</h1>
             <a href="{{ URL::action('VoteController@edit',$vote->id) }}" class="btn btn-default">Edit</a>
@@ -18,8 +18,8 @@
 
             <hr>
             @foreach($questions as $question)
-            <div class="panel panel-default">
-              <div class="panel-body">
+            <div class="card">
+              <div class="card-body">
                 @if($question->type == 1)
                   @include('votes.question.text')
                 @endif
@@ -48,6 +48,7 @@
 
               </div>
             </div>
+            <br>
             @endforeach
 
 
