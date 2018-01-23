@@ -180,6 +180,8 @@ return [
 
         Intervention\Image\ImageServiceProvider::class,
 
+        Laravel\Passport\PassportServiceProvider::class,
+
     ],
 
     /*
