@@ -25,16 +25,17 @@
             @endforeach
             </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-8 card-columns" style="column-count:2;">
           @foreach($votes as $vote)
-          <div class="col-md-6">
-            <div class="panel panel-default">
-              <div class="panel-body">
+          {{-- <div class="col-md-4"> --}}
+            <div class="card">
+              <div class="card-body">
                 <h4><a href="{{ url('vote',$vote->id) }}">{{ $vote->vote_name }} </a></h4>
                 <p>{{ $vote->user->name }} - {{ $vote->created_at }}</p>
               </div>
             </div>
-          </div>
+          {{-- </div> --}}
+          <br>
           @endforeach
         </div>
     </div>

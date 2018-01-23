@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-8 offset-md-2">
             @if(Auth::user()->group >= 0)
             <a class="btn btn-lg btn-default" href="{{ url('/vote') }}">Back</a>
             @endif
@@ -26,17 +26,17 @@
             <form class="" action="{{ URL::action('VoteController@submit',$vote->id) }}" method="post">
               {{ csrf_field() }}
               @foreach($vote->questions as $question)
-              <div class="panel panel-default">
-                <div class="panel-body">
+              <div class="card">
+                <div class="card-body">
                   @if($question->type == 1)
                     @include('votes.question.text')
                   @endif
                   @if($question->type == 2)
                     @include('votes.question.radio')
                   @endif
-
                 </div>
               </div>
+              <br>
               @endforeach
               <button type="submit" class="btn btn-lg btn-primary">Submit</button>
             </form>
