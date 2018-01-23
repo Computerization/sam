@@ -1,10 +1,10 @@
 @extends('layouts.control_center')
 
 @section('control_content')
-            <div class="panel panel-default">
-                <div class="panel-heading"><h4>Dashboard</h4></div>
+            <div class="card">
+                <div class="card-header"><h4>Dashboard</h4></div>
 
-                <div class="panel-body">
+                <div class="card-body">
                     <h4>Welcome To SAM Online Collaboration Platform.</h4>
                     <p>This is a beta version software, bugs may exist.</p>
                     <hr>

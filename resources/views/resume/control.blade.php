@@ -5,11 +5,11 @@
           <h1>{{ trans('resume.manage_resume_sent_out') }}</h1>
 
           @if (session('success'))
-          <div class="panel panel-success">
-            <div class="panel-heading">
+          <div class="card text-white card-success">
+            <div class="card-header">
               {{ trans('resume.success') }}
             </div>
-            <div class="panel-body">
+            <div class="card-body">
               {{ trans('resume.detach_success') }}
             </div>
           </div>
@@ -18,17 +18,17 @@
           <hr>
           <div class="row">
             @foreach($orgs as $org)
-            <div class=" col-md-6 col-sm-6 col-xs-12">
-              <div class="panel panel-default">
-                <div class="panel-heading">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <div class="card">
+                <div class="card-header">
                   <h4>{{ $org->organization_name }}</h4>
                 </div>
-                <div class="panel-body">
+                <div class="card-body">
                   <p>{!! Purifier::clean($org->organization_description) !!}</p>
                   <div class="col-md-6"><i class="fa fa-user-o" aria-hidden="true"></i> {{ $org->user->name }}</div>
                   <div class="col-md-6"><i class="fa fa-envelope-o" aria-hidden="true"></i> {{ $org->organization_contact }}</div>
                 </div>
-                <div class="panel-footer">
+                <div class="card-footer">
                   <form action="{{ URL::action('ResumeController@detach', ['id' => $org->id]) }}" method="post">
                     <a href="{{ url('org', $org->id) }}" class="btn btn-primary">{{ trans('org.detail') }}</a>
                     {{ csrf_field() }}

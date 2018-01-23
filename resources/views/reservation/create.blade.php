@@ -1,39 +1,39 @@
 @extends('layouts.control_center')
 
 @section('control_content')
-<div class="panel">
-  <div class="panel-heading">
+<div class="card">
+  <div class="card-header">
     <h4>Add Resource</h4>
   </div>
-  <div class="panel-body">
+  <div class="card-body">
     @if ($errors->any())
-    <div class="panel panel-warning">
-      <div class="panel-heading">
+    <div class="card texgt-white bg-warning">
+      <div class="card-header">
         {{ trans('org.error') }}
       </div>
-      <div class="panel-body">
+      <div class="card-body">
         @foreach ($errors->all() as $error)
             <p>{{ $error }}</p>
         @endforeach
       </div>
     </div>
     @endif
-    <form class="form-horizontal" method="post" action="{{ URL::action('ResourceController@store') }}">
+    <form method="post" action="{{ URL::action('ResourceController@store') }}">
     	{{ csrf_field() }}
-    	<div class="form-group">
+    	<div class="row form-group">
     		<label for="inputName" class="col-sm-2 control-label">Name</label>
     		<div class="col-sm-10">
     			<input type="text" name="name" class="form-control" id="inputName" placeholder="Name" />
     		</div>
     	</div>
-    	<div class="form-group">
+    	<div class="row form-group">
     		<label for="description" class="col-sm-2 control-label">Description</label>
     		<div class="col-sm-10">
     			<textarea name="description" id="description" placeholder="Description" ></textarea>
     		</div>
     	</div>
-        <div class="form-group">
-          <div class="col-sm-offset-2 col-sm-10">
+        <div class="row form-group">
+          <div class="offset-sm-2 col-sm-10">
           		<button type="submit" class="btn btn-default">Submit</button>
           </div>
         </div>
