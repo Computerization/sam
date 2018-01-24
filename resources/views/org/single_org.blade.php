@@ -3,7 +3,7 @@
 
   <div class="card  bg-dark text-white" style="min-height: 250px;">
     @if($org->file_id)
-    <img class="card-img-top"  style="opacity: 0.1;" src="/image/{{ $org->file_id }}" alt="Card image cap">
+    <img class="card-img-top"  style="opacity: 0.2;" src="/image/{{ $org->file_id }}" alt="Card image cap">
     @endif
     <div class="card-img-overlay">
     <h5 class="card-title"><a class="a-dark" href="{{ url('org', $org->id) }}">{{ $org->organization_name }}</a></h5>
