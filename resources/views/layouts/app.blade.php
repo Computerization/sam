@@ -23,14 +23,26 @@
       }
 
       .hideoverflow {
+        /* line-height: 1.5em; */
+        text-overflow:ellipsis;
         display: -webkit-box;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 3;
         overflow: hidden;
+        /* overflow: -moz-hidden-unscrollable */
       }
       .footer {
         margin-top: 1em;
       }
+      .a-dark {
+        color:#fff;
+        text-decoration:none;
+      }
+      .a-dark:hover {
+        color: #fff;
+      }
+      /* a:link,a:visited{color:#444;text-decoration:none;}
+      a:hover{color:#ff0000;} */
     </style>
 
 </head>
