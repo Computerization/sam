@@ -8,11 +8,11 @@
               <div class="row">
               @foreach($resumes as $resume)
                 <div class="col-md-6 col-xs-12">
-                  <div class="panel panel-default">
-                    <div class="panel-heading">
+                  <div class="card">
+                    <div class="card-header">
                       <span class="lead">{{ trans('resume.true_name') }} - {{ $resume->name }}</span>
                     </div>
-                    <div class="panel-body">
+                    <div class="card-body">
                       <div class="row">
                         <div class="col-md-4 col-xs-4"><p>{{ trans('resume.student_number') }}</p></div>
                         <div class="col-md-8 col-xs-8"><p>{{ $resume->student_number }}</p></div>
@@ -30,7 +30,7 @@
                         <div class="col-md-8 col-xs-8"><p>{{ $resume->additional_info }}</p></div>
                       </div>
                     </div>
-                    <div class="panel-footer">
+                    <div class="card-footer">
                       {{ $resume->created_at }}
                     </div>
                   </div>

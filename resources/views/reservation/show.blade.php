@@ -5,33 +5,33 @@
     <div class="row">
         <div class="col-md-12 col-xs-12">
           @if(session('occupied'))
-            <div class="panel panel-warning">
-              <div class="panel-heading">
+            <div class="card text-white bg-warning">
+              <div class="card-header">
                 <h4>预约失败</h4>
               </div>
-              <div class="panel-body">
+              <div class="card-body">
                 时间段已被占用。请换一个时间再试。
               </div>
             </div>
           @endif
 
-          <div class="panel">
-            @if ($errors->any())
-            <div class="panel panel-warning">
-              <div class="panel-heading">
+          @if ($errors->any())
+          <div class="card">
+            <div class="acrd text-white bg-warning">
+              <div class="card-header">
                 {{ trans('org.error') }}
               </div>
-              <div class="panel-body">
+              <div class="card-body">
                 @foreach ($errors->all() as $error)
                     <p>{{ $error }}</p>
                 @endforeach
               </div>
             </div>
-            @endif
           </div>
+          @endif
 
-          <div class="panel">
-            <div class="panel-body">
+          <div class="card">
+            <div class="card-body">
               <div class="row">
                 @if($resource->files->count())
                 <div class="col-md-6 col-xs-12">
@@ -79,24 +79,26 @@
             </div>
           </div>
         </div>
-
+    </div>
+    <br>
+    <div class="row">
         <div class="col-md-12 col-xs-12">
-          <div class="panel panel-default">
-            <div class="panel-heading">
+          <div class="card">
+            <div class="card-header">
               <h4 class="text-center">简介</h4>
             </div>
-            <div class="panel-body image-fix">
+            <div class="card-body image-fix">
               {!! Purifier::clean($resource->description) !!}
             </div>
           </div>
         </div>
-
+    </div><br><div class="row">
         <div class="col-md-3 col-xs-12">
-          <div class="panel panel-default">
-            <div class="panel-heading">
+          <div class="card">
+            <div class="card-header">
               <h4 class="text-center">预约</h4>
             </div>
-            <div class="panel-body">
+            <div class="card-body">
 
               <form method="post" action="{{ URL::action('ReservationController@store', ['resource' => $resource->id]) }}">
                 <h4>选择预约时间</h4>
@@ -124,11 +126,11 @@
         </div>
 
         <div class="col-md-9 col-xs-12">
-          <div class="panel panel-default">
-            <div class="panel-heading">
+          <div class="card">
+            <div class="card-header">
               <h4>已有预约</h4>
             </div>
-            <div class="panel-body">
+            <div class="card-body">
               @foreach($resource->reservations as $reservation)
                 @include('reservation.reservation')
               @endforeach

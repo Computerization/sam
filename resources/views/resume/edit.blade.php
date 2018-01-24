@@ -2,11 +2,11 @@
 
 @section('control_content')
 
-      <div class="panel panel-default">
-        <div class="panel-heading">
+      <div class="card">
+        <div class="card-header">
           <h4>{{ trans('resume.edit_resume') }}</h4>
         </div>
-        <div class="panel-body">
+        <div class="card-body">
           @if ($errors->any())
               <div class="alert alert-warning">
                   <ul>
@@ -18,11 +18,11 @@
           @endif
 
           @if (session('status'))
-          <div class="panel panel-primary">
-            <div class="panel-heading">
+          <div class="card text-white bg-primary">
+            <div class="card-header">
               编辑成功
             </div>
-            <div class="panel-body">
+            <div class="card-body">
               您的简历已保存
             </div>
           </div>

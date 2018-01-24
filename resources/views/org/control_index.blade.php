@@ -5,18 +5,18 @@
           <h1>{{ trans('org.my_org') }}</h1>
 
           @if (session('success'))
-          <div class="panel panel-success">
-            <div class="panel-heading">
+          <div class="card text-white bg-success">
+            <div class="card-header">
               {{ trans('org.success') }}
             </div>
-            <div class="panel-body">
+            <div class="card-body">
               {{ trans('org.create_success') }}
             </div>
           </div>
           @endif
 
           <hr>
-          <div class="row">
+          <div class="card-columns" style="column-count: 1;">
             @foreach($orgs as $org)
               @include('org.single_org', ['org' => $org, 'wide' => true])
             @endforeach

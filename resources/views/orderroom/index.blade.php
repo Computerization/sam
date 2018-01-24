@@ -16,11 +16,11 @@
         <p>&nbsp;</p>
 
         @if(!config('samcloud.room_order_available'))
-        <div class="panel">
-          <div class="panel-heading">
+        <div class="card">
+          <div class="card-header">
               <h4>Sorry, Reservation is temporarily not available.</h4>
           </div>
-          <div class="panel-body">
+          <div class="card-body">
              Please read the operation instruction above. And here are all room choice.<br>
              <h4>Reservation available from Aug. 14, 2017 20:00 UTC +8 to Aug. 16, 2017 20:00 UTC +8.</h4>
             C101
@@ -55,9 +55,9 @@
         @endif
 
          @if(config('samcloud.room_order_available'))
-        <div class="panel panel-default">
-          <div class="panel-heading"><h2>At Noon (12 A.M.)</h2></div>
-          <div class="panel-body">
+        <div class="card">
+          <div class="card-header"><h2>At Noon (12 A.M.)</h2></div>
+          <div class="card-body">
             <table class="table">
               <thead>
                 <tr>
