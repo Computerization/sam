@@ -1,20 +1,20 @@
 @extends('layouts.control_center')
 
 @section('control_content')
-<div class="panel">
-  <div class="panel-heading">
+<div class="card">
+  <div class="card-header">
     <h4>Edit Resource</h4>
   </div>
-  <div class="panel-body">
-    <form class="form-horizontal" method="post" action="{{ URL::action('ResourceController@update', ['resource' => $resource]) }}">
+  <div class="card-body">
+    <form method="post" action="{{ URL::action('ResourceController@update', ['resource' => $resource]) }}">
     	{{ csrf_field() }}
     	{{ method_field('PUT') }}
       @if ($errors->any())
-      <div class="panel panel-warning">
-        <div class="panel-heading">
+      <div class="card text-white bg-warning">
+        <div class="card-header">
           {{ trans('org.error') }}
         </div>
-        <div class="panel-body">
+        <div class="card-body">
           @foreach ($errors->all() as $error)
               <p>{{ $error }}</p>
           @endforeach

@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-8 offset-md-2">
 
           @if($type > 0)
           <form class="" action="{{ URL::action('VoteController@update',$vote->id) }}" method="post" id="form"></form>
@@ -39,11 +39,11 @@
             @endif
             <hr>
               <input type="hidden" name="_token" value="{{ csrf_token() }}" form="form">
-              <div class="panel panel-default">
-                <div class="panel-heading">
+              <div class="card">
+                <div class="card-header">
                   <h4>Edit Questions</h4> <button type="button" class="btn btn-success" id="add-question">Add Questions</button>
                 </div>
-                <div class="panel-body" id="question-area">
+                <div class="card-body" id="question-area">
                   @if($type > 0)
                     @foreach ($vote->questions as $question)
                     <div class="form-group">
@@ -66,7 +66,7 @@
                   @endif
                 </div>
               </div>
-
+              <br>
               <button type="submit" class="btn btn-lg btn-primary" form="form">Submit</button>
 
         </div>
@@ -85,7 +85,7 @@
         $("#question-area").append("<div class='form-group'>    <input type='text' class='form-control' name='question[][question_content]' form='form'>  </div><hr>");
       });
     });
-    
+
     </script>
 
 @endsection

@@ -1,14 +1,26 @@
 @extends('layouts.app')
 
 @section('content')
+    <style media="screen">
+    @@media (min-width: 768px) {
+        .card-columns {
+            column-count: 3;
+        };
+    }
+    @@media (max-width: 768px) {
+        .card-columns {
+            column-count: 1;
+        };
+    }
+    </style>
 <div class="container">
     <div class="row">
         <div class="col-md-12 col-xs-12">
-          <div class="jumbotron">
+          <!-- <div class="jumbotron">
             <h1>2017 Why Charity 在线拍卖通道</h1>
             <p>请先点击右上角按钮注册，然后点击下面链接进入拍卖主界面。</p>
             <p><a class="btn btn-primary btn-lg" href="{{ url('auction') }}" role="button">点击进入</a></p>
-          </div>
+          </div> -->
 
           <div class="row">
             <div class="col-md-2">
@@ -28,7 +40,7 @@
           </div>
 
           <hr>
-          <div class="row">
+          <div class="card-columns" style="column-count: 4;">
             @foreach($orgs as $org)
               @include('org.single_org', ['org' => $org, 'wide' => false])
             @endforeach
