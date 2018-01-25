@@ -1,6 +1,15 @@
 {{-- <div class="@if($wide) col-md-6 @else col-md-4 @endif col-sm-6 col-xs-12"> --}}
 
-
+<style>
+    .hideoverflow {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        line-height: 1.5em;
+        max-height: 4.5em;
+        }
+</style>
   <div class="card  bg-dark text-white" style="min-height: 250px;">
     @if($org->file_id)
     <img class="card-img-top"  style="opacity: 0.2;" src="/image/{{ $org->file_id }}" alt="Card image cap">
