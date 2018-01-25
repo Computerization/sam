@@ -4,7 +4,7 @@
     <style media="screen">
     @@media (min-width: 768px) {
         .card-columns {
-            column-count: 3;
+            column-count: 4;
         };
     }
     @@media (max-width: 768px) {
@@ -40,7 +40,7 @@
           </div>
 
           <hr>
-          <div class="card-columns" style="column-count: 4;">
+          <div class="card-columns">
             @foreach($orgs as $org)
               @include('org.single_org', ['org' => $org, 'wide' => false])
             @endforeach
