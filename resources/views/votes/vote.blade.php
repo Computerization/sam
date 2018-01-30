@@ -40,7 +40,17 @@
               @endforeach
               <button type="submit" class="btn btn-lg btn-primary">Submit</button>
             </form>
+            <br>
+            <div class="col-sm-4 offset-sm-3" id="qrcode">
+            </div>
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script type="text/javascript" src="{{ asset('js/qrcode.min.js') }}"></script>
+<script type="text/javascript">
+new QRCode(document.getElementById("qrcode"), "https://sam.swfla.org/vote/{{$vote->id}}");
+</script>
 @endsection
