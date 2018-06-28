@@ -1,43 +1,47 @@
-@extends('layouts.app')
+@extends('layouts.semantic')
+
+@section('title')Vote Groups @endsection
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-4">
-          <h1>Vote Groups</h1>
-          @if(Auth::user()->group > 0)
-          <hr>
-             <a class="btn btn-success" href="{{ url('/group/create') }}">New Vote Group...</a>
-          @endif
-          @if (session('status'))
-          <hr>
-              <div class="alert alert-success">
-                  {{ session('status') }}
-              </div>
-          @endif
-          <hr>
-            <div class="list-group">
+    {{-- Successful Actions --}}
+    @if (session('status'))
+        <div class="ui text container blue message">
+            <div class="header">
+                <p>
+                    <i class="info icon"></i>
+                    {{ session('status') }}
+                </p>
+            </div>
+        </div>
+    @endif
+
+    <div class="ui raised padded text container segment">
+
+        <div class="ui padded basic center aligned segment">
+            <h1 class="ui header">Vote Groups</h1>
+            @if(Auth::user()->group > 0)
+                <div class="ui divider"></div>
+                <a class="ui positive button" href="{{ url('/group/create') }}">
+                    New Vote Group...
+                </a>
+            @endif
+        </div>
+        <hr />
+        <div class="ui large very relaxed divided list">
             @foreach($vote_groups as $vote_group)
-              <a href="{{ URL::action('VoteGroupController@show',['id'=>$vote_group->id]) }}" class="list-group-item">
-                <h4 class="list-group-item-heading">{{ $vote_group->group_name }}</h4>
-                <p class="list-group-item-text">{{ $vote_group->user->name }} - {{ $vote_group->created_at }}</p>
-              </a>
+                <div class="item">
+                    <i class="terminal icon"></i>
+                    <div class="content">
+                        <a href="{{ URL::action('VoteGroupController@show',['id'=>$vote_group->id]) }}">
+                            {{ $vote_group->group_name }}
+                        </a>
+                        <small class="description">
+                            Created by {{ $vote_group->user->name }} at {{ $vote_group->created_at }}
+                        </small>
+                    </div>
+                </div>
             @endforeach
-            </div>
         </div>
-        <div class="col-md-8 card-columns" style="column-count:2;">
-          @foreach($votes as $vote)
-          {{-- <div class="col-md-4"> --}}
-            <div class="card">
-              <div class="card-body">
-                <h4><a href="{{ url('vote',$vote->id) }}">{{ $vote->vote_name }} </a></h4>
-                <p>{{ $vote->user->name }} - {{ $vote->created_at }}</p>
-              </div>
-            </div>
-          {{-- </div> --}}
-          <br>
-          @endforeach
-        </div>
+
     </div>
-</div>
 @endsection
