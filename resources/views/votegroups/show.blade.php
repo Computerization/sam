@@ -1,9 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.semantic')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
+<div class="ui container">
+    <div class="ui basic segment">
           <h1>{{ $vote_group -> group_name }}</h1>
           @if(Auth::user()->group > 0)
           <hr>
@@ -16,7 +15,6 @@
               </div>
           @endif
           <hr>
-        </div>
         @if($vote_group -> description != null)
         <div class="col-md-12">
           <div class="card">
@@ -31,12 +29,12 @@
         @endif
 
         <!-- <div class="col-md-12"> -->
-        <div class="card-columns">
+        <div class="ui huge very relaxed divided list">
           @foreach($vote_group->votes as $vote)
-            <div class="card">
-              <div class="card-body">
-                <h4><a href="{{ url('vote',$vote->id) }}">{{ $vote->vote_name }} </a></h4>
-                <p>{{ $vote->user->name }} - {{ $vote->created_at }}</p>
+            <div class="item">
+              <div class="content">
+                <a href="{{ url('vote',$vote->id) }}">{{ $vote->vote_name }} </a>
+                <div class="description">Created by {{ $vote->user->name }} at {{ $vote->created_at }}</div>
               </div>
             </div>
           @endforeach
