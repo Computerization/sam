@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
-    <title>@yield('title') - SAM</title>
+    <title>@yield('title')- SAM</title>
 
     {{-- Required meta attributes for Cross-Browser Support --}}
     <meta charset="utf-8">
@@ -62,7 +62,7 @@
                 @else
                     <div class="ui simple dropdown item">
                         {{ Auth::user()->name }}<i class="dropdown icon"></i>
-                        <div class="menu">
+                        <div class="menu" style="font-size:0.8em;">
                             @if (Auth::user()->group >= 0)
                                 {{-- SWFLA students only：用户中心 --}}
                                 <a class="item" href="{{ URL::action('HomeController@index') }}">
@@ -89,14 +89,14 @@
 @yield('content')
 <br />
 <div class="ui three column stackable grid container">
-    <div class="column" style="padding-bottom:0!important;">
+    <div class="center aligned column" style="padding-bottom:0!important;">
         <div class="ui basic segment" style="padding-bottom:0!important;">
-            <span style="font-weight:bold;font-size:1.05em">关注我们</span>
+            <span style="font-weight:bold;font-size:1.05em">联系我们</span>
             <br>
             <span>微信公众号：Computerization</span>
         </div>
     </div>
-    <div class="column" style="padding-bottom:0!important;">
+    <div class="center aligned column" style="padding-bottom:0!important;">
         <div class="ui basic segment"  style="padding-bottom:0!important;">
             <span style="font-weight:bold;font-size:1.05em">开放源代码</span>
             <br>
@@ -105,11 +105,11 @@
             </a>
         </div>
     </div>
-    <div class="column">
+    <div class="center aligned column">
         <div class="ui basic segment">
             <p>
                 <span style="font-weight:bold;font-size:1.05em">SAM v2018.06</span><br>
-                (C)Computerization 2014-2018
+                <i class="copyright outline icon"></i>Computerization 2014-2018
             </p>
         </div>
 </div>
