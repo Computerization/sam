@@ -101,7 +101,7 @@ Route::middleware(['link_resume_to_user'])->group(function () {
 });
 
   Route::get('/', function (){
-    return redirect('/vote/group/4');
+    return redirect('/vote');
   });
   Auth::routes();
   Route::get('/org', 'OrganizationController@index');
