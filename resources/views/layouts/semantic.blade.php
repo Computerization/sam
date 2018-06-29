@@ -23,10 +23,105 @@
     <link href="{{ asset('simditor/styles/simditor.css') }}" type="text/css" rel="stylesheet">
     {{-- simditor ends --}}
 
+
+    {{-- Switch mobile and desktop --}}
+    <style>
+        #desktop-nav {
+          display: flex; !important;
+        }
+
+        #mobile-nav {
+          display: none; !important;
+        }
+
+        @media only screen and (max-width: 700px) {
+          #desktop-nav {
+            display: none; !important;
+          }
+
+          #mobile-nav {
+            display: flex; !important;
+          }
+      }
+    </style>
+
 </head>
 <body>
+  <div class="ui vertical inverted sidebar menu left" style="">
+
+
+
+
+    <a href="{{ url('/') }}" class="header item">
+        <img src="/images/logo.svg" width="64" height="64" alt="SAM">
+    </a>
+
+    {{-- Only logged in users can view --}}
+    @if (!Auth::guest() && Auth::user()->group >= 0)
+        {{-- 投票 --}}
+        <a href="{{ url('vote') }}" class="item">
+            <i class="chart bar icon"></i>{{ trans('nav.vote') }}
+        </a>
+        {{-- 预约 --}}
+        <a href="{{ url('resource') }}" class="item">
+            <i class="calendar icon"></i>{{ trans('nav.reservation') }}
+        </a>
+        {{-- 社团 --}}
+        <a href="{{ url('org') }}" class="item">
+            <i class="coffee icon"></i>{{ trans('org.org') }}
+        </a>
+    @endif
+
+    <!-- <div class="right menu"> -->
+        {{-- Only non-logged in users can view --}}
+        @if (Auth::guest())
+            {{-- 登录 --}}
+            <a class="item" href="{{ route('login') }}">
+                <i class="sign in alternate icon"></i>{{ trans('login.login') }}
+            </a>
+            {{-- 注册 --}}
+            <a class="item" href="{{ route('register') }}">
+                <i class="user plus icon"></i>{{ trans('login.register') }}
+            </a>
+        @else
+          <div class="item">
+          </div>
+            <div class="item">
+                {{ Auth::user()->name }}
+            </div>
+          @if (Auth::user()->group >= 0)
+          {{-- SWFLA students only：用户中心 --}}
+          <a class="item" href="{{ URL::action('HomeController@index') }}">
+            <i class="user icon"></i>{{ trans('nav.dashboard') }}
+          </a>
+          @endif
+          {{-- 登出（通过csrf_field form进行） --}}
+          <a class="item" href="{{ route('logout') }}"
+          onclick="event.preventDefault();
+          document.getElementById('logout-form').submit();">
+          <i class="sign out alternate icon"></i>{{ trans('nav.logout') }}
+        </a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+          {{ csrf_field() }}
+        </form>
+        @endif
+    <!-- </div> -->
+
+
+
+  </div>
     <div class="ui attached stackable menu" style="font-size:1.4em;">
-        <div class="ui container">
+      {{-- Mobile View --}}
+        <div class="ui container" id="mobile-nav">
+          <a class="toc header item">
+            <i class="sidebar icon"></i>
+              <img src="/images/logo.svg" width="30" height="30" alt="SAM">
+              &nbsp;&nbsp;SAM
+          </a>
+        </div>
+
+        {{-- Deskptop View --}}
+        <div class="ui container" id="desktop-nav">
             <a href="{{ url('/') }}" class="header item">
                 <img src="/images/logo.svg" width="30" height="30" alt="SAM">
                 &nbsp;&nbsp;SAM
@@ -126,6 +221,17 @@
     {{-- Page Custom Scripts Here --}}
     @yield('scripts')
     {{-- Page Custom Scripts Ends --}}
+
+    {{-- Toggle sidebar when mobile --}}
+    <script>
+    $(document)
+      .ready(function() {
+
+        // create sidebar and attach to menu open
+        $('.ui.sidebar').sidebar('attach events', '.toc.item');
+
+      });
+    </script>
 
 </body>
 </html>
