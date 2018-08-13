@@ -1,13 +1,14 @@
 
+@extends('layouts.semantic')
+
+@section('content')
+
+
   <style>
     b {
       color:green; font-size:1.8em
     }
   </style>
-@extends('layouts.app')
-
-@section('content')
-
 
   <div class="container">
       <div class="row">
@@ -113,11 +114,11 @@
                   <div class="column">C楼大教室（C207/C208）1</div>
                   <div class="column">
                     <a href="{{ URL::action('RoomOrderController@process',['mon', 'rm101']) }}">
-                     @if(isset($order['mon']['rm101']['uid'])) 
-                       {{ $order['mon']['rm101']['content'] }} 
-                     @else 
+                     @if(isset($order['mon']['rm101']['uid']))
+                       {{ $order['mon']['rm101']['content'] }}
+                     @else
                       <b style="color:green; font-size:1.8em">Available</b>
-                     @endif 
+                     @endif
                     </a>
                   </div>
                   <div class="column">
@@ -158,7 +159,7 @@
                   </div>
                 </div>
                  <!-- C102  -->
-                 <div class="eight column row"> 
+                 <div class="eight column row">
                   <div class="column">C楼大教室（C207/C208）2</div>
                   <div class="column">
                     <a href="{{ URL::action('RoomOrderController@process',['mon', 'rm102']) }}">
@@ -205,10 +206,10 @@
                     @endif
                     </a>
                   </div >
-                 </div> 
+                 </div>
 
                  <!-- C201  -->
-                 <div class="eight column row"> 
+                 <div class="eight column row">
                   <div class="column">C楼小教室1</div>
                   <div class="column">
                     <a href="{{ URL::action('RoomOrderController@process',['mon', 'rm201']) }}">
@@ -255,9 +256,9 @@
                     @endif
                     </a>
                   </div >
-                 </div> 
+                 </div>
                  <!-- C202  -->
-                 <div class="eight column row"> 
+                 <div class="eight column row">
                   <div class="column">C楼小教室2</div>
                   <div class="column">
                     <a href="{{ URL::action('RoomOrderController@process',['mon', 'rm202']) }}">
@@ -304,9 +305,9 @@
                     @endif
                     </a>
                   </div>
-                 </div> 
+                 </div>
                  <!-- C203  -->
-                 <div class="eight column row"> 
+                 <div class="eight column row">
                   <div class="column">C楼小教室3</div>
                   <div class="column">
                     <a href="{{ URL::action('RoomOrderController@process',['mon', 'rm203']) }}">
@@ -353,9 +354,9 @@
                     @endif
                     </a>
                   </div>
-                 </div> 
+                 </div>
                  <!-- C204  -->
-                 <div class="eight column row"> 
+                 <div class="eight column row">
                   <div class="column">C楼小教室4</div>
                   <div class="column">
                     <a href="{{ URL::action('RoomOrderController@process',['mon', 'rm204']) }}">
@@ -402,9 +403,9 @@
                     @endif
                     </a>
                   </div>
-                 </div> 
+                 </div>
                  <!-- C205  -->
-                 <div class="eight column row"> 
+                 <div class="eight column row">
                   <div class="column">C楼小教室5</div>
                   <div class="column">
                     <a href="{{ URL::action('RoomOrderController@process',['mon', 'rm205']) }}">
@@ -451,9 +452,9 @@
                     @endif
                     </a>
                   </div>
-                 </div> 
+                 </div>
                  <!-- C206  -->
-                 <div class="eight column row"> 
+                 <div class="eight column row">
                   <div class="column">C楼小教室6</div>
                   <div class="column">
                     <a href="{{ URL::action('RoomOrderController@process',['mon', 'rm206']) }}">
@@ -500,9 +501,9 @@
                     @endif
                     </a>
                   </div>
-                 </div> 
+                 </div>
                  <!-- C207  -->
-                 <div class="eight column row"> 
+                 <div class="eight column row">
                   <div class="column">C楼小教室7</div>
                   <div class="column">
                     <a href="{{ URL::action('RoomOrderController@process',['mon', 'rm207']) }}">
@@ -549,9 +550,9 @@
                     @endif
                     </a>
                   </div>
-                 </div> 
+                 </div>
                  <!-- Art Room  -->
-                 <div class="eight column row"> 
+                 <div class="eight column row">
                   <div class="column">美术室</div>
                   <div class="column">
                     <a href="{{ URL::action('RoomOrderController@process',['mon', 'artroom']) }}">
@@ -598,9 +599,9 @@
                     @endif
                     </a>
                   </div>
-                 </div> 
+                 </div>
                 <!-- Dance Room -->
-                 <div class="eight column row"> 
+                 <div class="eight column row">
                   <div class="column">形体房</div>
                   <div class="column">
                     <a href="{{ URL::action('RoomOrderController@process',['mon', 'danceroom']) }}">
@@ -647,9 +648,9 @@
                     @endif
                     </a>
                   </div>
-                 </div> 
+                 </div>
                 <!-- A110 -->
-                <div class="eight column row">   
+                <div class="eight column row">
                   <div class="column">A110</div>
                   <div class="column">
                     <a href="{{ URL::action('RoomOrderController@process',['mon', 'a110']) }}">
@@ -696,7 +697,7 @@
                     @endif
                     </a>
                   </div>
-                </div> 
+                </div>
                 <!-- 其他1 -->
                  <div class="eight column row">
                   <div class="column">其他1</div>
@@ -745,7 +746,7 @@
                     @endif
                     </a>
                   </div>
-                </div> 
+                </div>
                 <!-- 其他2 -->
                  <div class="eight column row">
                   <div class="column">其他2</div>
@@ -794,7 +795,7 @@
                     @endif
                     </a>
                   </div>
-                </div> 
+                </div>
                 <!-- 其他3 -->
                  <div class="eight column row">
                   <div class="column">其他3</div>
@@ -843,7 +844,7 @@
                     @endif
                     </a>
                   </div>
-                </div> 
+                </div>
 
               </div>
   </div>
@@ -852,8 +853,8 @@
   <div class="ui segment" id="afternoon"></div>
 
 <!-- afthernoon table -->
-  <div class="ui segment" >  
-    
+  <div class="ui segment" >
+
       <div class="ui sticky">
               <div class="ui container">
                   <div class="ui fluid three blue item tabular menu ">
@@ -894,7 +895,7 @@
                             @if(isset($order['mon_5pm']['rm101']['uid']))
                               {{ $order['mon_5pm']['rm101']['content'] }}
                             @else
-                               <b class="green">Available</b> 
+                               <b class="green">Available</b>
                             @endif
                             </a>
                           </div>
@@ -2166,7 +2167,7 @@
                         </div>
                       </div>
   </div>
- 
+
 @endif
 
   <script>
