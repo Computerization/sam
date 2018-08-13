@@ -101,7 +101,7 @@ Route::middleware(['link_resume_to_user'])->group(function () {
 });
 
   Route::get('/', function (){
-    return redirect('/vote');
+    return redirect('/vote/group/4');
   });
   Auth::routes();
   Route::get('/org', 'OrganizationController@index');
@@ -114,6 +114,11 @@ Route::get('/image/{id}/original', 'FileController@get_original_image');
 Route::get('/auction', 'Auctioncontroller@index');
 Route::get('/auction/{auction}', 'Auctioncontroller@show');
 Route::get('/auction/{auction}/screen', 'Auctioncontroller@show_screen');
+
+//order room
+Route::get('order/room/', 'RoomOrderController@index');
+Route::get('order/room/{time}/{room}', 'RoomOrderController@process');
+
 
 // Activate Account
 Route::get('/activate', 'ActivateAccountController@index');
