@@ -1,51 +1,79 @@
-@extends('layouts.app')
+@extends('layouts.semantic')
+
+@section('title')
+Student Organizations
+@endsection
 
 @section('content')
-    <style media="screen">
-    @@media (min-width: 768px) {
-        .card-columns {
-            column-count: 4;
-        };
-    }
-    @@media (max-width: 768px) {
-        .card-columns {
-            column-count: 1;
-        };
-    }
-    </style>
-<div class="container">
-    <div class="row">
-        <div class="col-md-12 col-xs-12">
-          <!-- <div class="jumbotron">
-            <h1>2017 Why Charity 在线拍卖通道</h1>
-            <p>请先点击右上角按钮注册，然后点击下面链接进入拍卖主界面。</p>
-            <p><a class="btn btn-primary btn-lg" href="{{ url('auction') }}" role="button">点击进入</a></p>
-          </div> -->
 
-          <div class="row">
-            <div class="col-md-2">
-              <h1><a href="{{ URL::action('OrganizationController@index') }}">{{ trans('org.org') }}</a></h1>
-            </div>
-            <div class="col-md-4">
-              <form action="{{ URL::action('OrganizationController@search') }}" method="get">
-                <h4>搜索社团</h4>
-                <div class="input-group">
-                  <input type="text" class="form-control" name="keyword" placeholder="{{ $keyword }}">
-                  <span class="input-group-btn">
-                    <button class="btn btn-primary" type="button">Go!</button>
-                  </span>
-                </div>
-              </form>
-            </div>
-          </div>
+<style>
+    .hideoverflow {
+        overflow: hidden;
+        /* text-overflow: ellipsis; */
+        /* display: -webkit-box; */
+        /* -webkit-line-clamp: 3; */
+        line-height: 1.5em;
+        max-height: 12em;
+        }
 
-          <hr>
-          <div class="card-columns">
-            @foreach($orgs as $org)
-              @include('org.single_org', ['org' => $org, 'wide' => false])
-            @endforeach
-          </div>
-        </div>
+        /* .image{
+            width:100%;
+            height:0px;
+            padding-bottom:100%;
+            position:relative;
+        } */
+        /* .image img{
+                width:100%;
+                height:100%;
+                position:absolute;
+        } */
+
+        .org-cell {
+          height: 18em; !important;
+          overflow: hidden;!important;
+        }
+
+</style>
+
+<h1 class="ui center aligned header">{{ trans('org.org') }}</h1>
+<h4 class="ui center aligned header">The Honor of WFLA</h4>
+
+<div class="ui center aligned header">
+  <div class="ui search">
+    <div class="ui icon input">
+      <form action="{{ URL::action('OrganizationController@search') }}" method="get" id="search-org"></form>
+      <input class="prompt" type="text" placeholder="{{ $keyword }}" name="keyword" form="search-org">
+      <i class="search icon"></i>
     </div>
+    <div class="results"></div>
+  </div>
 </div>
+
+<div class="ui center aligned header">
+  <a class="ui large olive label">IB<div class="detail">C</div></a>
+  <a class="ui large red label">IB<div class="detail">A</div></a>
+  <a class="ui large blue label">IB<div class="detail">S</div></a>
+  <a class="ui large orange label">Tech</a>
+  <a class="ui large green label">Sport</a>
+  <a class="ui large teal label">Art</a>
+  <a class="ui large violet label">Debate</a>
+  <a class="ui large purple label">Volunteer</a>
+</div>
+
+<div class="ui container">
+  <div class="ui section divider"></div>
+</div>
+
+<div class="ui container special four column grid stackable">
+  @foreach($orgs as $org)
+    @include('org.single_org', ['org' => $org])
+  @endforeach
+</div>
+
+<script>
+  $('.image').dimmer({
+  on: 'hover'
+  });
+</script>
+
 @endsection
