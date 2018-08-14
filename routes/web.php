@@ -115,11 +115,6 @@ Route::get('/auction', 'Auctioncontroller@index');
 Route::get('/auction/{auction}', 'Auctioncontroller@show');
 Route::get('/auction/{auction}/screen', 'Auctioncontroller@show_screen');
 
-//order room
-Route::get('order/room/', 'RoomOrderController@index');
-Route::get('order/room/{time}/{room}', 'RoomOrderController@process');
-
-
 // Activate Account
 Route::get('/activate', 'ActivateAccountController@index');
 Route::post('/activate', 'ActivateAccountController@verify');
