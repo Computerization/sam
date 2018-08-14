@@ -1,6 +1,4 @@
 @extends('layouts.semantic')
-@extends('layouts.app')
-
 
 @section('content')
 
@@ -8,11 +6,25 @@
     b {
       color:green; font-size:1.8em
     }
+    #messagebox {
+      margin-top: 2em;
+      margin-bottom: 2em;
+    }
+    .ui.sticky {
+      background-color: white;
+      padding-bottom: 1em; !important;
+    }
+    .timebox {
+      margin: 1em 0; !important;
+    }
+    .daybox {
+      margin: 1em 0; !important;
+    }
   </style>
 
   <div class="ui container">
 
-      <div class="ui info ignored icon message">
+      <div class="ui info ignored icon message" id="messagebox">
         <i class="info letter icon"></i>
         <div class="content">
             <h3 class="ui header">Instructions</h3>
@@ -32,8 +44,8 @@
         <i class="Minus Circle icon"></i>
         <div class="content">
             <h2>Sorry, Reservation is temporarily not available.</h2>
-              <p style="color:gray">Reservation available from Aug. 14, 2017 20:00 UTC +8 to Aug. 16, 2017 20:00 UTC +8. 
-             
+              <p style="color:gray">Reservation available from Aug. 14, 2017 20:00 UTC +8 to Aug. 16, 2017 20:00 UTC +8.
+
             </p>
             </div>
         </div>
@@ -41,20 +53,20 @@
 @endif
 
 @if(config('samcloud.room_order_available'))
-          
+
     <div class="ui segment" id="noon">
         <div class="ui container"> <div class="ui large label"><i class="wait icon"></i> TIME PERIOD</div> </div> <br>
         <div class="ui sticky">
-             
-                <div class="ui container">
-                     
+
+                <div class="ui container timebox">
+
                     <div class="ui two yellow item tabular menu ">
-                     
+
                       <a class="active item" ><i class="sun large icon"></i>NOON</a>
                       <a class="item" href="#afternoon"><i class="moon blue large icon"></i>AFTERNOON</a>
                     </div>
                 </div>
-              <div class="ui grid equal width container center aligned">
+              <div class="ui grid equal width container center aligned daybox">
                 <div class="eight column row ">
                   <div class="column">
                     <div class="ui teal ribbon huge label">room </div>
@@ -84,11 +96,11 @@
                     <div class="column">C楼大教室（C207/C208）1</div>
                     <div class="column">
                       <a href="{{ URL::action('RoomOrderController@process',['mon', 'rm101']) }}">
-                      @if(isset($order['mon']['rm101']['uid'])) 
-                        {{ $order['mon']['rm101']['content'] }} 
-                      @else 
+                      @if(isset($order['mon']['rm101']['uid']))
+                        {{ $order['mon']['rm101']['content'] }}
+                      @else
                         <b style="color:green; font-size:1.8em">Available</b>
-                      @endif 
+                      @endif
                       </a>
                     </div>
                     <div class="column">
@@ -129,7 +141,7 @@
                     </div>
                   </div>
                   <!-- C102  -->
-                  <div class="eight column row"> 
+                  <div class="eight column row">
                     <div class="column">C楼大教室（C207/C208）2</div>
                     <div class="column">
                       <a href="{{ URL::action('RoomOrderController@process',['mon', 'rm102']) }}">
@@ -176,10 +188,10 @@
                       @endif
                       </a>
                     </div >
-                  </div> 
+                  </div>
 
                   <!-- C201  -->
-                  <div class="eight column row"> 
+                  <div class="eight column row">
                     <div class="column">C楼小教室1</div>
                     <div class="column">
                       <a href="{{ URL::action('RoomOrderController@process',['mon', 'rm201']) }}">
@@ -226,9 +238,9 @@
                       @endif
                       </a>
                     </div >
-                  </div> 
+                  </div>
                   <!-- C202  -->
-                  <div class="eight column row"> 
+                  <div class="eight column row">
                     <div class="column">C楼小教室2</div>
                     <div class="column">
                       <a href="{{ URL::action('RoomOrderController@process',['mon', 'rm202']) }}">
@@ -275,9 +287,9 @@
                       @endif
                       </a>
                     </div>
-                  </div> 
+                  </div>
                   <!-- C203  -->
-                  <div class="eight column row"> 
+                  <div class="eight column row">
                     <div class="column">C楼小教室3</div>
                     <div class="column">
                       <a href="{{ URL::action('RoomOrderController@process',['mon', 'rm203']) }}">
@@ -324,9 +336,9 @@
                       @endif
                       </a>
                     </div>
-                  </div> 
+                  </div>
                   <!-- C204  -->
-                  <div class="eight column row"> 
+                  <div class="eight column row">
                     <div class="column">C楼小教室4</div>
                     <div class="column">
                       <a href="{{ URL::action('RoomOrderController@process',['mon', 'rm204']) }}">
@@ -373,9 +385,9 @@
                       @endif
                       </a>
                     </div>
-                  </div> 
+                  </div>
                   <!-- C205  -->
-                  <div class="eight column row"> 
+                  <div class="eight column row">
                     <div class="column">C楼小教室5</div>
                     <div class="column">
                       <a href="{{ URL::action('RoomOrderController@process',['mon', 'rm205']) }}">
@@ -422,9 +434,9 @@
                       @endif
                       </a>
                     </div>
-                  </div> 
+                  </div>
                   <!-- C206  -->
-                  <div class="eight column row"> 
+                  <div class="eight column row">
                     <div class="column">C楼小教室6</div>
                     <div class="column">
                       <a href="{{ URL::action('RoomOrderController@process',['mon', 'rm206']) }}">
@@ -471,9 +483,9 @@
                       @endif
                       </a>
                     </div>
-                  </div> 
+                  </div>
                   <!-- C207  -->
-                  <div class="eight column row"> 
+                  <div class="eight column row">
                     <div class="column">C楼小教室7</div>
                     <div class="column">
                       <a href="{{ URL::action('RoomOrderController@process',['mon', 'rm207']) }}">
@@ -520,9 +532,9 @@
                       @endif
                       </a>
                     </div>
-                  </div> 
+                  </div>
                   <!-- Art Room  -->
-                  <div class="eight column row"> 
+                  <div class="eight column row">
                     <div class="column">美术室</div>
                     <div class="column">
                       <a href="{{ URL::action('RoomOrderController@process',['mon', 'artroom']) }}">
@@ -569,9 +581,9 @@
                       @endif
                       </a>
                     </div>
-                  </div> 
+                  </div>
                   <!-- Dance Room -->
-                  <div class="eight column row"> 
+                  <div class="eight column row">
                     <div class="column">形体房</div>
                     <div class="column">
                       <a href="{{ URL::action('RoomOrderController@process',['mon', 'danceroom']) }}">
@@ -618,9 +630,9 @@
                       @endif
                       </a>
                     </div>
-                  </div> 
+                  </div>
                   <!-- A110 -->
-                  <div class="eight column row">   
+                  <div class="eight column row">
                     <div class="column">A110</div>
                     <div class="column">
                       <a href="{{ URL::action('RoomOrderController@process',['mon', 'a110']) }}">
@@ -667,7 +679,7 @@
                       @endif
                       </a>
                     </div>
-                  </div> 
+                  </div>
                   <!-- 其他1 -->
                   <div class="eight column row">
                     <div class="column">其他1</div>
@@ -716,7 +728,7 @@
                       @endif
                       </a>
                     </div>
-                  </div> 
+                  </div>
                   <!-- 其他2 -->
                   <div class="eight column row">
                     <div class="column">其他2</div>
@@ -765,7 +777,7 @@
                       @endif
                       </a>
                     </div>
-                  </div> 
+                  </div>
                   <!-- 其他3 -->
                   <div class="eight column row">
                     <div class="column">其他3</div>
@@ -814,23 +826,23 @@
                       @endif
                       </a>
                     </div>
-                  </div> 
+                  </div>
 
                 </div>
     </div>
 
-    
+
 
     <div class="ui segment" id="afternoon">
-        <div class="ui container" > <div class="ui large label"><i class="wait icon"></i> TIME PERIOD</div> </div> 
+        <div class="ui container" > <div class="ui large label"><i class="wait icon"></i> TIME PERIOD</div> </div>
         <div class="ui sticky">
-                <div class="ui container">
+                <div class="ui container timebox">
                     <div class="ui fluid two blue item tabular menu ">
                       <a class="item" href="#noon"><i class="sun yellow large icon"></i>NOON</a>
                       <a class="active item" ><i class="moon large icon"></i>AFTERNOON</a>
                     </div>
                 </div>
-              <div class="ui  grid equal width container center aligned">
+              <div class="ui  grid equal width container center aligned daybox">
                 <div class="eight column row ">
                   <div class="column">
                     <div class="ui purple huge ribbon label">room </div>
@@ -863,7 +875,7 @@
                               @if(isset($order['mon_5pm']['rm101']['uid']))
                                 {{ $order['mon_5pm']['rm101']['content'] }}
                               @else
-                                <b class="green">Available</b> 
+                                <b class="green">Available</b>
                               @endif
                               </a>
                             </div>
@@ -2134,9 +2146,8 @@
                             </div>
                           </div>
                         </div>
-    
-  
-                  @endif
+
+
     </div>
 
 @endif
