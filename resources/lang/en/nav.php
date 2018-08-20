@@ -4,7 +4,7 @@ return [
 
     'group' => 'Group',
     'vote' => 'Vote',
-    'reservation' => 'Reservation',
+    'reservation' => 'Classroom Reservation',
     'dashboard' => 'Dashboard',
     'home' => 'Home',
     'resume' => 'Resume',
