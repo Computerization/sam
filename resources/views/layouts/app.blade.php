@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title') - {{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
     <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
@@ -110,13 +110,13 @@
         <footer class="container">
         <div class="row">
             <div class="col-md-4">
-            <p>Computerization Proudly Present. - <a href="http://4.wflmssam.sinaapp.com" target="_blank">About Us</a></p>
+            <p>Computerization Proudly Present. - <a href="http://github.com/computerization/sam" target="_blank">Open Source</a></p>
             </div>
 
           <div class="col-md-4"></div>
 
           <div class="col-md-4">
-            <p>App Version 20170831 Release Candidate</p>
+            <p>SAM 3.0 Public Beta 2018.08</p>
           </div>
         </div>
         </footer>
