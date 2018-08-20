@@ -14,9 +14,9 @@
     {{-- CSRF Token Field ends--}}
 
     {{-- Semantic-UI --}}
-    <link href="{{ asset('semantic/semantic.css') }}" rel="stylesheet">
+    <link href="{{ asset('semantic/semantic.min.css') }}" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script type="text/javascript" src="{{ asset('semantic/semantic.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('semantic/semantic.min.js') }}"></script>
     {{-- Semantic-UI ends --}}
 
     {{-- simditor --}}
