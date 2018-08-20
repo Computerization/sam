@@ -20,6 +20,12 @@
     .daybox {
       margin: 1em 0; !important;
     }
+    .ordertablefa {
+      overflow-x: scroll;
+    }
+    .ordertable {
+      min-width: 900px;
+    }
   </style>
 
   <div class="ui container">
@@ -54,9 +60,9 @@
 
 @if(config('samcloud.room_order_available'))
 
-    <div class="ui segment" id="noon">
+    <div class="ui segment ordertablefa" id="noon">
         <div class="ui container"> <div class="ui large label"><i class="wait icon"></i> TIME PERIOD</div> </div> <br>
-        <div class="ui sticky">
+        <div class="ui ordertable">
 
                 <div class="ui container timebox">
 
@@ -90,7 +96,7 @@
               </div>
 
         </div>
-                <div class="ui  grid equal width container center aligned">
+                <div class="ui  grid equal width container center aligned ordertable">
                   <!-- C101 -->
                   <div class="eight column row">
                     <div class="column">C楼大教室（C207/C208）1</div>
@@ -833,9 +839,9 @@
 
 
 
-    <div class="ui segment" id="afternoon">
+    <div class="ui segment ordertablefa" id="afternoon">
         <div class="ui container" > <div class="ui large label"><i class="wait icon"></i> TIME PERIOD</div> </div>
-        <div class="ui sticky">
+        <div class="ui ordertable">
                 <div class="ui container timebox">
                     <div class="ui fluid two blue item tabular menu ">
                       <a class="item" href="#noon"><i class="sun yellow large icon"></i>NOON</a>
@@ -866,7 +872,7 @@
               </div>
 
         </div>
-                        <div class="ui  grid equal width container">
+                        <div class="ui  grid equal width container ordertable">
                           <!-- C101 -->
                           <div class="eight column row">
                             <div class="column">C楼1楼小教室</div>
