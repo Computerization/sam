@@ -4,7 +4,7 @@ return [
 
     'group' => '投票组',
     'vote' => '投票',
-    'reservation' => '预约',
+    'reservation' => '教室预约',
     'dashboard' => '用户中心',
     'home' => '首页',
     'resume' => '个人简介',

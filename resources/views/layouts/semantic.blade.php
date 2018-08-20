@@ -59,7 +59,7 @@
                 <i class="chart bar icon"></i>{{ trans('nav.vote') }}
             </a>
             {{-- 预约 --}}
-            <a href="{{ url('resource') }}" class="item">
+            <a href="{{ url('order/room') }}" class="item">
                 <i class="calendar icon"></i>{{ trans('nav.reservation') }}
             </a>
             {{-- 社团 --}}
@@ -124,7 +124,7 @@
                         <i class="chart bar icon"></i>{{ trans('nav.vote') }}
                     </a>
                     {{-- 预约 --}}
-                    <a href="{{ url('resource') }}" class="item">
+                    <a href="{{ url('order/room') }}" class="item">
                         <i class="calendar icon"></i>{{ trans('nav.reservation') }}
                     </a>
                     {{-- 社团 --}}
