@@ -1,6 +1,6 @@
 @extends('layouts.semantic')
 
-@section('title'){{ $vote_group -> group_name }} @endsection
+@section('title'){{ $vote_group -> group_name }} - @endsection
 
 @section('content')
 

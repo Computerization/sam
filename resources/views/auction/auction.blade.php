@@ -1,7 +1,7 @@
 @extends('layouts.app_bs4')
 
 @section('title')
-{{ $auction->name }}
+{{ $auction->name }} - 
 @endsection
 
 @section('content')
@@ -17,8 +17,8 @@ body {
     <div class="container">
     <div class="row">
         <div class="col-md-12" id="alert-box">
-            
-        </div>  
+
+        </div>
     </div>
         <div class="row">
             <div class="col-md-6">
@@ -26,7 +26,7 @@ body {
                 @if($auction->files->count() > 0)
                     <img class="card-img-top" src="/image/{{ $auction->files->first()->id }}">
                     @endif
-                    
+
                 </div>
             </div>
             <div class="col-md-6">
@@ -44,7 +44,7 @@ body {
                         <span>{{ $auction->due }}</span>
                         </div>
                         <hr>  --}}
-                        
+
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">时间剩余</h4>
@@ -98,7 +98,7 @@ body {
             </div>
         </div>
     </div>
-   
+
 @endsection
 
 @section('script')
@@ -144,7 +144,7 @@ body {
                 if(!confirm("您的出价是"+bid+"，确认继续？")){
                     return;
                 }
-                
+
                 if(!login){
                     alert_bs("warning", '您尚未登录，登录后才能出价。<a href="{{ url("/login") }}">点我去登录</a>');
                 }
@@ -170,7 +170,7 @@ body {
                             }
                             bid = cur_bid;
                         }
-                    
+
                 });
                 }
             }

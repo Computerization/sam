@@ -1,7 +1,7 @@
 @extends('layouts.semantic')
 
 @section('title')
-Student Organizations
+Student Organizations - 
 @endsection
 
 @section('content')
