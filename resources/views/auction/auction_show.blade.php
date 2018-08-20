@@ -1,7 +1,7 @@
 @extends('layouts.app_bs4')
 
 @section('title')
-2017 Why Charity Auction
+2017 Why Charity Auction - 
 @endsection
 
 @section('content')
@@ -9,8 +9,8 @@
     <div class="container">
     <div class="row">
         <div class="col-md-12" id="alert-box">
-            
-        </div>  
+
+        </div>
     </div>
         <div class="row">
             <div class="col-md-6">
@@ -45,7 +45,7 @@
             </div>
         </div>
     </div>
-   
+
 @endsection
 
 @section('script')
@@ -107,7 +107,7 @@
                                 alert_bs("danger", "出价已结束。");
                             }
                         }
-                    
+
                 });
                 }
             });

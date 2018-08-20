@@ -1,5 +1,7 @@
 @extends('layouts.semantic')
 
+@section('title')教室预约 - @endsection
+
 @section('content')
 
   <style>

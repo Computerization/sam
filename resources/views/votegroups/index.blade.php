@@ -1,6 +1,6 @@
 @extends('layouts.semantic')
 
-@section('title')Vote Groups @endsection
+@section('title')Vote Groups - @endsection
 
 @section('content')
     {{-- Successful Actions --}}

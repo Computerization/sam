@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
-    <title>@yield('title')- SAM</title>
+    <title>@yield('title')SAM</title>
 
     {{-- Required meta attributes for Cross-Browser Support --}}
     <meta charset="utf-8">

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-{{ $org->organization_name }}
+{{ $org->organization_name }} - 
 @endsection
 
 @section('content')
