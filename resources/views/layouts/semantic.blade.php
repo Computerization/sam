@@ -47,7 +47,7 @@
 
 </head>
 <body>
-    <div class="ui vertical inverted sidebar menu left" style="">
+    <div class="ui vertical inverted sidebar menu left">
         <a href="{{ url('/') }}" class="header item">
             <img src="/images/logo.svg" width="64" height="64" alt="SAM">
         </a>
@@ -101,7 +101,7 @@
         @endif
     </div>
     <div class="pusher">
-        <div class="ui attached stackable menu" style="font-size:1.4em;">
+        <div class="ui attached stackable menu">
             {{-- Mobile View --}}
             <div class="ui container" id="mobile-nav">
               <a class="toc header item">
