@@ -37,7 +37,7 @@ class User extends Authenticatable
     }
 
     public function organizations(){
-      return $this->hasMany('App\Organization');
+      return $this->belongsToMany('App\Organization');
     }
 
     public function resume(){
@@ -55,5 +55,9 @@ class User extends Authenticatable
     public function reservations(){
       return $this->hasMany('App\Reservation');
     }
+
+    // public function orgauth(){
+    //   return $this->belongsToMany('')
+    // }
 
 }
