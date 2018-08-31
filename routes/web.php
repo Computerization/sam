@@ -118,3 +118,15 @@ Route::get('/auction/{auction}/screen', 'Auctioncontroller@show_screen');
 // Activate Account
 Route::get('/activate', 'ActivateAccountController@index');
 Route::post('/activate', 'ActivateAccountController@verify');
+
+//public
+Route::get('/org/{id}/members', 'OrganizationController@members');
+Route::post('/org/{id}/members/toggle', 'OrganizationController@toggle_member');
+Route::get('/org/{id}/auths', 'OrganizationAuthenticationController@index');
+Route::get('/org/{id}/auths/test', 'OrganizationAuthenticationController@create');
+Route::get('/org/{orgid}/auths/{authid}', 'OrganizationAuthenticationController@show');
+
+//private
+Route::post('/org/{id}/auths/', 'OrganizationAuthenticationController@store');
+Route::delete('/org/{id}/auths/', 'OrganizationAuthenticationController@destroy');
+Route::post('/org/{id}/members/update', 'OrganizationController@change_authentication');

@@ -13,6 +13,14 @@ class Organization extends Model
       return $this->belongsTo('App\User');
     }
 
+    public function members() {
+      return $this->belongsToMany('App\User')->withPivot('member_role')->withTimestamps();
+    }
+
+    public function authentication() {
+      return $this->hasMany('App\OrganizationAuthentication');
+    }
+
     public function resumes(){
       return $this->belongsToMany('App\Resume');
     }
