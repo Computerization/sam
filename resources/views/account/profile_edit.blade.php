@@ -1,6 +1,6 @@
 @extends('layouts.control_center')
-
 @section('control_content')
+
             <div class="card">
                 <div class="card-header"><h4>{{ trans('account.profile_edit') }}</h4></div>
 
