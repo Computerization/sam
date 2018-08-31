@@ -130,3 +130,18 @@ Route::get('/org/{orgid}/auths/{authid}', 'OrganizationAuthenticationController@
 Route::post('/org/{id}/auths/', 'OrganizationAuthenticationController@store');
 Route::delete('/org/{id}/auths/', 'OrganizationAuthenticationController@destroy');
 Route::post('/org/{id}/members/update', 'OrganizationController@change_authentication');
+
+//User - public
+Route::get('/profile/{uname}', 'UserController@show');
+
+//Article - public
+Route::get('/article/test', 'ArticleController@test');
+Route::post('/article', 'ArticleController@store');
+Route::delete('/article/{aid}', 'ArticleController@destroy');
+Route::get('/article/{aid}', 'ArticleController@show');
+
+// comment
+Route::post('/article/comment', 'CommentController@store');
+
+//Global Home
+// Route::get('/', 'HomeController@index');
