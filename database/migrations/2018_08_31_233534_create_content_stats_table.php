@@ -13,11 +13,13 @@ class CreateContentStatsTable extends Migration
      */
     public function up()
     {
-        Schema::create('content_stats', function (Blueprint $table) {
+        Schema::create('userables', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('article_id');
             $table->integer('user_id');
-            $table->integer('action');
+            $table->tinyInteger('action_primary_type');
+            $table->tinyInteger('action_secondary_type')->nullable();
+            $table->integer('userable_id');
+            $table->string('userable_type');
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ class CreateContentStatsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('content_stats');
+        Schema::dropIfExists('userables');
     }
 }

@@ -29,3 +29,10 @@
   Content <textarea name="content" rows="8" cols="80"></textarea>
   <button type="submit">Submit</button>
 </form>
+<hr>
+<form class="" action="{{ URL::action('ArticleController@attitude') }}" method="post">
+  {{ csrf_field() }}
+  Article ID <input type="text" name="article_id" value=""><br>
+  Attitude <input type="text" name="action_secondary_type" value="">
+  <button type="submit">Submit</button>
+</form>

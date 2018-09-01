@@ -33,5 +33,9 @@ class Organization extends Model
       return  $this->belongsToMany('App\Tag');
     }
 
+    public function articles(){
+      return $this->hasMany('App\Article');
+    }
+
     protected $fillable = ['organization_name','organization_description'];
 }

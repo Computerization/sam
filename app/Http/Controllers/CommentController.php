@@ -39,4 +39,31 @@ class CommentController extends Controller
     {
         //
     }
+
+    public function attitude(StoreAttitude $request){
+      $aid = $request->article_id;
+      $attitude = Auth::user()->comment_attitude();
+      if($attitude->find($aid) == null){
+        $attitude->attach($aid, ['action_primary_type' => config('organization.content_stat.ATTITUDE')]);
+      }
+      $attitude_pivot = $attitude->find($aid)->pivot;
+      if($attitude_pivot->action_secondary_type == $request->action_secondary_type){
+        $attitude->detach($aid);
+      }else{
+        $attitude_request['action_secondary_type'] = $request->action_secondary_type;
+        $attitude_pivot->update($attitude_request);
+      }
+      return response()->json(['status' => 1]);
+    }
+
+    public function star($id){
+      $star = Auth::user()->comment_star();
+      if($star->find($id) == null){
+        $star->attach($id, ['action_primary_type' => config('organization.content_stat.STAR')]);
+      }else{
+        $star->detach($id);
+      }
+      return response()->json(['status' => 1]);
+    }
+
 }
