@@ -16,13 +16,15 @@ class CreateArticlesTable extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->text('content');
+            $table->text('content')->nullable();
             $table->tinyInteger('content_status')->default(0);
             $table->tinyInteger('comment_status')->default(1);
-            $table->tinyInteger('content_type');
+            $table->tinyInteger('content_type')->default(0);
+            $table->timestamp('expire_at')->nullable();
             $table->integer('user_id');
             $table->integer('organization_id')->nullable();
-            $table->integer('up_count')->default(0);
+            $table->integer('upvote')->default(0);
+            $table->integer('downvote')->default(0);
             $table->timestamps();
         });
     }

@@ -15,5 +15,9 @@ class Article extends Model
       return $this->belongsTo('App\User');
     }
 
+    public function user_stat(){
+      return $this->morphToMany('App\User', 'userable');
+    }
+
     protected $fillable = ['title', 'content', 'content_status', 'comment_status', 'user_id', 'organization_id', 'up_count'];
 }

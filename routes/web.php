@@ -132,7 +132,7 @@ Route::delete('/org/{id}/auths/', 'OrganizationAuthenticationController@destroy'
 Route::post('/org/{id}/members/update', 'OrganizationController@change_authentication');
 
 //User - public
-Route::get('/profile/{uname}', 'UserController@show');
+Route::get('/profile/{uid}', 'UserController@show');
 
 //Article - public
 Route::get('/article/test', 'ArticleController@test');
@@ -141,7 +141,12 @@ Route::delete('/article/{aid}', 'ArticleController@destroy');
 Route::get('/article/{aid}', 'ArticleController@show');
 
 // comment
+Route::post('/article/attitude', 'ArticleController@attitude');
 Route::post('/article/comment', 'CommentController@store');
+Route::get('/article/{id}/star', 'ArticleController@star');
 
 //Global Home
 // Route::get('/', 'HomeController@index');
+
+
+// API

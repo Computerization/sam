@@ -12,5 +12,9 @@ class Comment extends Model
       return $this->belongsTo('App\User');
     }
 
+    public function user_action(){
+      return $this->morphToMany('App\User', 'userable');
+    }
+
     protected $fillable = ['article_id', 'user_id', 'content'];
 }

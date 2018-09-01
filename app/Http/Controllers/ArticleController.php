@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\User;
+use App\Organization;
 use App\Http\Requests\StoreArticle;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreAttitude;
 use Illuminate\Support\Facades\Auth;
 
 class ArticleController extends Controller
@@ -66,18 +69,36 @@ class ArticleController extends Controller
         // return view('');
     }
 
-    /**
-     * Display the specified resource JSON API.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function get($id)
     {
         //
         $article = Article::findOrFail($id);
         return response()->json($article);
     }
+
+    public function get_public_article_by_org_id($org_id){
+      $article = Organization::findOrFail($org_id)->articles;
+      return response()->json($article);
+    }
+
+    public function get_public_article_by_user_id($uid){
+      $article = User::findOrFail($uid)->articles;
+      return response()->json($article);
+    }
+
+    public function get_all_article_by_org_id($org_id){
+      $article = Organization::findOrFail($org_id)->articles;
+      return response()->json($article);
+    }
+
+    public function get_all_article_by_user_id($uid){
+      $article = User::findOrFail($uid)->articles;
+      return response()->json($article);
+    }
+
+
+
 
     /**
      * Remove the specified resource from storage.
@@ -89,4 +110,31 @@ class ArticleController extends Controller
     {
         //
     }
+
+    public function attitude(StoreAttitude $request){
+      $aid = $request->article_id;
+      $attitude = Auth::user()->article_attitude();
+      if($attitude->find($aid) == null){
+        $attitude->attach($aid, ['action_primary_type' => config('organization.content_stat.ATTITUDE')]);
+      }
+      $attitude_pivot = $attitude->find($aid)->pivot;
+      if($attitude_pivot->action_secondary_type == $request->action_secondary_type){
+        $attitude->detach($aid);
+      }else{
+        $attitude_request['action_secondary_type'] = $request->action_secondary_type;
+        $attitude_pivot->update($attitude_request);
+      }
+      return response()->json(['status' => 1]);
+    }
+
+    public function star($id){
+      $star = Auth::user()->article_star();
+      if($star->find($id) == null){
+        $star->attach($id, ['action_primary_type' => config('organization.content_stat.STAR')]);
+      }else{
+        $star->detach($id);
+      }
+      return response()->json(['status' => 1]);
+    }
+
 }
