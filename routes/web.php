@@ -137,6 +137,7 @@ Route::get('/profile/{uid}', 'UserController@show');
 //Article - public
 Route::get('/article/test', 'ArticleController@test');
 Route::post('/article', 'ArticleController@store');
+Route::get('/article/create', 'ArticleController@create');
 Route::delete('/article/{aid}', 'ArticleController@destroy');
 Route::get('/article/{aid}', 'ArticleController@show');
 
