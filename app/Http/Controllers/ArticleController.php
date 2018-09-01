@@ -24,6 +24,10 @@ class ArticleController extends Controller
         return response()->json($articles);
     }
 
+    public function create(){
+      return view('article.create');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -66,7 +70,7 @@ class ArticleController extends Controller
     {
         //
         $article = Article::findOrFail($id);
-        // return view('');
+        return view('article.show', ['article' => $article]);
     }
 
 
