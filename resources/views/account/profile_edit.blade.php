@@ -1,7 +1,7 @@
 @extends('layouts.semantic')
-@extends('layouts.control_center')
 
-@section('control_content')
+
+@section('content')
         <div class="ui raised padded text container segment">
 
                 <div class="ui padded basic center aligned segment">

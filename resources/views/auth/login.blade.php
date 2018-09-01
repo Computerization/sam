@@ -1,73 +1,111 @@
-@extends('layouts.app')
+@extends('layouts.semantic')
 
+    <head>
+        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+        <link rel="stylesheet" type="text/css" href="semantic/semantic.min.css">      
+    </head>
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 offset-md-2">
-        @if(session("reset") == 1)
-        <div class="alert alert-success" role="alert">
-        账号激活成功！
-        </div>
-        @endif
-            <div class="card">
-                <div class="card-header">{{ trans('login.login') }}</div>
-                <div class="card-body">
-                    <form role="form" method="POST" action="{{ route('login') }}">
+    
+  
+<br>
+    <div class="ui  grid stackable container">
+            
+        <div class="three column row">
+    
+            <div class="ui  column"> 
+            </div>
+        
+
+            <div class="ui column"><div class="ui segment">
+@if(session("reset") == 1)            
+                    <div class="ui green icon message">
+                        <i class="check icon"></i>
+                        账号激活成功！
+                    </div>   
+@endif
+        <div class="ui center aligned container">
+                <h1 class="ui header">{{ trans('login.login') }}</h1>
+        </div>      
+        <div class="ui divider"></div>
+                
+                <!-- <form role="form" method="POST" action="{{ route('login') }}" >  -->
+                    
                         {{ csrf_field() }}
+                   
+                        
+                            
+                            <!-- <label for="email" class=" control-label">{{ trans('login.email') }}</label> -->
+                
 
-                        <div class="form-group text-right row{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">{{ trans('login.email') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
+                    <form role="form" method="POST" action="{{ route('login') }}">
+                            <div class="ui left icon fluid  input">
+                                <i class="envelope outline icon"></i>
+                                <input id="email" type="email" class="form-control" placeholder="邮箱" name="email" value="{{ old('email') }}" required autofocus>
+                            </div>
+                        
+                        
+                        
+@if ($errors->has('email'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
-                                @endif
+                        
+@endif
+                    
+                        
+                        <br>
+                        
+                            <!-- <label for="password" class=" control-label">{{ trans('login.password') }}</label> -->
+                    
+
+                       
+                            <div class="ui left icon fluid input">
+                                <i class="key icon"></i>
+                                <input id="password" type="password" class="form-control" placeholder="密码" name="password" required>
                             </div>
-                        </div>
+                       
 
-                        <div class="form-group text-right row{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">{{ trans('login.password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
+                        
+@if ($errors->has('password'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
-                                @endif
-                            </div>
+                                    
+@endif                        
+                        
+                        
+                        <br>
+                                
+                        <div class="ui checkbox">
+                            <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> 
+                            <label> {{ trans('login.remember') }} </label>
                         </div>
+                                
+                            
+                        <br><br>
 
-                        <div class="form-group">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> {{ trans('login.remember') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                        <div class="ui center aligned container">
+                                
+                                <button type="submit" class="ui teal button">
+                                    <i class="sign in alternate icon"></i>
                                     {{ trans('login.login') }}
                                 </button>
 
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
                                     {{ trans('login.forget') }}
                                 </a>
-                            </div>
                         </div>
-                    </form>
-                </div>
+                    </form>  
+            </div></div>
+
+            <div class="ui  column"> 
             </div>
         </div>
+                <!-- </form>     -->
     </div>
-</div>
+
+     
+
+
+
 @endsection
