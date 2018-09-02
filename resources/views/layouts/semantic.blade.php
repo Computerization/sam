@@ -218,6 +218,8 @@
     <script src="{{ asset('simditor/scripts/simditor.min.js') }}"></script>
     {{-- simditor Scripts Here --}}
 
+    <script src="https://cdn.bootcss.com/marked/0.4.0/marked.min.js"></script>
+
     {{-- Page Custom Scripts Here --}}
     @yield('scripts')
     {{-- Page Custom Scripts Ends --}}
