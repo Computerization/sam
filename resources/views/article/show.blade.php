@@ -28,7 +28,7 @@
 
     <div class="ui hidden divider"></div>
 
-    <div>{{ $article->content }}</div>
+    <div id="article-container">{{ $article->content }}</div>
 
     <div class="ui aligned centered header">
       <div class="ui buttons">
@@ -94,4 +94,11 @@
 </div>
 
 </div>
+@endsection
+
+
+@section('scripts')
+<script type="text/javascript">
+document.getElementById('article-container').innerHTML = marked(document.getElementById('article-container').innerHTML);
+</script>
 @endsection
