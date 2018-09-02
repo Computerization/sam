@@ -128,7 +128,12 @@ class ArticleController extends Controller
         $attitude_request['action_secondary_type'] = $request->action_secondary_type;
         $attitude_pivot->update($attitude_request);
       }
-      return response()->json(['status' => 1]);
+      $article = Article::findOrFail($aid);
+      $article->upvote = $article->get_upvote()->count();
+      $article->downvote = $article->get_downvote()->count();
+      $article->save();
+      return back();
+      // return response()->json(['status' => 1]);
     }
 
     public function star($id){
