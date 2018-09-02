@@ -6,16 +6,6 @@
 
 @section('content')
 
-<style>
-  .content-preview {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-  }
-</style>
-
 @if($org->file_id)
 <div class="ui hidden divider"></div>
 <div class="ui container grid">
@@ -63,6 +53,16 @@
     动态
   </h1>
 </div>
+<div class="ui aligned center header">
+  <div class="ui vertical labeled icon buttons">
+    <a href="{{ URL::action('ArticleController@create') }}" class="ui green button">
+      <i class="plus icon"></i>
+      发布新文章
+    </a>
+  </div>
+</div>
+
+<div class="ui hidden divider"></div>
 
 @include('org.modules.feed')
 

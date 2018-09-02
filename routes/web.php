@@ -143,6 +143,7 @@ Route::get('/article/{aid}', 'ArticleController@show');
 
 // comment
 Route::post('/article/attitude', 'ArticleController@attitude');
+Route::post('/article/comment/attitude', 'CommentController@attitude');
 Route::post('/article/comment', 'CommentController@store');
 Route::get('/article/{id}/star', 'ArticleController@star');
 

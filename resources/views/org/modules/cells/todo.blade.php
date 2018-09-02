@@ -1,10 +1,12 @@
 
 <div class="item">
-  <!-- <div class="image">
-    <img src="/images/wireframe/image.png">
-  </div> -->
+  @if($article->pictures->count())
+  <div class="image">
+    <img src="{{ URL::action('FileController@get_image',['id'=>$article->pictures->first()->id]) }}">
+  </div>
+  @endif
   <div class="content">
-    <a class="header" href="{{ URL::action('ArticleController@show', ['id' => $article->id]) }}"><span class="ui red ribbon label">通知</span>{{ $article->title }}</a>
+    <a class="header" href="{{ URL::action('ArticleController@show', ['id' => $article->id]) }}">{{ $article->title }}</a>
     <div class="meta">
     </div>
     <div class="description">
@@ -19,6 +21,7 @@
         查看详情
         <i class="right chevron icon"></i>
       </a>
+      <span class="ui red label">通知</span>
       <div class="ui label">Tag</div>
     </div>
   </div>

@@ -16,5 +16,14 @@ class Comment extends Model
       return $this->morphToMany('App\User', 'userable');
     }
 
+    public function get_upvote(){
+      return $this->morphToMany('App\User', 'userable')->wherePivot('action_secondary_type', config('organization.attitude.SUPPORT'));
+    }
+
+    public function get_downvote(){
+      return $this->morphToMany('App\User', 'userable')->wherePivot('action_secondary_type', config('organization.attitude.AGAINST'));
+    }
+
+
     protected $fillable = ['article_id', 'user_id', 'content'];
 }

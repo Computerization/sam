@@ -1,5 +1,5 @@
 
-<div class="ui container centered grid">
+<div class="ui container centered grid stackable">
 
   <div class="twelve wide column ui divided items">
       @foreach($org->articles as $article)
@@ -12,6 +12,7 @@
         @elseif($article->content_type == config('organization.content_type.TODO'))
           @include('org.modules.cells.todo')
         @endif
+        <div class="ui hidden divider"></div>
       @endforeach
   </div>
 

@@ -16,4 +16,13 @@ return [
     'QA' => 3,
     'TODO' => 4,
   ],
+  'attitude' => [
+    'SUPPORT' => 1,
+    'AGAINST' => 2,
+  ],
+  'file_type' => [
+    'AVATAR' => 1,
+    'PICTURE' => 2,
+    'FILES' => 3,
+  ],
 ];

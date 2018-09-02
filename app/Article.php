@@ -19,5 +19,26 @@ class Article extends Model
       return $this->morphToMany('App\User', 'userable');
     }
 
-    protected $fillable = ['title', 'content', 'content_status', 'comment_status', 'user_id', 'organization_id', 'up_count'];
+    public function get_upvote(){
+      return $this->morphToMany('App\User', 'userable')->wherePivot('action_secondary_type', config('organization.attitude.SUPPORT'));
+    }
+
+    public function get_downvote(){
+      return $this->morphToMany('App\User', 'userable')->wherePivot('action_secondary_type', config('organization.attitude.AGAINST'));
+    }
+
+
+    public function files(){
+      return $this->morphToMany('App\File', 'fileable');
+    }
+
+    public function pictures(){
+      return $this->morphToMany('App\File', 'fileable')->where('type', config('organization.file_type.PICTURE'));
+    }
+
+    public function organization(){
+      return $this->belongsTo('App\Organization');
+    }
+
+    protected $fillable = ['title', 'content', 'content_status', 'comment_status', 'user_id', 'organization_id', 'upvote', 'downvote'];
 }
