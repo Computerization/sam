@@ -6,6 +6,16 @@
 
 @section('content')
 
+<style>
+  .content-preview {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+</style>
+
 @if($org->file_id)
 <div class="ui hidden divider"></div>
 <div class="ui container grid">
@@ -43,6 +53,18 @@
 <div class="ui center aligned grid">
   <a href="#organization_description" class="ui primary button">关于我们</a>
 </div>
+
+<div class="ui hidden divider"></div>
+<div class="ui hidden divider"></div>
+
+<div class="ui container horizontal divider">
+  <h1>
+    <i class="rss icon"></i>
+    动态
+  </h1>
+</div>
+
+@include('org.modules.feed')
 
 <div class="ui hidden divider"></div>
 <div class="ui hidden divider"></div>
