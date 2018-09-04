@@ -76,5 +76,9 @@ class User extends Authenticatable
       return $this->morphedByMany('App\Comment', 'userable')->wherePivot('action_primary_type', config('organization.content_stat.ATTITUDE'))->withPivot('action_primary_type', 'action_secondary_type');
     }
 
+    public function orderroom(){
+      return $this->hasMany('App\orderroom');
+    }
+
 
 }
