@@ -106,7 +106,13 @@ Route::middleware(['link_resume_to_user'])->group(function () {
   Auth::routes();
   Route::get('/org', 'OrganizationController@index');
   Route::get('/org/search', 'OrganizationController@search');
-  Route::get('/org/{id}', 'OrganizationController@show');
+  Route::get('/org/{id}', 'OrganizationController@show_feed');
+  Route::get('/org/{id}/article', 'OrganizationController@show_article');
+  Route::get('/org/{id}/discuss', 'OrganizationController@show_discuss');
+  Route::get('/org/{id}/qa', 'OrganizationController@show_qa');
+  Route::get('/org/{id}/todo', 'OrganizationController@show_todo');
+  Route::get('/org/{id}/member', 'OrganizationController@show_member');
+  Route::get('/org/{id}/about', 'OrganizationController@show_about');
 
 Route::get('/image/{id}', 'FileController@get_image');
 Route::get('/image/{id}/original', 'FileController@get_original_image');
@@ -120,7 +126,7 @@ Route::get('/activate', 'ActivateAccountController@index');
 Route::post('/activate', 'ActivateAccountController@verify');
 
 //public
-Route::get('/org/{id}/members', 'OrganizationController@members');
+// Route::get('/org/{id}/members', 'OrganizationController@members');
 Route::post('/org/{id}/members/toggle', 'OrganizationController@toggle_member');
 Route::get('/org/{id}/auths', 'OrganizationAuthenticationController@index');
 Route::get('/org/{id}/auths/test', 'OrganizationAuthenticationController@create');
