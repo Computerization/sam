@@ -70,7 +70,26 @@ class ArticleController extends Controller
     {
         //
         $article = Article::findOrFail($id);
-        return view('article.show', ['article' => $article]);
+        switch ($article->content_type) {
+          case config('organization.content_type.ARTICLE'):
+            return view('article.article', ['article' => $article]);
+            break;
+
+          case config('organization.content_type.DISCUSS'):
+            return view('article.discuss', ['article' => $article]);
+            break;
+
+          case config('organization.content_type.QA'):
+            return view('article.qa', ['article' => $article]);
+            break;
+
+          case config('organization.content_type.TODO'):
+            return view('article.todo', ['article' => $article]);
+            break;
+
+          default:
+            break;
+        }
     }
 
 

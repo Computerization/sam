@@ -12,7 +12,7 @@
     <div class="description">
       <p>
         @include('user.cells.namecard_small', ['user' => $article->user])
-        | {{ $article->created_at }}
+        {{ $article->created_at }}
       </p>
 
       <p class="content-preview">{{ $article->content }}</p>
@@ -26,14 +26,15 @@
         @endforeach
       </div>
       @endif
-
+      @if( $article->comments()->count())
       <div class="ui comments">
         @include('article.cells.feed', ['comment' => $article->comments()->latest()->first()])
       </div>
+      @endif
     </div>
 
     <div class="extra">
-      <a class="ui right floated primary button" href="{{ URL::action('ArticleController@show', ['id' => $article->id]) }}">
+      <a class="ui right floated" href="{{ URL::action('ArticleController@show', ['id' => $article->id]) }}">
         查看详情
         <i class="right chevron icon"></i>
       </a>
