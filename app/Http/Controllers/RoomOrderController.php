@@ -20,23 +20,32 @@ class RoomOrderController extends Controller
         return view('orderroom.show', ['order' => $order]);
     }
 
-    public function process(Request $request){
-      $order_arr = Storage::get('room_order.json');
-      $order = json_decode($order_arr, true);
-      $time = $request -> time;
-      $room = $request -> room;
-      if(isset($order[$time][$room]['uid'])){
-        if($order[$time][$room]['uid'] == Auth::id()){
-          $order[$time][$room]['uid'] = null;
-          $order[$time][$room]['content'] = null;
+    public function update(Request $request) {
+        if (orderroom::all()->where('updated_at', '>=', Carbon::now()->startOfWeek())->where('updated_at', '<=', Carbon::now()->endOfWeek())->where('user_id', Auth::id())->count() >= 2) {
+            return redirect()->action('RoomOrderController@index')->with('alert', '你最多只能每周预约两间教室！');
         }
-      } else{
-        $order[$time][$room]['uid'] = Auth::id();
-        $order[$time][$room]['content'] = Auth::user()->name;
-      }
-      $order_arr = json_encode($order);
-      Storage::put('room_order.json',$order_arr);
-      return redirect('/order/room');
+
+        if (orderroom::all()->where('room_id', $request->room)->where('day', $request->day)->where('time', $request->time)->where('updated_at', '>=', Carbon::now()->startOfWeek())->where('updated_at', '<=', Carbon::now()->endOfWeek())->count() > 0) {
+            return redirect()->action('RoomOrderController@index')->with('alert', '该教室已被预订！如你确认本教室未被预订，请联系系统管理员');
+        }
+
+        $order = orderroom::all()->where('room_id', $request->room)->where('day', $request->day)->where('time', $request->time)->first();
+
+        $org_id = DB::select('select * from organizations where user_id = :id', ['id' => Auth::id()]);
+
+        if ($order == null) {
+            // Create if entry does not exist
+            $order = new orderroom;
+            $order->room_id = $request->room;
+            $order->day = $request->day;
+            $order->time = $request->time;
+        }
+        // Update the person who books
+        $order->user_id = Auth::id();
+        $order->organization_id = $org_id[0]->id;
+        $order->save();
+
+        return redirect()->action('RoomOrderController@index');
     }
 
 }

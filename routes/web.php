@@ -59,7 +59,7 @@ Route::middleware(['auth'])->group(function () {
 
   //order room
   Route::get('order/room/', 'RoomOrderController@index');
-  Route::get('order/room/{time}/{room}', 'RoomOrderController@process');
+  Route::get('order/room/{room}/{day}/{time}', 'RoomOrderController@update');
 
   //orgs
   Route::get('/org/manage', 'OrganizationController@manage');
