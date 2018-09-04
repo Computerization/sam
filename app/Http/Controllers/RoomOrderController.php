@@ -21,6 +21,12 @@ class RoomOrderController extends Controller
     }
 
     public function update(Request $request) {
+        $org_id = DB::select('select * from organizations where user_id = :id', ['id' => Auth::id()]);
+
+        if ($org_id==null) {
+            return redirect()->action('RoomOrderController@index')->with('alert', '只有社长才有预约活动教室的权力！');
+        }
+
         if (orderroom::all()->where('updated_at', '>=', Carbon::now()->startOfWeek())->where('updated_at', '<=', Carbon::now()->endOfWeek())->where('user_id', Auth::id())->count() >= 2) {
             return redirect()->action('RoomOrderController@index')->with('alert', '你最多只能每周预约两间教室！');
         }
@@ -30,8 +36,6 @@ class RoomOrderController extends Controller
         }
 
         $order = orderroom::all()->where('room_id', $request->room)->where('day', $request->day)->where('time', $request->time)->first();
-
-        $org_id = DB::select('select * from organizations where user_id = :id', ['id' => Auth::id()]);
 
         if ($order == null) {
             // Create if entry does not exist
