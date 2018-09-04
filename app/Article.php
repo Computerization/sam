@@ -40,5 +40,5 @@ class Article extends Model
       return $this->belongsTo('App\Organization');
     }
 
-    protected $fillable = ['title', 'content', 'content_status', 'comment_status', 'user_id', 'organization_id', 'upvote', 'downvote'];
+    protected $fillable = ['title', 'content', 'content_type', 'content_status', 'comment_status', 'user_id', 'organization_id', 'upvote', 'downvote'];
 }

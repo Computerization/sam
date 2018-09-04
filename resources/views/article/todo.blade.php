@@ -10,7 +10,7 @@
 
 <div class="ui container centered grid stackable">
 
-<div class="twelve wide column">
+<div class="ten wide column">
 
   <div class="ui piled segment">
     <span class="ui blue ribbon large label">文章</span>
@@ -70,11 +70,11 @@
 @endif
 
 <div class="ui container centered grid stackable">
-<div class="twelve wide column">
+<div class="ten wide column">
   <div class="ui raised segment">
 
   <div class="ui threaded comments container">
-    <h3 class="ui dividing header">Comments</h3>
+    <h3 class="ui dividing header">评论</h3>
     @foreach($article->comments as $comment)
       @include('article.cells.comment')
     @endforeach
@@ -85,7 +85,7 @@
         <textarea name="content"></textarea>
       </div>
       <button class="ui blue labeled submit icon button" type="submit">
-        <i class="icon edit"></i> Add Reply
+        <i class="icon edit"></i> 回复
       </button>
     </form>
   </div>

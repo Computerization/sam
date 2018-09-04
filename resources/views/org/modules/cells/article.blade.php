@@ -12,7 +12,7 @@
     <div class="description">
       <p>
         @include('user.cells.namecard_small', ['user' => $article->user])
-        | {{ $article->created_at }}
+        {{ $article->created_at }}
       </p>
 
       <p class="content-preview">{{ $article->content }}</p>
@@ -28,10 +28,11 @@
       @endif
     </div>
     <div class="extra">
-      <a class="ui right floated primary button" href="{{ URL::action('ArticleController@show', ['id' => $article->id]) }}">
+      <a class="ui right floated" href="{{ URL::action('ArticleController@show', ['id' => $article->id]) }}">
         阅读全文
         <i class="right chevron icon"></i>
       </a>
+      <span><i class="icon thumbs up outline"></i>{{ $article->upvote }}</span>
       <span class="ui blue label">文章</span>
       <div class="ui label">Tag</div>
     </div>

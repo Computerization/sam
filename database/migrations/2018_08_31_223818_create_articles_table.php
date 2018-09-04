@@ -20,7 +20,8 @@ class CreateArticlesTable extends Migration
             $table->tinyInteger('content_status')->default(0);
             $table->tinyInteger('comment_status')->default(1);
             $table->tinyInteger('content_type')->default(0);
-            $table->timestamp('expire_at')->nullable();
+            $table->timestamp('start_at')->nullable();
+            $table->timestamp('due_at')->nullable();
             $table->integer('user_id');
             $table->integer('organization_id')->nullable();
             $table->integer('upvote')->default(0);
