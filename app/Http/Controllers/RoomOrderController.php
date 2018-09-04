@@ -48,4 +48,11 @@ class RoomOrderController extends Controller
         return redirect()->action('RoomOrderController@index');
     }
 
+    public function delete(Request $request) {
+        $order = orderroom::all()->where('user_id', Auth::id())->where('room_id', $request->room)->where('day', $request->day)->where('time', $request->time)->first();
+        $order->user_id = NULL;
+        $order->organization_id = NULL;
+        $order->save();
+        return redirect()->action('RoomOrderController@index');
+    }
 }
