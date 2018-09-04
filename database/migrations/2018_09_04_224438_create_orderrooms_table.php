@@ -15,6 +15,11 @@ class CreateOrderroomsTable extends Migration
     {
         Schema::create('orderrooms', function (Blueprint $table) {
             $table->increments('id');
+            $table->tinyInteger('room_id');
+            $table->tinyInteger('day');
+            $table->tinyInteger('time');
+            $table->integer('user_id')->nullable();
+            $table->integer('organization_id')->nullable();
             $table->timestamps();
         });
     }
