@@ -25,9 +25,39 @@ class OrganizationController extends Controller
       return view('org.index', ['orgs' => $organizations, 'keyword' => $request->keyword]);
     }
 
-    public function show($id) {
+    public function show_feed($id) {
       $organization = Organization::findOrFail($id);
-      return view('org.show', ['org' => $organization]);
+      return view('org.show', ['org' => $organization, 'show' => 0]);
+    }
+
+    public function show_article($id) {
+      $organization = Organization::findOrFail($id);
+      return view('org.show', ['org' => $organization, 'show' => 1]);
+    }
+
+    public function show_discuss($id) {
+      $organization = Organization::findOrFail($id);
+      return view('org.show', ['org' => $organization, 'show' => 2]);
+    }
+
+    public function show_qa($id) {
+      $organization = Organization::findOrFail($id);
+      return view('org.show', ['org' => $organization, 'show' => 3]);
+    }
+
+    public function show_todo($id) {
+      $organization = Organization::findOrFail($id);
+      return view('org.show', ['org' => $organization, 'show' => 4]);
+    }
+
+    public function show_member($id) {
+      $organization = Organization::findOrFail($id);
+      return view('org.show', ['org' => $organization, 'show' => 5]);
+    }
+
+    public function show_about($id) {
+      $organization = Organization::findOrFail($id);
+      return view('org.show', ['org' => $organization, 'show' => 6]);
     }
 
     public function join(Request $request) {
