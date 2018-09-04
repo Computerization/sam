@@ -37,5 +37,9 @@ class Organization extends Model
       return $this->hasMany('App\Article');
     }
 
+    public function orderroom(){
+      return $this->hasMany('App\orderroom');
+    }
+
     protected $fillable = ['organization_name','organization_description'];
 }
