@@ -139,7 +139,9 @@ Route::delete('/org/{id}/auths/', 'OrganizationAuthenticationController@destroy'
 Route::post('/org/{id}/members/update', 'OrganizationController@change_authentication');
 
 //User - public
-Route::get('/profile/{uid}', 'UserController@show');
+Route::get('/u/my/calendar', 'UserController@show_mycalendar');
+Route::get('/u/my', 'UserController@show_myhome');
+Route::get('/u/{uid}', 'UserController@show');
 
 //Article - public
 Route::get('/article/test', 'ArticleController@test');

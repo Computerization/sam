@@ -56,7 +56,28 @@ New Article -
        </div>
      </div>
 
-
+     <div class="ui form">
+       <div class="two fields">
+         <div class="field">
+           <label>开始时间</label>
+           <div class="ui calendar" id="rangestart">
+             <div class="ui input left icon">
+               <i class="calendar icon"></i>
+               <input type="text" name="start_at" placeholder="Start">
+             </div>
+           </div>
+         </div>
+         <div class="field">
+           <label>结束时间</label>
+           <div class="ui calendar" id="rangeend">
+             <div class="ui input left icon">
+               <i class="calendar icon"></i>
+               <input type="text" name="due_at" placeholder="End">
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
 
     <button class="ui button" type="submit">Submit</button>
   </form>
@@ -72,5 +93,43 @@ New Article -
 
 </div>
 
+@endsection
+
+@section('scripts')
+
+<script type="text/javascript">
+$('#rangestart').calendar({
+  type: 'date',
+  endCalendar: $('#rangeend'),
+  formatter: {
+    datetime: function (date, settings) {
+          if (!date) return '';
+          var day = date.getDate();
+          var month = date.getMonth() + 1;
+          var year = date.getFullYear();
+          var hour = date.getHours();
+          var minute = date.getMinutes();
+          // var second = date.getSeconds();
+          return year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':00';
+    }
+  }
+});
+$('#rangeend').calendar({
+  type: 'date',
+  startCalendar: $('#rangestart'),
+  formatter: {
+    datetime: function (date, settings) {
+          if (!date) return '';
+          var day = date.getDate();
+          var month = date.getMonth() + 1;
+          var year = date.getFullYear();
+          var hour = date.getHours();
+          var minute = date.getMinutes();
+          // var second = date.getSeconds();
+          return year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':00';
+    }
+  }
+});
+</script>
 
 @endsection

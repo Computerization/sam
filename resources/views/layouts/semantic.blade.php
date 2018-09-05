@@ -19,6 +19,9 @@
     <script type="text/javascript" src="{{ asset('semantic/semantic.min.js') }}"></script>
     {{-- Semantic-UI ends --}}
 
+    <link href="https://cdn.bootcss.com/semantic-ui-calendar/0.0.8/calendar.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/fullcalendar/3.9.0/fullcalendar.min.css" rel="stylesheet">
+
     {{-- simditor --}}
     <link href="{{ asset('simditor/styles/simditor.css') }}" type="text/css" rel="stylesheet">
     {{-- simditor ends --}}
@@ -106,6 +109,10 @@
                 <a class="item" href="{{ URL::action('HomeController@index') }}">
                     <i class="user icon"></i>{{ trans('nav.dashboard') }}
                 </a>
+                {{-- SWFLA students only：个人日历 --}}
+                <a class="item" href="{{ URL::action('UserController@show_mycalendar') }}">
+                    <i class="calendar icon"></i>我的日历
+                </a>
             @endif
             {{-- 登出（通过csrf_field form进行） --}}
             <a class="item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
@@ -169,6 +176,10 @@
                                     <a class="item" href="{{ URL::action('HomeController@index') }}">
                                         <i class="user icon"></i>{{ trans('nav.dashboard') }}
                                     </a>
+                                    {{-- SWFLA students only：个人日历 --}}
+                                    <a class="item" href="{{ URL::action('UserController@show_mycalendar') }}">
+                                        <i class="calendar icon"></i>我的日历
+                                    </a>
                                 @endif
                                 {{-- 登出（通过csrf_field form进行） --}}
                                 <a class="item" href="{{ route('logout') }}"
@@ -218,6 +229,11 @@
 
 
     <!-- Scripts -->
+
+    <!-- Moment.js -->
+    <script src="https://cdn.bootcss.com/moment.js/2.22.1/moment-with-locales.min.js"></script>
+    <script src="https://cdn.bootcss.com/semantic-ui-calendar/0.0.8/calendar.min.js"></script>
+    <script src="https://cdn.bootcss.com/fullcalendar/3.9.0/fullcalendar.min.js"></script>
 
     {{-- simditor Scripts Here --}}
     <script src="{{ asset('simditor/scripts/module.min.js') }}"></script>
