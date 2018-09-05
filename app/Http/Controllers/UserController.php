@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -46,6 +47,18 @@ class UserController extends Controller
     public function show($id)
     {
         //
+    }
+
+    public function show_myhome()
+    {
+        //
+        return view('user.my', ['user' => Auth::user(), 'show' => 0]);
+    }
+
+    public function show_mycalendar()
+    {
+        //
+        return view('user.my', ['user' => Auth::user(), 'show' => 1]);
     }
 
     /**
