@@ -31,7 +31,7 @@ class RoomOrderController extends Controller
             return redirect()->action('RoomOrderController@index')->with('alert', '你最多只能每周预约两间教室！');
         }
 
-        if (orderroom::all()->where('room_id', $request->room)->where('day', $request->day)->where('time', $request->time)->where('updated_at', '>=', Carbon::now()->startOfWeek())->where('updated_at', '<=', Carbon::now()->endOfWeek())->count() > 0) {
+        if (orderroom::all()->where('organization_id', '!==', NULL)->where('room_id', $request->room)->where('day', $request->day)->where('time', $request->time)->where('updated_at', '>=', Carbon::now()->startOfWeek())->where('updated_at', '<=', Carbon::now()->endOfWeek())->count() > 0) {
             return redirect()->action('RoomOrderController@index')->with('alert', '该教室已被预订！如你确认本教室未被预订，请联系系统管理员');
         }
 
@@ -53,7 +53,10 @@ class RoomOrderController extends Controller
     }
 
     public function delete(Request $request) {
-        $order = orderroom::all()->where('user_id', Auth::id())->where('room_id', $request->room)->where('day', $request->day)->where('time', $request->time)->first();
+        $order = orderroom::all()->where('room_id', $request->room)->where('day', $request->day)->where('time', $request->time)->first();
+        if ($order->user_id !== Auth::id()) {
+            return redirect()->action('RoomOrderController@index')->with('alert', '你无法删除其他人的预订，若你确定这是你的预订，请联系管理员');
+        }
         $order->user_id = NULL;
         $order->organization_id = NULL;
         $order->save();

@@ -43,7 +43,15 @@
     <br />
     <div class="ui container">
 
-        {{-- System Available --}}
+        @unless (config('samcloud.room_order_available'))
+            <div class="ui negative message">
+                <div class="header">
+                    系统未开启
+                </div>
+                <p>请联系管理员或学生会社团部咨询开放时间</p>
+            </div>
+        @endunless
+
         @if(config('samcloud.room_order_available'))
             <div class="ui segment ordertablefa" id="noon">
                 <div class="ui ordertable">
