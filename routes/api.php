@@ -16,3 +16,6 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/profile/{uid}/articles', 'ArticleController@get_public_article_by_user_id');
+Route::get('/org/{org_id}/articles', 'ArticleController@get_public_article_by_org_id');

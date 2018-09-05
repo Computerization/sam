@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Organization;
 use App\User;
+use App\Http\Requests\StoreOrgMemberAuth;
 use Illuminate\Support\Facades\Auth;
 
 class OrganizationController extends Controller
@@ -24,9 +25,39 @@ class OrganizationController extends Controller
       return view('org.index', ['orgs' => $organizations, 'keyword' => $request->keyword]);
     }
 
-    public function show($id) {
+    public function show_feed($id) {
       $organization = Organization::findOrFail($id);
-      return view('org.show', ['org' => $organization]);
+      return view('org.show', ['org' => $organization, 'show' => 0]);
+    }
+
+    public function show_article($id) {
+      $organization = Organization::findOrFail($id);
+      return view('org.show', ['org' => $organization, 'show' => 1]);
+    }
+
+    public function show_discuss($id) {
+      $organization = Organization::findOrFail($id);
+      return view('org.show', ['org' => $organization, 'show' => 2]);
+    }
+
+    public function show_qa($id) {
+      $organization = Organization::findOrFail($id);
+      return view('org.show', ['org' => $organization, 'show' => 3]);
+    }
+
+    public function show_todo($id) {
+      $organization = Organization::findOrFail($id);
+      return view('org.show', ['org' => $organization, 'show' => 4]);
+    }
+
+    public function show_member($id) {
+      $organization = Organization::findOrFail($id);
+      return view('org.show', ['org' => $organization, 'show' => 5]);
+    }
+
+    public function show_about($id) {
+      $organization = Organization::findOrFail($id);
+      return view('org.show', ['org' => $organization, 'show' => 6]);
     }
 
     public function join(Request $request) {
@@ -103,6 +134,29 @@ class OrganizationController extends Controller
     public function manage(){
       $organizations = Organization::where('user_id', Auth::id())->get();
       return view('org.control_index', ['orgs' => $organizations]);
+    }
+
+    public function members($id){
+      $organization = Organization::findOrFail($id);
+      // dd($organization->members()->first()->pivot->member_role);
+      return view('org.member.show', ['org' => $organization]);
+    }
+
+    public function toggle_member($id){
+      if(Auth::check()){
+        // $member = Organization::findOrFail($id)->members()->findOrFail(Auth::id());
+        // $member->pivot->authentication_id = 0;
+        // $member->save();
+        Organization::findOrFail($id)->members()->toggle(Auth::id());
+      }
+      return back();
+    }
+
+    public function change_authentication(StoreOrgMemberAuth $request, $id){
+      $user_id = $request->user_id;
+      $orgmemberpivot = Organization::findOrFail($id)->members()->findOrFail($user_id)->pivot;
+      // dd($request->all());
+      $orgmemberpivot -> update($request->all());
     }
 
 }

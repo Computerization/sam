@@ -1,7 +1,7 @@
 @extends('layouts.app_bs4')
 
 @section('title')
-2017 Why Charity Auction
+2017 Why Charity Auction - 
 @endsection
 
 

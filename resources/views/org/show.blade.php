@@ -1,63 +1,200 @@
-@extends('layouts.app')
+@extends('layouts.semantic')
+
+@section('title')
+{{ $org->organization_name }} - Student Organizations -
+@endsection
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-12 col-xs-12">
-          @if(session('msg'))
-            <div class="card text-white bg-success">
-              <div class="card-header">
-                <h4>{{ session('msg') }}</h4>
-              </div>
-              <div class="card-body">
-                {{ trans('resume.recorded') }}
-              </div>
-            </div>
-          @endif
-          <div class="card">
-            <div class="card-body">
-              <div class="row">
-                <div class="col-md-3 col-xs-12">
-                  @if($org->file_id)
-                  <div class="thumbnail">
-                    <img src="/image/{{ $org->file_id }}" alt="...">
-                  </div>
-                  @endif
-                </div>
-                <div class="col-md-9 col-xs-12">
+<div class="ui hidden divider"></div>
 
-                  <h1>{{ $org->organization_name }}</h1>
-                  <p>{{ $org->organization_intro }}</p>
-                  <div class="row">
-                    <h4 class="col-md-4 col-xs-12"><i class="fa fa-user-o" aria-hidden="true"></i> {{ $org->user->name }}</h4>
-                    <h4 class="col-md-6 col-xs-12"><i class="fa fa-envelope-o" aria-hidden="true"></i> {{ $org->organization_contact }}</h4>
-                  </div>
-                  <br>
-                  <p><a class="button button-3d button-primary button-rounded" href="{{ URL::action('OrganizationController@join',$org->id) }}" role="button">{{ trans('org.join') }}</a></p>
+<div class="ui container stackable grid">
+  <div class="four wide column">
 
-                </div>
-              </div>
-            </div>
-          </div>
-          <br>
-        </div>
-        <div class="col-md-12 col-xs-12">
-          <div class="card">
-            <div class="card-header">
-              <h4 class="text-center">社团简介</h4>
-            </div>
-            <div class="card-body image-fix">
-              {!! Purifier::clean($org->organization_description) !!}
-            </div>
-          </div>
-        </div>
+    @if($org->file_id)
+    <div class="ui container grid">
+      <div class="twelve wide column centered">
+        <img class="ui medium rounded image" src="/image/{{ $org->file_id }}">
+      </div>
     </div>
+    @endif
+    <!-- <div class="ui hidden divider"></div> -->
+    <h1 class="ui center aligned header">{{ $org->organization_name }}</h1>
+
+    <div class="ui center aligned header large labels">
+      <a class="ui olive label">IB<div class="detail">C</div></a>
+      <a class="ui red label">IB<div class="detail">A</div></a>
+      <a class="ui blue label">IB<div class="detail">S</div></a>
+      <a class="ui orange label">Tech</a>
+      <a class="ui large green label">Sport</a>
+      <a class="ui teal label">Art</a>
+      <a class="ui violet label">Debate</a>
+      <a class="ui purple label">Volunteer</a>
+    </div>
+
+    <!-- <div class="ui hidden divider"></div> -->
+
+    <div class="ui container piled segment">
+      <p>{{ $org->organization_intro }}</p>
+    </div>
+
+    <!-- <div class="ui hidden divider"></div> -->
+    <div class="ui secondary container large vertical pointing menu">
+      <a class="item" href="{{ URL::action('OrganizationController@show_feed', ['id' => $org->id]) }}" id="show-feed">
+        <i class="icon feed"></i>
+        动态
+      </a>
+      <a class="item" href="{{ URL::action('OrganizationController@show_article', ['id' => $org->id]) }}" id="show-article">
+        <i class="icon file alternate outline"></i>
+        文章
+      </a>
+      <a class="item" href="{{ URL::action('OrganizationController@show_discuss', ['id' => $org->id]) }}" id="show-discuss">
+        <i class="icon comments outline"></i>
+        讨论
+      </a>
+      <a class="item" href="{{ URL::action('OrganizationController@show_qa', ['id' => $org->id]) }}" id="show-qa">
+        <i class="icon question"></i>
+        问答
+      </a>
+      <a class="item" href="{{ URL::action('OrganizationController@show_todo', ['id' => $org->id]) }}" id="show-todo">
+        <i class="icon lightbulb outline"></i>
+        通知
+      </a>
+      <a class="item" href="{{ URL::action('OrganizationController@show_member', ['id' => $org->id]) }}" id="show-member">
+        <i class="icon users"></i>
+        团队
+      </a>
+      <a class="item" href="{{ URL::action('OrganizationController@show_about', ['id' => $org->id]) }}" id="show-about">
+        <i class="icon tag"></i>
+        关于我们
+      </a>
+    </div>
+
+  </div>
+  <div class="twelve wide column">
+
+
+    @if($show == 0)
+
+    <div class="ui horizontal divider">
+      <h1>
+        <i class="rss icon"></i>
+        动态
+      </h1>
+    </div>
+    <div class="ui aligned center header">
+      <div class="ui vertical labeled icon buttons">
+        <a href="{{ URL::action('ArticleController@create') }}" class="ui green button">
+          <i class="plus icon"></i>
+          发布新文章
+        </a>
+      </div>
+    </div>
+    @include('org.modules.feed', ['articles' => $org->articles])
+
+    @elseif($show == 1)
+
+    <div class="ui horizontal divider">
+      <h1>
+        <i class="file alternate outline icon"></i>
+        文章
+      </h1>
+    </div>
+    <div class="ui aligned center header">
+      <div class="ui vertical labeled icon buttons">
+        <a href="{{ URL::action('ArticleController@create') }}" class="ui green button">
+          <i class="plus icon"></i>
+          发布新文章
+        </a>
+      </div>
+    </div>
+    @include('org.modules.feed', ['articles' => $org->articles->where('content_type', config('organization.content_type.ARTICLE')) ])
+
+    @elseif($show == 2)
+
+    <div class="ui horizontal divider">
+      <h1>
+        <i class="comments icon"></i>
+        讨论
+      </h1>
+    </div>
+    <div class="ui aligned center header">
+      <div class="ui vertical labeled icon buttons">
+        <a href="{{ URL::action('ArticleController@create') }}" class="ui green button">
+          <i class="icon comments outline"></i>
+          发布新文章
+        </a>
+      </div>
+    </div>
+    @include('org.modules.feed', ['articles' => $org->articles->where('content_type', config('organization.content_type.DISCUSS')) ])
+
+    @elseif($show == 3)
+
+    <div class="ui horizontal divider">
+      <h1>
+        <i class="icon question"></i>
+        问答
+      </h1>
+    </div>
+    <div class="ui aligned center header">
+      <div class="ui vertical labeled icon buttons">
+        <a href="{{ URL::action('ArticleController@create') }}" class="ui green button">
+          <i class="plus icon"></i>
+          发布新文章
+        </a>
+      </div>
+    </div>
+    @include('org.modules.feed', ['articles' => $org->articles->where('content_type', config('organization.content_type.QA')) ])
+
+    @elseif($show == 4)
+
+    <div class="ui horizontal divider">
+      <h1>
+        <i class="icon lightbulb outline"></i>
+        通知
+      </h1>
+    </div>
+    <div class="ui aligned center header">
+      <div class="ui vertical labeled icon buttons">
+        <a href="{{ URL::action('ArticleController@create') }}" class="ui green button">
+          <i class="plus icon"></i>
+          发布新文章
+        </a>
+      </div>
+    </div>
+    @include('org.modules.feed', ['articles' => $org->articles->where('content_type', config('organization.content_type.TODO')) ])
+
+
+    @elseif($show == 5)
+
+    <div class="ui horizontal divider">
+      <h1>
+        <i class="users icon"></i>
+        团队
+      </h1>
+    </div>
+    @include('org.modules.team')
+
+    @elseif($show == 6)
+
+    <div class=" ui horizontal divider" id="organization_description">
+      <h1>
+        <i class="tag icon"></i>
+        社团简介
+      </h1>
+    </div>
+    @include('org.modules.description')
+
+    @endif
+
+  </div>
 </div>
 
-<style>
-  img {
-    max-width:100%;
-    height:auto;
-  }
-</style>
+<!-- <div class="ui center aligned grid">
+  <a href="#organization_description" class="ui primary button">关于我们</a>
+</div> -->
+
+<!-- <div class="ui hidden divider"></div> -->
+<!-- <div class="ui hidden divider"></div> -->
+
+
 @endsection

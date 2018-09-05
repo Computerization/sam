@@ -1,47 +1,59 @@
-@extends('layouts.app')
+@extends('layouts.semantic')
+
+@section('title'){{ $vote_group -> group_name }} - @endsection
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-          <h1>{{ $vote_group -> group_name }}</h1>
-          @if(Auth::user()->group > 0)
-          <hr>
-             <a class="btn btn-success" href="{{ url('/group/create') }}">New Vote Group...</a>
-          @endif
-          @if (session('status'))
-          <hr>
-              <div class="alert alert-success">
-                  {{ session('status') }}
-              </div>
-          @endif
-          <hr>
-        </div>
-        @if($vote_group -> description != null)
-        <div class="col-md-12">
-          <div class="card">
-            <div class="card-header">
-              <h4>Notice</h4>
-            </div>
-            <div class="card-body">
-              {!! $vote_group -> description !!}
-            </div>
-          </div>
-        </div>
-        @endif
 
-        <!-- <div class="col-md-12"> -->
-        <div class="card-columns">
-          @foreach($vote_group->votes as $vote)
-            <div class="card">
-              <div class="card-body">
-                <h4><a href="{{ url('vote',$vote->id) }}">{{ $vote->vote_name }} </a></h4>
-                <p>{{ $vote->user->name }} - {{ $vote->created_at }}</p>
-              </div>
+    {{-- Successful Actions --}}
+    @if (session('status'))
+        <div class="ui text container blue message">
+            <div class="header">
+                <p>
+                    <i class="info icon"></i>
+                    {{ session('status') }}
+                </p>
             </div>
-          @endforeach
         </div>
-        <!-- </div> -->
+    @endif
+
+    <div class="ui raised padded text container segment">
+        <div class="ui center aligned padded basic segment">
+            <h1 class="ui header">
+                {{ $vote_group -> group_name }}
+            </h1>
+            @if(Auth::user()->group > 0)
+                <div class="ui divider"></div>
+                <a class="ui positive button" href="{{ url('/group/create') }}">
+                    New Vote Group...
+                </a>
+            @endif
+            @if($vote_group -> description != null)
+                <div class="ui divider"></div>
+                <h4>Notice</h4>
+                <div>
+                    {{-- {!! !!} denotes <h4> contents --}}
+                    {!! $vote_group -> description !!}
+                </div>
+            @endif
+        </div>
+        <hr />
+        <div class="ui large very relaxed divided list">
+            @foreach($vote_group->votes as $vote)
+                <div class="item">
+                    <i class="terminal icon"></i>
+                    <div class="content">
+                        <a href="{{ url('vote',$vote->id) }}">
+                            {{ $vote->vote_name }}
+                        </a>
+                        <small class="description">
+                            Created by {{ $vote->user->name }} at {{ $vote->created_at }}
+                        </small>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+
+
     </div>
-</div>
+
 @endsection

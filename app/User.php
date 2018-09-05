@@ -37,7 +37,7 @@ class User extends Authenticatable
     }
 
     public function organizations(){
-      return $this->hasMany('App\Organization');
+      return $this->belongsToMany('App\Organization');
     }
 
     public function resume(){
@@ -55,5 +55,30 @@ class User extends Authenticatable
     public function reservations(){
       return $this->hasMany('App\Reservation');
     }
+
+    public function articles(){
+      return $this->hasMany('App\Article');
+    }
+
+    public function article_star(){
+      return $this->morphedByMany('App\Article', 'userable')->wherePivot('action_primary_type', config('organization.content_stat.STAR'))->withPivot('action_primary_type', 'action_secondary_type');
+    }
+
+    public function article_attitude(){
+      return $this->morphedByMany('App\Article', 'userable')->wherePivot('action_primary_type', config('organization.content_stat.ATTITUDE'))->withPivot('action_primary_type', 'action_secondary_type');
+    }
+
+    public function comment_star(){
+      return $this->morphedByMany('App\Comment', 'userable')->wherePivot('action_primary_type', config('organization.content_stat.STAR'))->withPivot('action_primary_type', 'action_secondary_type');
+    }
+
+    public function comment_attitude(){
+      return $this->morphedByMany('App\Comment', 'userable')->wherePivot('action_primary_type', config('organization.content_stat.ATTITUDE'))->withPivot('action_primary_type', 'action_secondary_type');
+    }
+
+    public function orderroom(){
+      return $this->hasMany('App\orderroom');
+    }
+
 
 }
