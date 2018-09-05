@@ -137,12 +137,16 @@
                                     {{-- for每列 --}}
                                     @for ($day=1; $day < 6; $day++)
                                         <div class="column">
-                                            <a href="{{ URL::action('RoomOrderController@update',[$room, $day, '2']) }}">
+                                            
                                                 {{-- 存在预约，显示社团名字 --}}
                                                 @if($order->where('time', '2')->where('room_id', $room)->where('day', $day)->first() !== null)
-                                                    {{ $order->where('time', '2')->where('room_id', $room)->where('day', $day)->first()->organization->organization_name  }}
+                                                    <a href="{{ URL::action('RoomOrderController@delete',[$room, $day, '2']) }}">
+                                                        {{ $order->where('time', '2')->where('room_id', $room)->where('day', $day)->first()->organization->organization_name  }}
+                                                    </a>
                                                 @else
-                                                    <b class="green">Available</b>
+                                                    <a href="{{ URL::action('RoomOrderController@update',[$room, $day, '2']) }}">
+                                                        <b class="green">Available</b>
+                                                    </a>
                                                 @endif
                                             </a>
                                         </div>
