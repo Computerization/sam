@@ -1,5 +1,5 @@
 {{-- 各教室的名字 --}}
-@php ($names = ['C101 小教室','C102 小教室', 'C201', 'C202', 'C203', 'C204', 'C205', 'C206 大教室', 'C207 大教室', 'C3x', 'C3y', 'Dxx', 'Dyy', 'A1x 生物实验室', 'A1y 生物实验室', 'A2x 物理实验室', 'A2y 物理实验室', 'Bxx 音乐教室', 'Bxx 形体房', 'C3x 美术教室'])
+@php ($names = ['A206 大教室', 'C101 小教室','C102 小教室', 'C201', 'C202', 'C203', 'C204', 'C206', 'C207 大教室', 'C208 大教室', 'C302', 'C303', 'C308', 'D101', 'D102', 'A101 生化实验室', 'A103 生化实验室', 'A104 科学实验室', 'A201 物理实验室', 'A203 物理实验室', 'B楼 音乐教室', 'B楼 形体房', 'C楼 美术教室'])
 
 @extends('layouts.semantic')
 @section('title')教室预约 - @endsection
@@ -43,7 +43,15 @@
     <br />
     <div class="ui container">
 
-        {{-- System Available --}}
+        @unless (config('samcloud.room_order_available'))
+            <div class="ui negative message">
+                <div class="header">
+                    系统未开启
+                </div>
+                <p>请联系管理员或学生会社团部咨询开放时间</p>
+            </div>
+        @endunless
+
         @if(config('samcloud.room_order_available'))
             <div class="ui segment ordertablefa" id="noon">
                 <div class="ui ordertable">
@@ -131,18 +139,22 @@
 
                         <div class="ui grid equal width container center aligned ordertable">
                             {{-- for每行 --}}
-                            @for ($room=0; $room < 20; $room++)
+                            @for ($room=0; $room < 23; $room++)
                                 <div class="eight column row">
                                     <div class="column">{{ $names[$room] }}</div>
                                     {{-- for每列 --}}
                                     @for ($day=1; $day < 6; $day++)
                                         <div class="column">
-                                            <a href="{{ URL::action('RoomOrderController@update',[$room, $day, '2']) }}">
+
                                                 {{-- 存在预约，显示社团名字 --}}
                                                 @if($order->where('time', '2')->where('room_id', $room)->where('day', $day)->first() !== null)
-                                                    {{ $order->where('time', '2')->where('room_id', $room)->where('day', $day)->first()->organization->organization_name  }}
+                                                    <a href="{{ URL::action('RoomOrderController@delete',[$room, $day, '2']) }}">
+                                                        {{ $order->where('time', '2')->where('room_id', $room)->where('day', $day)->first()->organization->organization_name  }}
+                                                    </a>
                                                 @else
-                                                    <b class="green">Available</b>
+                                                    <a href="{{ URL::action('RoomOrderController@update',[$room, $day, '2']) }}">
+                                                        <b class="green">Available</b>
+                                                    </a>
                                                 @endif
                                             </a>
                                         </div>
