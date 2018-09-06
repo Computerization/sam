@@ -22,7 +22,7 @@
           </div>
           <!-- <p class="mb-1"> -->
           <a href="{{ URL::action('OrganizationController@manage') }}" class="list-group-item">{{ trans('nav.manage_orgs') }}</a>
-          <a href="{{ URL::action('OrganizationController@create') }}" class="list-group-item">{{ trans('nav.create_orgs') }}</a>
+          {{-- <a href="{{ URL::action('OrganizationController@create') }}" class="list-group-item">{{ trans('nav.create_orgs') }}</a> --}}
           <!-- </p> -->
         </a>
       </div>

@@ -66,7 +66,7 @@
                       @if (!Auth::guest() && Auth::user()->group >= 0)
                         <!-- <li><a href="{{ url('vote/group') }}">{{ trans('nav.group') }}</a></li> -->
                         <li class="nav-item"><a class="nav-link" href="{{ url('vote') }}">{{ trans('nav.vote') }}</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ url('resource') }}">{{ trans('nav.reservation') }}</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('order/room') }}">{{ trans('nav.reservation') }}</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ url('org') }}">{{ trans('org.org') }}</a></li>
                       @endif
                     </ul>
