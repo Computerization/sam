@@ -20,11 +20,11 @@ class Article extends Model
     }
 
     public function get_upvote(){
-      return $this->morphToMany('App\User', 'userable')->wherePivot('action_secondary_type', config('organization.attitude.SUPPORT'));
+      return $this->morphToMany('App\User', 'userable')->wherePivot('action_secondary_type', config('organization.attitude.SUPPORT'))->withTimestamps();
     }
 
     public function get_downvote(){
-      return $this->morphToMany('App\User', 'userable')->wherePivot('action_secondary_type', config('organization.attitude.AGAINST'));
+      return $this->morphToMany('App\User', 'userable')->wherePivot('action_secondary_type', config('organization.attitude.AGAINST'))->withTimestamps();
     }
 
 
@@ -40,5 +40,5 @@ class Article extends Model
       return $this->belongsTo('App\Organization');
     }
 
-    protected $fillable = ['title', 'content', 'content_type', 'content_status', 'comment_status', 'user_id', 'organization_id', 'upvote', 'downvote'];
+    protected $fillable = ['title', 'content', 'content_type', 'content_status', 'comment_status', 'start_at', 'due_at', 'user_id', 'organization_id', 'upvote', 'downvote'];
 }
