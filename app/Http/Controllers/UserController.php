@@ -61,6 +61,18 @@ class UserController extends Controller
         return view('user.my', ['user' => Auth::user(), 'show' => 1]);
     }
 
+    public function show_myfile()
+    {
+        //
+        return view('user.my', ['user' => Auth::user(), 'show' => 2]);
+    }
+
+    public function show_myimage()
+    {
+        //
+        return view('user.my', ['user' => Auth::user(), 'show' => 3]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

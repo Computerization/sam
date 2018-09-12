@@ -36,6 +36,14 @@ Dashboard -
         <i class="icon calendar"></i>
         日历
       </a>
+      <a class="item" href="{{ URL::action('UserController@show_myfile') }}" id="show-feed">
+        <i class="icon file outline"></i>
+        文件
+      </a>
+      <a class="item" href="{{ URL::action('UserController@show_myimage') }}" id="show-feed">
+        <i class="icon image"></i>
+        图片
+      </a>
     </div>
 
   </div>
@@ -62,6 +70,28 @@ Dashboard -
       </h1>
     </div>
     @include('user.modules.calendar')
+
+    @elseif($show == 2)
+
+    <div class="ui horizontal divider">
+      <h1>
+        <i class="file icon"></i>
+        文件
+      </h1>
+    </div>
+    @include('user.modules.file')
+
+    @elseif($show == 3)
+
+    <div class="ui horizontal divider">
+      <h1>
+        <i class="calendar icon"></i>
+        图片
+      </h1>
+    </div>
+    @include('user.modules.image')
+
+
 
     @endif
 

@@ -15,7 +15,7 @@
 
     {{-- Semantic-UI --}}
     <link href="{{ asset('semantic/semantic.min.css') }}" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="{{ asset('semantic/semantic.min.js') }}"></script>
     {{-- Semantic-UI ends --}}
 

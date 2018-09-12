@@ -140,6 +140,8 @@ Route::post('/org/{id}/members/update', 'OrganizationController@change_authentic
 
 //User - public
 Route::get('/u/my/calendar', 'UserController@show_mycalendar');
+Route::get('/u/my/file', 'UserController@show_myfile');
+Route::get('/u/my/image', 'UserController@show_myimage');
 Route::get('/u/my', 'UserController@show_myhome');
 Route::get('/u/{uid}', 'UserController@show');
 

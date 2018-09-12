@@ -40,6 +40,17 @@ class FileController extends Controller
       // ], 200);
     }
 
+    public function post_file(Request $request){
+      $validator = Validator::make($request->all(), File::$file_rules, File::$messages);
+      if($validator->fails()){
+        dd($validator->messages()->first());
+        return back()->with(['fail' => 1,'error'=>$validator->messages()->first()]);
+      }
+      $id = $this->process_file($request);
+      return $id;
+      return back()->with(['status' => 1]);
+    }
+
     public function post_org_avatar(Request $request){
       $validator = Validator::make($request->all(), File::$image_rules, File::$messages);
       if($validator->fails()){
@@ -75,6 +86,11 @@ class FileController extends Controller
       return response()->file(base_path('storage/app/images_small/').$file->filename.'.jpg');
     }
 
+    public function get_file($id){
+      $file = File::findOrFail($id);
+      return response()->download(base_path('storage/app/files/').$file->filename, $file->original_name);
+    }
+
     public function get_original_image($id){
       $file = File::findOrFail($id);
       return response()->file(base_path('storage/app/images/').$file->filename);
@@ -98,4 +114,26 @@ class FileController extends Controller
       $fileinfo -> save();
       return $fileinfo->id;
     }
+
+    public function process_file(Request $request){
+      $file = $request->file;
+      $filename_raw = Carbon::now()->timestamp.'_'.mt_rand(100, 999).'_'.Auth::id();
+      $filename = $filename_raw.'.'.$file->getClientOriginalExtension();
+      // original image
+      $path = $request->file->storeAs('files', $filename);
+      // // compressed image
+      // $image = Image::make($request->file)->resize(640, null, function ($constraint) {
+      //   $constraint->aspectRatio();
+      // })->save('../storage/app/images_small/'.$filename.'.jpg', 80);
+      $fileinfo = new File;
+      $fileinfo -> original_name = $file->getClientOriginalName();
+      $fileinfo -> filename = $filename;
+      $fileinfo -> type = 3;
+      $fileinfo -> mimetype = $file->getMimeType();
+      $fileinfo -> filesize = $file->getClientSize();
+      $fileinfo -> user_id = Auth::id();
+      $fileinfo -> save();
+      return $fileinfo->id;
+    }
+
 }
