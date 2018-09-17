@@ -102,7 +102,7 @@ Route::middleware(['link_resume_to_user'])->group(function () {
 });
 
   Route::get('/', function (){
-    return redirect('/vote/group/4');
+    return redirect('/org');
   });
   Auth::routes();
   Route::get('/org', 'OrganizationController@index');
@@ -115,6 +115,7 @@ Route::middleware(['link_resume_to_user'])->group(function () {
   Route::get('/org/{id}/member', 'OrganizationController@show_member');
   Route::get('/org/{id}/about', 'OrganizationController@show_about');
 
+Route::get('/image', 'FileController@get_default_image');
 Route::get('/image/{id}', 'FileController@get_image');
 Route::get('/image/{id}/original', 'FileController@get_original_image');
 

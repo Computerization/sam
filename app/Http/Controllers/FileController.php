@@ -82,8 +82,16 @@ class FileController extends Controller
     }
 
     public function get_image($id){
-      $file = File::findOrFail($id);
-      return response()->file(base_path('storage/app/images_small/').$file->filename.'.jpg');
+      $file = File::find($id);
+      if(isset($file)){
+        return response()->file(base_path('storage/app/images_small/').$file->filename.'.jpg');
+      }else{
+        return response()->file(base_path('public/images/default_image.png'));
+      }
+    }
+
+    public function get_default_image(){
+      return response()->file(base_path('public/images/default_image.png'));
     }
 
     public function get_file($id){

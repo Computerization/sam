@@ -17,6 +17,10 @@ class Organization extends Model
       return $this->belongsToMany('App\User')->withPivot('member_role')->withTimestamps();
     }
 
+    public function pending_members(){
+      return $this->belongsToMany('App\User')->withPivot('member_role')->withTimestamps()->wherePivot('organization_authentication_id', 0);
+    }
+
     public function authentication() {
       return $this->hasMany('App\OrganizationAuthentication');
     }

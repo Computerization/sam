@@ -33,9 +33,14 @@
 
     <!-- <div class="ui hidden divider"></div> -->
 
-    <div class="ui container piled segment">
+    <div class="ui container segment">
       <p>{{ $org->organization_intro }}</p>
     </div>
+
+    <form class="" action="{{ URL::action('OrganizationController@toggle_member', ['id'=>$org->id]) }}" method="post">
+      {{ csrf_field() }}
+      <button type="submit" name="button" class="fluid ui primary button"><i class="plus icon"></i>申请加入/退出社团</button>
+    </form>
 
     <!-- <div class="ui hidden divider"></div> -->
     <div class="ui secondary container large vertical pointing menu">

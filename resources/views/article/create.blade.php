@@ -99,7 +99,7 @@ New Article -
 
 <script type="text/javascript">
 $('#rangestart').calendar({
-  type: 'date',
+  type: 'datetime',
   endCalendar: $('#rangeend'),
   formatter: {
     datetime: function (date, settings) {
@@ -115,7 +115,7 @@ $('#rangestart').calendar({
   }
 });
 $('#rangeend').calendar({
-  type: 'date',
+  type: 'datetime',
   startCalendar: $('#rangestart'),
   formatter: {
     datetime: function (date, settings) {

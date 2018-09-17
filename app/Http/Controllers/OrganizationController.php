@@ -157,6 +157,7 @@ class OrganizationController extends Controller
       $orgmemberpivot = Organization::findOrFail($id)->members()->findOrFail($user_id)->pivot;
       // dd($request->all());
       $orgmemberpivot -> update($request->all());
+      return back();
     }
 
 }
