@@ -81,7 +81,8 @@ class OrganizationAuthenticationController extends Controller
           return response()->json(['status' => 0]);
         }else{
           $auth->delete();
-          return response()->json(['status' => 1]);
+          // return response()->json(['status' => 1]);
         }
+        return back();
     }
 }

@@ -4,6 +4,14 @@
   <div class="four wide column">
     <h2>{{ $auth->auth_name }}</h2>
     <p>{{ $auth->auth_description }}</p>
+    @if(Auth::check() && Auth::id() == $org->user_id && $auth->members->count() == 0)
+    <form class="ui form" action="{{ URL::action('OrganizationAuthenticationController@destroy', ['id' => $org->id]) }}" method="post">
+      {{ csrf_field() }}
+      {{ method_field('DELETE') }}
+      <input type="hidden" name="authentication_id" value="{{ $auth->id }}">
+      <button class="ui red button" type="submit">删除</button>
+    </form>
+    @endif
   </div>
   <div class="twelve wide column">
     <div class="ui two stackable cards">

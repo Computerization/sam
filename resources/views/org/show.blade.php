@@ -86,6 +86,7 @@
         动态
       </h1>
     </div>
+
     <div class="ui aligned center header">
       <div class="ui vertical labeled icon buttons">
         <a href="{{ URL::action('ArticleController@create') }}" class="ui green button">
@@ -177,6 +178,17 @@
         团队
       </h1>
     </div>
+    @if(Auth::check() && Auth::id() == $org->user_id)
+    <div class="ui aligned center header">
+      <div class="ui vertical labeled icon buttons">
+        <a href="#" class="ui green button setting-button">
+          <i class="plus icon"></i>
+          新建用户组
+        </a>
+      </div>
+    </div>
+    @endif
+
     @include('org.modules.team')
 
     @elseif($show == 6)
