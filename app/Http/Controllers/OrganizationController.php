@@ -12,7 +12,13 @@ class OrganizationController extends Controller
 {
     //
     public function index() {
-      $organizations = Organization::all();
+      $organizations = Organization::where('type', 0)->get();
+      // dd(Organization::find(1)->file()->first()->id);
+      return view('org.index', ['orgs' => $organizations, 'keyword' => null]);
+    }
+
+    public function cls() {
+      $organizations = Organization::where('type', 1)->get();
       // dd(Organization::find(1)->file()->first()->id);
       return view('org.index', ['orgs' => $organizations, 'keyword' => null]);
     }

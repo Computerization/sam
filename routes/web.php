@@ -101,17 +101,26 @@ Route::middleware(['link_resume_to_user'])->group(function () {
   Route::post('/resume', 'ResumeController@save');
 });
 
+Route::middleware(['auth', 'check_org_user'])->group(function () {
+  Route::get('/org/{id}/todo', 'OrganizationController@show_todo');
+  //private
+  Route::post('/org/{id}/auths/', 'OrganizationAuthenticationController@store');
+  Route::delete('/org/{id}/auths/', 'OrganizationAuthenticationController@destroy');
+  Route::post('/org/{id}/members/update', 'OrganizationController@change_authentication');
+
+});
+
   Route::get('/', function (){
     return redirect('/org');
   });
   Auth::routes();
   Route::get('/org', 'OrganizationController@index');
+  Route::get('/class', 'OrganizationController@cls');
   Route::get('/org/search', 'OrganizationController@search');
   Route::get('/org/{id}', 'OrganizationController@show_feed');
   Route::get('/org/{id}/article', 'OrganizationController@show_article');
   Route::get('/org/{id}/discuss', 'OrganizationController@show_discuss');
   Route::get('/org/{id}/qa', 'OrganizationController@show_qa');
-  Route::get('/org/{id}/todo', 'OrganizationController@show_todo');
   Route::get('/org/{id}/member', 'OrganizationController@show_member');
   Route::get('/org/{id}/about', 'OrganizationController@show_about');
 
@@ -131,13 +140,9 @@ Route::post('/activate', 'ActivateAccountController@verify');
 // Route::get('/org/{id}/members', 'OrganizationController@members');
 Route::post('/org/{id}/members/toggle', 'OrganizationController@toggle_member');
 Route::get('/org/{id}/auths', 'OrganizationAuthenticationController@index');
-Route::get('/org/{id}/auths/test', 'OrganizationAuthenticationController@create');
+// Route::get('/org/{id}/auths/test', 'OrganizationAuthenticationController@create');
 Route::get('/org/{orgid}/auths/{authid}', 'OrganizationAuthenticationController@show');
 
-//private
-Route::post('/org/{id}/auths/', 'OrganizationAuthenticationController@store');
-Route::delete('/org/{id}/auths/', 'OrganizationAuthenticationController@destroy');
-Route::post('/org/{id}/members/update', 'OrganizationController@change_authentication');
 
 //User - public
 Route::get('/u/my/calendar', 'UserController@show_mycalendar');
@@ -146,18 +151,23 @@ Route::get('/u/my/image', 'UserController@show_myimage');
 Route::get('/u/my', 'UserController@show_myhome');
 Route::get('/u/{uid}', 'UserController@show');
 
+
+Route::middleware(['auth'])->group(function () {
+  // comment
+  Route::post('/article/attitude', 'ArticleController@attitude');
+  Route::post('/article/comment/attitude', 'CommentController@attitude');
+  Route::post('/article/comment', 'CommentController@store');
+  Route::post('/article', 'ArticleController@store');
+  Route::delete('/article/{aid}', 'ArticleController@destroy');
+  Route::get('/article/create', 'ArticleController@create');
+  Route::get('/article/{id}/star', 'ArticleController@star');
+});
+
 //Article - public
-Route::get('/article/test', 'ArticleController@test');
-Route::post('/article', 'ArticleController@store');
-Route::get('/article/create', 'ArticleController@create');
-Route::delete('/article/{aid}', 'ArticleController@destroy');
+// Route::get('/article/test', 'ArticleController@test');
 Route::get('/article/{aid}', 'ArticleController@show');
 
 // comment
-Route::post('/article/attitude', 'ArticleController@attitude');
-Route::post('/article/comment/attitude', 'CommentController@attitude');
-Route::post('/article/comment', 'CommentController@store');
-Route::get('/article/{id}/star', 'ArticleController@star');
 
 //Global Home
 // Route::get('/', 'HomeController@index');

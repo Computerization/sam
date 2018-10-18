@@ -85,6 +85,10 @@
             <a href="{{ url('org') }}" class="item">
                 <i class="coffee icon"></i>{{ trans('org.org') }}
             </a>
+            {{-- 社团 --}}
+            <a href="{{ url('class') }}" class="item">
+                <i class="coffee icon"></i>班级
+            </a>
         @endif
 
         {{-- <div class="right menu"> --}}
@@ -153,6 +157,10 @@
                     {{-- 社团 --}}
                     <a href="{{ url('org') }}" class="item">
                         <i class="coffee icon"></i>{{ trans('org.org') }}
+                    </a>
+                    {{-- 班级 --}}
+                    <a href="{{ url('class') }}" class="item">
+                        <i class="coffee icon"></i>班级
                     </a>
                 @endif
 
