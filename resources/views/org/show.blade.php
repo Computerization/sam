@@ -39,7 +39,7 @@
 
     <form class="" action="{{ URL::action('OrganizationController@toggle_member', ['id'=>$org->id]) }}" method="post">
       {{ csrf_field() }}
-      <button type="submit" name="button" class="fluid ui primary button"><i class="plus icon"></i>申请加入/退出社团</button>
+      <button type="submit" name="button" class="fluid ui primary button"><i class="plus icon"></i>申请加入/退出</button>
     </form>
 
     <!-- <div class="ui hidden divider"></div> -->
